@@ -1242,6 +1242,194 @@ export default function Login({ onLogin }) {
             margin-left: auto;
             margin-right: auto;
           }
+          .challenge-grid, .science-grid, .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+          max-width: 1200px;
+          margin: 80px auto;
+          padding: 0 24px;
+          position: relative;
+          z-index: 10;
+        }
+        .challenge-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          margin-top: 40px;
+        }
+        .challenge-card {
+          background: white;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 24px;
+          padding: 40px;
+          box-shadow: var(--sano-card-shadow);
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          text-align: left;
+        }
+        .challenge-card.problem {
+          border-left: 5px solid #f43f5e;
+        }
+        .challenge-card.solution {
+          border-left: 5px solid var(--sano-teal);
+        }
+        .challenge-card-title {
+          font-size: 1.6rem;
+          font-weight: 800;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: var(--sano-dark);
+        }
+        .challenge-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .challenge-list-item {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          line-height: 1.5;
+        }
+        .challenge-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-top: 6px;
+          flex-shrink: 0;
+        }
+        .challenge-card.problem .challenge-dot {
+          background: #f43f5e;
+        }
+        .challenge-card.solution .challenge-dot {
+          background: var(--sano-teal);
+        }
+
+        /* Science Section */
+        .science-section {
+          background: rgba(0, 128, 128, 0.01);
+          border-top: 1px solid var(--sano-glass-border);
+          border-bottom: 1px solid var(--sano-glass-border);
+          padding: 80px 24px;
+          position: relative;
+          z-index: 10;
+        }
+        .science-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .science-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 50px;
+          align-items: center;
+          margin-top: 40px;
+        }
+        .science-content {
+          text-align: left;
+        }
+        .science-item {
+          margin-bottom: 24px;
+        }
+        .science-item-title {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: var(--sano-dark);
+          margin-bottom: 8px;
+        }
+        .science-item-desc {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          line-height: 1.5;
+        }
+        .science-badge-card {
+          background: white;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 24px;
+          padding: 40px;
+          box-shadow: var(--sano-card-shadow);
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+          max-width: 1200px;
+          margin: 80px auto;
+          padding: 0 24px;
+          position: relative;
+          z-index: 10;
+          text-align: center;
+        }
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          margin-top: 40px;
+        }
+        .testimonial-card {
+          background: white;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 24px;
+          padding: 30px;
+          box-shadow: var(--sano-card-shadow);
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .testimonial-text {
+          font-size: 0.9rem;
+          line-height: 1.6;
+          color: var(--text-muted);
+          font-style: italic;
+        }
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border-top: 1px solid rgba(18, 26, 26, 0.05);
+          padding-top: 12px;
+          margin-top: auto;
+        }
+        .author-avatar {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: var(--sano-teal);
+          color: white;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .author-info {
+          display: flex;
+          flex-direction: column;
+        }
+        .author-name {
+          font-weight: 700;
+          font-size: 0.9rem;
+          color: var(--sano-dark);
+        }
+        .author-title {
+          font-size: 0.75rem;
+          color: var(--text-muted);
         }
       `}</style>
 
@@ -1424,6 +1612,155 @@ export default function Login({ onLogin }) {
               <p className="feature-card-desc">
                 Contador logístico de calorías diarias ingeridas y quemadas. Reportes de macronutrientes personalizados según la disciplina.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Challenge Section: El Problema vs La Plataforma */}
+      <section className="challenge-section">
+        <div className="pricing-header">
+          <span className="hero-tag">El Desafío Deportivo</span>
+          <h2 className="pricing-title">¿Por qué fallan los métodos tradicionales?</h2>
+          <p className="pricing-subtitle">
+            El seguimiento de atletas en hojas de cálculo y mensajes dispersos disminuye la adherencia y limita los resultados deportivos.
+          </p>
+        </div>
+
+        <div className="challenge-grid">
+          {/* El Problema */}
+          <div className="challenge-card problem">
+            <h3 className="challenge-card-title">
+              <span style={{ fontSize: "1.5rem" }}>⚠️</span> El Problema
+            </h3>
+            <ul className="challenge-list">
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Desconexión en suplementación:</strong> El 73% de los atletas interrumpe su ingesta diaria de nutrientes clave (como la creatina) por olvido o falta de alertas de stock.</span>
+              </li>
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Falta de precisión biomecánica:</strong> Las lesiones por mala postura en ejercicios de fuerza (como sentadillas) ocurren por no tener un análisis objetivo de ángulos en tiempo real.</span>
+              </li>
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Pérdida de adherencia:</strong> Los atletas que no visualizan gráficamente sus cambios antropométricos tienen un 40% más de probabilidad de abandonar sus objetivos.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* La Solución Innova */}
+          <div className="challenge-card solution">
+            <h3 className="challenge-card-title">
+              <span style={{ fontSize: "1.5rem" }}>✨</span> La Solución Innova
+            </h3>
+            <ul className="challenge-list">
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Control logístico inteligente:</strong> Alertas dinámicas de stock y periodización de dosis por ciclos garantizan consistencia metabólica total.</span>
+              </li>
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Visión por Computadora (IA):</strong> Análisis angular inmediato de la columna y rodillas para corregir posturas antes de que ocurran sobrecargas o lesiones.</span>
+              </li>
+              <li className="challenge-list-item">
+                <span className="challenge-dot"></span>
+                <span><strong>Somatocarta Interactiva:</strong> Mapeo científico del somatotipo (Endo, Meso, Ectomorfia) en tiempo real para motivar a tus atletas mostrando su evolución real.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Science Section: Respaldo Científico */}
+      <section className="science-section">
+        <div className="science-container">
+          <div className="science-grid">
+            <div className="science-content">
+              <span className="hero-tag">Ciencia del Deporte</span>
+              <h2 className="pricing-title" style={{ textAlign: "left", marginTop: "10px" }}>
+                Metodología y Respaldo Fisiológico
+              </h2>
+              <p className="science-subtitle" style={{ margin: "0 0 30px 0", textAlign: "left" }}>
+                Innova no es solo software; está construido bajo estándares y metodologías validadas internacionalmente para la preparación física.
+              </p>
+
+              <div className="science-item">
+                <h4 className="science-item-title">🔬 Protocolo ISAK y Somatocarta de Heath-Carter</h4>
+                <p className="science-item-desc">
+                  Utilizamos la correlación antropométrica oficial de Heath-Carter para posicionar a los atletas en la somatocarta tridimensional. Esto permite ajustar las cargas de carbohidratos y el volumen de entrenamiento según la dominancia muscular y metabólica de cada individuo.
+                </p>
+              </div>
+
+              <div className="science-item">
+                <h4 className="science-item-title">⚡ Farmacocinética de Suplementos (Saturación y Dosis)</h4>
+                <p className="science-item-desc">
+                  La consistencia temporal es vital. Nuestro sistema de alertas calcula la tasa de agotamiento de stock en función de la dosis diaria prescrita (por ejemplo, 5g diarios de creatina para mantener los niveles óptimos de fosfocreatina muscular), asegurando que el atleta reponga su suplementación a tiempo.
+                </p>
+              </div>
+            </div>
+
+            <div className="science-badge-card">
+              <span style={{ fontSize: "2.5rem" }}>🧬</span>
+              <h3 style={{ margin: 0, fontWeight: 800 }}>Efecto Fisiológico</h3>
+              <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", margin: 0, lineHeight: 1.5 }}>
+                Estudios científicos indican que el seguimiento visual del progreso somatotípico y la consistencia en planes nutricionales estructurados incrementan la tasa de retención de atletas en un 85% y aceleran los resultados de ganancia de masa magra en un 18%.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials-section">
+        <div className="pricing-header">
+          <span className="hero-tag">Historias de Éxito</span>
+          <h2 className="pricing-title">Preparadores que confían en nosotros</h2>
+          <p className="pricing-subtitle">
+            Descubre cómo otros entrenadores y deportistas profesionales están optimizando su metodología de trabajo con Innova.
+          </p>
+        </div>
+
+        <div className="testimonials-grid">
+          {/* Testimonial 1 */}
+          <div className="testimonial-card">
+            <p className="testimonial-text">
+              "El análisis de postura por IA me permitió detectar un valgo de rodilla severo en uno de mis levantadores antes de que hiciera una lesión grave. Además, mis atletas adoran ver su punto desplazarse en la somatocarta."
+            </p>
+            <div className="testimonial-author">
+              <div className="author-avatar">AM</div>
+              <div className="author-info">
+                <span className="author-name">Andrés Mendoza</span>
+                <span className="author-title">Preparador Físico, Certificado ISAK II</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial 2 */}
+          <div className="testimonial-card">
+            <p className="testimonial-text">
+              "Centralizar la suplementación y las alertas de stock con Innova me ahorró horas de responder mensajes sobre dosis. La retención de mis atletas subió drásticamente al ofrecerles un portal web con su QR."
+            </p>
+            <div className="testimonial-author">
+              <div className="author-avatar">LG</div>
+              <div className="author-info">
+                <span className="author-name">Laura Gómez</span>
+                <span className="author-title">Nutricionista Deportiva</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonial 3 */}
+          <div className="testimonial-card">
+            <p className="testimonial-text">
+              "Como entrenador, poder ocultar suplementos del catálogo general y agregar mis propias marcas recomendadas con enlace directo a mi WhatsApp cambió las reglas del juego. Mis clientes adoran la sencillez."
+            </p>
+            <div className="testimonial-author">
+              <div className="author-avatar">CR</div>
+              <div className="author-info">
+                <span className="author-name">Carlos Rodríguez</span>
+                <span className="author-title">Coach de Fuerza y Acondicionamiento</span>
+              </div>
             </div>
           </div>
         </div>
