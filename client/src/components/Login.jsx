@@ -1303,11 +1303,11 @@ export default function Login({ onLogin }) {
           </div>
 
           <h2 className="login-title">
-            {isLogin ? "Acceso al Portal Innova" : "Crea tu Cuenta Gratis"}
+            {isLogin ? "Acceso al Portal Innova" : "Crea tu Cuenta de Entrenador"}
           </h2>
           <p className="login-desc">
             {isLogin 
-              ? "Ingresa tus credenciales de atleta o administrador." 
+              ? "Ingresa tus credenciales de entrenador o administrador." 
               : "Accede a tu propio portal de entrenamiento independiente."}
           </p>
           
@@ -1319,7 +1319,7 @@ export default function Login({ onLogin }) {
                   <input
                     type="text"
                     className="input-field"
-                    placeholder="Ej. atleta@correo.com o admin"
+                    placeholder="Ej. entrenador@correo.com o admin"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -1473,7 +1473,7 @@ export default function Login({ onLogin }) {
                     Creando Cuenta...
                   </>
                 ) : (
-                  "Comenzar Prueba Gratis"
+                  "Registrarme como Entrenador"
                 )}
               </button>
             </form>

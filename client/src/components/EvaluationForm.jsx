@@ -161,7 +161,7 @@ const EvaluationForm = ({ onSubmit, onCancel, patient }) => {
           Nueva Evaluación Antropométrica
         </h3>
         <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginTop: "-8px" }}>
-          Ingresa los datos del paciente para realizar las estimaciones.
+          Ingresa los datos del atleta para realizar las estimaciones.
         </p>
 
         {/* Tab Selector */}

@@ -40,7 +40,7 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
   return (
     <form onSubmit={handleSubmit} className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       <h3 className="glow-text" style={{ fontSize: "1.5rem", marginBottom: "8px" }}>
-        {patient ? "Editar Paciente" : "Nuevo Paciente"}
+        {patient ? "Editar Atleta" : "Nuevo Atleta"}
       </h3>
 
       {error && (
@@ -126,7 +126,7 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
           Cancelar
         </button>
         <button type="submit" className="btn btn-primary">
-          {patient ? "Guardar Cambios" : "Crear Paciente"}
+          {patient ? "Guardar Cambios" : "Crear Atleta"}
         </button>
       </div>
     </form>

@@ -173,11 +173,11 @@ function App() {
         fetchPatientDetail(newPatient.id);
       } else {
         const errorData = await res.json().catch(() => ({}));
-        alert(`Error al crear paciente: ${errorData.error || res.statusText}`);
+        alert(`Error al crear atleta: ${errorData.error || res.statusText}`);
       }
     } catch (err) {
       console.error("Error creating patient:", err);
-      alert("Error de conexión al crear el paciente");
+      alert("Error de conexión al crear el atleta");
     }
   };
 
@@ -194,16 +194,16 @@ function App() {
         fetchPatientDetail(selectedPatient.id);
       } else {
         const errorData = await res.json().catch(() => ({}));
-        alert(`Error al actualizar paciente: ${errorData.error || res.statusText}`);
+        alert(`Error al actualizar atleta: ${errorData.error || res.statusText}`);
       }
     } catch (err) {
       console.error("Error updating patient:", err);
-      alert("Error de conexión al actualizar el paciente");
+      alert("Error de conexión al actualizar el atleta");
     }
   };
 
   const handleDeletePatient = async (id, isSubAthlete = false, parentId = null) => {
-    if (!window.confirm("¿Estás seguro de que deseas eliminar este paciente/atleta y todo su historial?")) {
+    if (!window.confirm("¿Estás seguro de que deseas eliminar este atleta y todo su historial?")) {
       return;
     }
     try {
@@ -219,11 +219,11 @@ function App() {
         }
       } else {
         const errorData = await res.json().catch(() => ({}));
-        alert(`Error al eliminar paciente: ${errorData.error || res.statusText}`);
+        alert(`Error al eliminar atleta: ${errorData.error || res.statusText}`);
       }
     } catch (err) {
       console.error("Error deleting patient:", err);
-      alert("Error de conexión al eliminar el paciente");
+      alert("Error de conexión al eliminar el atleta");
     }
   };
 
@@ -935,7 +935,7 @@ function App() {
                         <div style={{ flex: 1, overflowX: "auto" }}>
                           {selectedPatient.evaluations?.length === 0 ? (
                             <div style={{ color: "var(--text-dark)", textAlign: "center", padding: "40px", fontStyle: "italic" }}>
-                              Aún no se han registrado evaluaciones para este paciente.
+                              Aún no se han registrado evaluaciones para este atleta.
                             </div>
                           ) : (
                             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", color: "var(--text-muted)", textAlign: "left" }}>
@@ -1267,7 +1267,7 @@ function App() {
               {/* KPI cards */}
               <div className="grid-3-cols">
                 <div className="glass-card" style={{ background: "var(--bg-main)" }}>
-                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Total Pacientes</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Total Atletas</span>
                   <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--primary)", marginTop: "8px" }}>
                     {patients.length}
                   </div>
