@@ -1307,7 +1307,7 @@ export default function Login({ onLogin }) {
           </h2>
           <p className="login-desc">
             {isLogin 
-              ? "Ingresa tus credenciales de entrenador o administrador." 
+              ? "Ingresa tus credenciales de entrenador." 
               : "Accede a tu propio portal de entrenamiento independiente."}
           </p>
           
@@ -1319,7 +1319,7 @@ export default function Login({ onLogin }) {
                   <input
                     type="text"
                     className="input-field"
-                    placeholder="Ej. entrenador@correo.com o admin"
+                    placeholder="Ej. entrenador@correo.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
