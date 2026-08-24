@@ -24,7 +24,7 @@ window.fetch = async function (input, init) {
       init.headers = headers;
     }
   }
-  return originalFetch(input, init);
+  return originalFetch.call(window, input, init);
 };
 
 createRoot(document.getElementById('root')).render(
