@@ -409,7 +409,7 @@ function App() {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <div style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-            {currentUser?.role === "admin" ? "Modo Administrador" : `Usuario: ${currentUser?.name}`}
+            {currentUser?.role === "admin" ? "Modo Administrador" : `Entrenador: ${currentUser?.name}`}
           </div>
           <button
             onClick={handleLogout}
@@ -453,7 +453,7 @@ function App() {
           <div style={{ padding: "20px", borderBottom: "1px solid var(--border-color)", display: "flex", flexDirection: "column", gap: "12px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--primary)" }}>
-                {currentUser?.role === "admin" ? "Panel de Usuarios" : "Mis Atletas"}
+                {currentUser?.role === "admin" ? "Panel de Entrenadores" : "Mis Atletas"}
               </span>
               <button
                 type="button"
@@ -473,7 +473,7 @@ function App() {
             <input
               type="text"
               className="form-input"
-              placeholder={currentUser?.role === "admin" ? "Buscar usuario..." : "Buscar atleta..."}
+              placeholder={currentUser?.role === "admin" ? "Buscar entrenador..." : "Buscar atleta..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -488,7 +488,7 @@ function App() {
                 setIsSidebarOpen(false);
               }}
             >
-              {currentUser?.role === "admin" ? "+ Nuevo Usuario" : "+ Nuevo Atleta"}
+              {currentUser?.role === "admin" ? "+ Nuevo Entrenador" : "+ Nuevo Atleta"}
             </button>
           </div>
 
@@ -516,7 +516,7 @@ function App() {
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <span style={{ fontSize: "1.2rem" }}>📁</span>
                   <span style={{ fontWeight: "600", fontSize: "0.95rem" }}>
-                    {currentUser?.role === "admin" ? "Historial de Usuarios" : "Historial de Atletas"}
+                    {currentUser?.role === "admin" ? "Historial de Entrenadores" : "Historial de Atletas"}
                   </span>
                 </div>
                 <span style={{ fontSize: "0.8rem", color: "var(--accent)", fontWeight: "600" }}>Ver Historial</span>
@@ -535,7 +535,7 @@ function App() {
                 <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "600" }}>
                   {searchQuery.trim() !== "" 
                     ? "Resultados de Búsqueda" 
-                    : (currentUser?.role === "admin" ? "Historial de Usuarios" : "Historial de Atletas")}
+                    : (currentUser?.role === "admin" ? "Historial de Entrenadores" : "Historial de Atletas")}
                 </span>
                 {searchQuery.trim() === "" && (
                   <button
@@ -558,7 +558,7 @@ function App() {
               <div style={{ flex: 1, overflowY: "auto", padding: "10px" }}>
                 {filteredPatients.length === 0 ? (
                   <div style={{ color: "var(--text-dark)", textAlign: "center", padding: "20px", fontSize: "0.9rem" }}>
-                    No se encontraron {currentUser?.role === "admin" ? "usuarios" : "atletas"}
+                    No se encontraron {currentUser?.role === "admin" ? "entrenadores" : "atletas"}
                   </div>
                 ) : (
                   filteredPatients.map((p) => (
@@ -622,7 +622,7 @@ function App() {
                 setIsAddingCycle(false);
               }}
             >
-              ← Volver a {currentUser?.role === "admin" ? "Usuarios" : "Atletas"}
+              ← Volver a {currentUser?.role === "admin" ? "Entrenadores" : "Atletas"}
             </button>
           )}
           
@@ -682,7 +682,7 @@ function App() {
                           textTransform: "uppercase",
                         }}
                       >
-                        Cuenta de Usuario
+                        Cuenta de Entrenador
                       </span>
                     </div>
                     <div className="profile-info-row">
@@ -707,7 +707,7 @@ function App() {
                     <div>
                       <h3 className="glow-text" style={{ fontSize: "1.4rem" }}>Atletas Registrados</h3>
                       <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "2px" }}>
-                        Perfiles de atletas creados y gestionados por este usuario.
+                        Perfiles de atletas creados y gestionados por este entrenador.
                       </p>
                     </div>
                     <button
@@ -724,7 +724,7 @@ function App() {
                   <div style={{ overflowX: "auto", marginTop: "10px" }}>
                     {!selectedPatient.athletes || selectedPatient.athletes.length === 0 ? (
                       <div style={{ color: "var(--text-dark)", textAlign: "center", padding: "40px", fontStyle: "italic", border: "1px dashed var(--border-color)", borderRadius: "12px" }}>
-                        Este usuario aún no ha registrado atletas.
+                        Este entrenador aún no ha registrado atletas.
                       </div>
                     ) : (
                       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem", color: "var(--text-muted)", textAlign: "left" }}>
@@ -793,14 +793,14 @@ function App() {
                     }}
                   >
                     <span style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-                      👤 Atleta registrado por: <strong>{selectedPatient.creator?.name || "Usuario"}</strong> ({selectedPatient.creator?.email})
+                      👤 Atleta registrado por: <strong>{selectedPatient.creator?.name || "Entrenador"}</strong> ({selectedPatient.creator?.email})
                     </span>
                     <button
                       className="btn btn-secondary"
                       style={{ padding: "6px 12px", fontSize: "0.8rem", height: "auto" }}
                       onClick={() => fetchPatientDetail(selectedPatient.creatorId)}
                     >
-                      ← Volver a Cuenta de {selectedPatient.creator?.name || "Usuario"}
+                      ← Volver a Cuenta de {selectedPatient.creator?.name || "Entrenador"}
                     </button>
                   </div>
                 )}
@@ -1155,7 +1155,7 @@ function App() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
                 <div>
                   <h2 className="glow-text" style={{ fontSize: "2.2rem", marginBottom: "8px" }}>
-                    Bienvenido, {currentUser?.name || "Usuario"} ✨
+                    Bienvenido, {currentUser?.name || "Entrenador"} ✨
                   </h2>
                   <p style={{ fontSize: "1.05rem", color: "var(--text-muted)" }}>
                     Gestiona los atletas y perfiles de rendimiento bajo tu cuenta.
@@ -1267,7 +1267,7 @@ function App() {
               {/* KPI cards */}
               <div className="grid-3-cols">
                 <div className="glass-card" style={{ background: "var(--bg-main)" }}>
-                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Total Atletas</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>{currentUser?.role === "admin" ? "Total Entrenadores" : "Total Atletas"}</span>
                   <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--primary)", marginTop: "8px" }}>
                     {patients.length}
                   </div>
