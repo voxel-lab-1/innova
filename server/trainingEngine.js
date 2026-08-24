@@ -312,12 +312,13 @@ function simulateTrainingPlan(goal = "hypertrophy", planName = "") {
   return days;
 }
 
-function simulateTrainingPlanFromTemplates(daysPerWeek, goal) {
+function simulateTrainingPlanFromTemplates(daysPerWeek, goal, hiddenExercises = []) {
   console.log(`Training Engine: Simulating workout plan from templates. Days per week: ${daysPerWeek}, Goal: ${goal}`);
   try {
     const templatesPath = path.join(path.dirname(fileURLToPath(import.meta.url)), "trainingTemplates.json");
     const templateData = JSON.parse(fs.readFileSync(templatesPath, "utf-8"));
     const days = [];
+    const hiddenSet = new Set(hiddenExercises.map(h => h.trim().toUpperCase()));
 
     const addRestDay = (dayIndex, name) => {
       days.push({
@@ -329,22 +330,24 @@ function simulateTrainingPlanFromTemplates(daysPerWeek, goal) {
     };
 
     const getExercises = (key) => {
-      return (templateData.days[key] || []).map((ex) => {
-        const adjusted = adjustExerciseVariables(goal, ex, {});
-        return {
-          name: ex.name,
-          sets: adjusted.sets,
-          reps: adjusted.reps,
-          weight: null,
-          muscleGroup: ex.muscleGroup === "arms" ? "arms, triceps, biceps" : (ex.muscleGroup === "legs" ? "legs, quads, glutes" : ex.muscleGroup === "chest" ? "chest, triceps" : ex.muscleGroup === "back" ? "back, lats" : ex.muscleGroup),
-          videoUrl: ex.videoUrl || "",
-          technique: ex.technique || "",
-          notes: adjusted.notes,
-          rest: adjusted.rest,
-          rir: adjusted.rir,
-          alternatives: ex.alternatives || []
-        };
-      });
+      return (templateData.days[key] || [])
+        .filter((ex) => !hiddenSet.has(ex.name.trim().toUpperCase()))
+        .map((ex) => {
+          const adjusted = adjustExerciseVariables(goal, ex, {});
+          return {
+            name: ex.name,
+            sets: adjusted.sets,
+            reps: adjusted.reps,
+            weight: null,
+            muscleGroup: ex.muscleGroup === "arms" ? "arms, triceps, biceps" : (ex.muscleGroup === "legs" ? "legs, quads, glutes" : ex.muscleGroup === "chest" ? "chest, triceps" : ex.muscleGroup === "back" ? "back, lats" : ex.muscleGroup),
+            videoUrl: ex.videoUrl || "",
+            technique: ex.technique || "",
+            notes: adjusted.notes,
+            rest: adjusted.rest,
+            rir: adjusted.rir,
+            alternatives: ex.alternatives || []
+          };
+        });
     };
 
     if (daysPerWeek === 6) {
@@ -391,18 +394,18 @@ function simulateTrainingPlanFromTemplates(daysPerWeek, goal) {
 /**
  * Generates a full 7-day training plan utilizing Google Gemini API, with fallback to simulation.
  */
-export async function generateTrainingPlanWithAI({ goal, planName, patientInfo, daysPerWeek }) {
+export async function generateTrainingPlanWithAI({ goal, planName, patientInfo, daysPerWeek, hiddenExercises = [], customExercises = [] }) {
   const targetDays = daysPerWeek ? parseInt(daysPerWeek) : 4;
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (targetDays === 6) {
     console.log("Training Engine: 6 days per week requested. Bypassing Gemini to use Excel template directly.");
-    return simulateTrainingPlanFromTemplates(6, goal);
+    return simulateTrainingPlanFromTemplates(6, goal, hiddenExercises);
   }
 
   if (!apiKey) {
     console.log("Training Engine: GEMINI_API_KEY not found. Using template-based simulator...");
-    return simulateTrainingPlanFromTemplates(targetDays, goal);
+    return simulateTrainingPlanFromTemplates(targetDays, goal, hiddenExercises);
   }
 
   console.log(`Training Engine: Querying Google Gemini API for ${targetDays}-day plan...`);
@@ -425,9 +428,24 @@ export async function generateTrainingPlanWithAI({ goal, planName, patientInfo, 
     // Deduplicate exercise list by name
     const uniqueExercises = [];
     const seenNames = new Set();
-    for (const ex of exerciseList) {
+
+    // 1. Add trainer's custom exercises
+    for (const ex of customExercises) {
       const norm = ex.name.trim().toUpperCase();
       if (!seenNames.has(norm)) {
+        seenNames.add(norm);
+        uniqueExercises.push({
+          name: ex.name,
+          muscleGroup: ex.muscleGroup
+        });
+      }
+    }
+
+    // 2. Add global template exercises except those hidden
+    const hiddenSet = new Set(hiddenExercises.map(h => h.trim().toUpperCase()));
+    for (const ex of exerciseList) {
+      const norm = ex.name.trim().toUpperCase();
+      if (!seenNames.has(norm) && !hiddenSet.has(norm)) {
         seenNames.add(norm);
         uniqueExercises.push(ex);
       }
@@ -544,9 +562,32 @@ Generate a 7-day workout schedule with EXACTLY ${targetDays} training days for:
         }
       }
 
+      // Map and enrich custom exercises
+      const customExercisesMap = new Map();
+      for (const ex of customExercises) {
+        customExercisesMap.set(ex.name.trim().toUpperCase(), ex);
+      }
+
       for (const day of planDays) {
         if (day.exercises && Array.isArray(day.exercises)) {
           day.exercises = day.exercises.map((ex) => {
+            const customMatch = customExercisesMap.get(ex.name.trim().toUpperCase());
+            if (customMatch) {
+              return {
+                name: customMatch.name,
+                sets: ex.sets || 3,
+                reps: String(ex.reps || "8-12"),
+                weight: null,
+                muscleGroup: customMatch.muscleGroup,
+                videoUrl: customMatch.videoUrl || "",
+                technique: customMatch.technique || "",
+                notes: customMatch.notes || "",
+                rest: "2'",
+                rir: "2",
+                alternatives: []
+              };
+            }
+
             const match = templateExercisesMap.get(ex.name.trim().toUpperCase());
             if (match) {
               const adjusted = adjustExerciseVariables(goal, match, ex);
@@ -588,7 +629,7 @@ Generate a 7-day workout schedule with EXACTLY ${targetDays} training days for:
 
   } catch (error) {
     console.error("Training Engine: Error calling Gemini API. Falling back to simulation...", error);
-    return simulateTrainingPlanFromTemplates(targetDays, goal);
+    return simulateTrainingPlanFromTemplates(targetDays, goal, hiddenExercises);
   }
 }
 

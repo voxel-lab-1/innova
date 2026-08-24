@@ -27,6 +27,10 @@ model Patient {
   trainingPlans   TrainingPlan[]
   mealPlans       MealPlan[]
   
+  planType        String?          @default("free") // "free", "pro", "elite"
+  subActive       Boolean          @default(true)
+  subExpiresAt    DateTime?
+
   creatorId       Int?
   creator         Patient?         @relation("UserAthletes", fields: [creatorId], references: [id], onDelete: Cascade)
   athletes        Patient[]        @relation("UserAthletes")
@@ -243,4 +247,48 @@ model MealPlan {
   planJson    String   // JSON stringified with meals, portions, schedules, and food suggestions
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
+}
+
+model RecommendedProduct {
+  id           Int      @id @default(autoincrement())
+  name         String
+  category     String
+  region       String   @default("Colombia")
+  isLocalStore Boolean  @default(false)
+  purchaseLink String?
+  description  String
+  imagePath    String?
+  creatorId    Int?     // Owner trainer ID (null for global default products)
+  createdAt    DateTime @default(now())
+}
+
+model TrainerHiddenProduct {
+  id        Int      @id @default(autoincrement())
+  trainerId Int
+  productId Int
+  createdAt DateTime @default(now())
+  
+  @@unique([trainerId, productId])
+}
+
+model CustomExercise {
+  id          Int      @id @default(autoincrement())
+  trainerId   Int
+  name        String
+  muscleGroup String
+  videoUrl    String?
+  technique   String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  
+  @@unique([trainerId, name])
+}
+
+model TrainerHiddenExercise {
+  id           Int      @id @default(autoincrement())
+  trainerId    Int
+  exerciseName String
+  createdAt    DateTime @default(now())
+  
+  @@unique([trainerId, exerciseName])
 }

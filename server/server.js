@@ -477,6 +477,29 @@ app.post("/api/patients", async (req, res) => {
     // Automatically set creatorId based on logged-in user unless admin specifies another creator
     let creatorId = req.user.role === "admin" ? (req.body.creatorId ? parseInt(req.body.creatorId) : null) : req.user.id;
 
+    // Check subscription limits for non-admin creators
+    if (creatorId && req.user.role !== "admin") {
+      const trainer = await prisma.patient.findUnique({ where: { id: creatorId } });
+      if (trainer) {
+        const plan = trainer.planType || "free";
+        const isExpired = trainer.subExpiresAt && new Date(trainer.subExpiresAt) < new Date();
+        const isActive = trainer.subActive && !isExpired;
+
+        if (plan !== "free" && !isActive) {
+          return res.status(403).json({ error: "Tu suscripción ha expirado. Por favor, realiza la renovación en tu cuenta." });
+        }
+
+        const count = await prisma.patient.count({ where: { creatorId } });
+        const limit = plan === "free" ? 3 : plan === "pro" ? 30 : 999999;
+
+        if (count >= limit) {
+          return res.status(403).json({ 
+            error: `Has alcanzado el límite de atletas para tu plan (${plan.toUpperCase()}). Límite actual: ${limit} atletas.` 
+          });
+        }
+      }
+    }
+
     const newPatient = await prisma.patient.create({
       data: {
         name,
@@ -1502,33 +1525,132 @@ app.post("/api/mealplans/:id/active", async (req, res) => {
   }
 });
 
-// 5. Get recommended products list with filter support
+// --- TRAINER SUBSCRIPTION & BILLING ROUTES ---
+app.get("/api/trainer/subscription", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+    const trainer = await prisma.patient.findUnique({
+      where: { id: trainerId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        planType: true,
+        subActive: true,
+        subExpiresAt: true,
+      }
+    });
+
+    if (!trainer) {
+      return res.status(404).json({ error: "Entrenador no encontrado" });
+    }
+
+    const count = await prisma.patient.count({ where: { creatorId: trainerId } });
+    const plan = trainer.planType || "free";
+    const limit = plan === "free" ? 3 : plan === "pro" ? 30 : 999999;
+
+    res.json({
+      planType: plan,
+      subActive: trainer.subActive,
+      subExpiresAt: trainer.subExpiresAt,
+      athletesCount: count,
+      athletesLimit: limit
+    });
+  } catch (error) {
+    console.error("Error fetching subscription details:", error);
+    res.status(500).json({ error: "Error al obtener detalles de la suscripción" });
+  }
+});
+
+app.post("/api/trainer/subscription/checkout", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+    const { planType } = req.body; // "free", "pro", or "elite"
+
+    if (!["free", "pro", "elite"].includes(planType)) {
+      return res.status(400).json({ error: "Tipo de plan inválido" });
+    }
+
+    const expiryDate = planType === "free" ? null : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 días
+
+    const updatedTrainer = await prisma.patient.update({
+      where: { id: trainerId },
+      data: {
+        planType,
+        subActive: true,
+        subExpiresAt: expiryDate
+      }
+    });
+
+    res.json({
+      message: `Plan actualizado exitosamente a ${planType.toUpperCase()}`,
+      planType: updatedTrainer.planType,
+      subActive: updatedTrainer.subActive,
+      subExpiresAt: updatedTrainer.subExpiresAt
+    });
+  } catch (error) {
+    console.error("Error updating subscription plan:", error);
+    res.status(500).json({ error: "Error al actualizar la suscripción" });
+  }
+});
+
 app.get("/api/products/recommended", async (req, res) => {
   try {
-    const { category, region } = req.query;
+    const { category, region, athleteId } = req.query;
     
-    // Read the recommendedProducts.json file with robust local/production path resolution fallback
-    let productsPath = path.join(process.cwd(), "recommendedProducts.json");
-    if (!fs.existsSync(productsPath)) {
-      const serverDir = path.dirname(fileURLToPath(import.meta.url));
-      productsPath = path.join(serverDir, "recommendedProducts.json");
-    }
-    if (!fs.existsSync(productsPath)) {
-      return res.json([]);
+    // Determine the relevant trainer/creator ID
+    let trainerId = null;
+    if (req.user) {
+      if (req.user.role === "admin") {
+        trainerId = null;
+      } else {
+        const userRecord = await prisma.patient.findUnique({ where: { id: req.user.id } });
+        if (userRecord) {
+          trainerId = userRecord.creatorId || userRecord.id;
+        } else {
+          trainerId = req.user.id;
+        }
+      }
+    } else if (athleteId) {
+      const athlete = await prisma.patient.findUnique({ where: { id: parseInt(athleteId) } });
+      if (athlete) {
+        trainerId = athlete.creatorId;
+      }
     }
 
-    const rawData = fs.readFileSync(productsPath, "utf-8");
-    let products = JSON.parse(rawData);
+    // Fetch hidden product IDs for this trainer
+    let hiddenProductIds = [];
+    if (trainerId) {
+      const hidden = await prisma.trainerHiddenProduct.findMany({
+        where: { trainerId }
+      });
+      hiddenProductIds = hidden.map(h => h.productId);
+    }
 
+    // Fetch products:
+    // If trainerId is null (e.g. admin or no trainer context), get all global products (creatorId: null)
+    // Else, get global products NOT hidden by trainer, plus custom products by this trainer
+    const products = await prisma.recommendedProduct.findMany({
+      where: {
+        OR: [
+          {
+            creatorId: null,
+            id: { notIn: hiddenProductIds }
+          },
+          ...(trainerId ? [{ creatorId: trainerId }] : [])
+        ]
+      }
+    });
+
+    let filtered = products;
     if (category) {
-      products = products.filter(p => p.category.toLowerCase() === String(category).toLowerCase());
+      filtered = filtered.filter(p => p.category.toLowerCase() === String(category).toLowerCase());
     }
-
     if (region) {
-      products = products.filter(p => p.region.toLowerCase().includes(String(region).toLowerCase()));
+      filtered = filtered.filter(p => p.region.toLowerCase().includes(String(region).toLowerCase()));
     }
 
-    res.json(products);
+    res.json(filtered);
   } catch (error) {
     console.error("Error fetching recommended products:", error);
     res.status(500).json({ error: "Error al obtener la lista de productos recomendados" });
@@ -1545,19 +1667,6 @@ app.post("/api/products/recommended", uploadCalorie.single("image"), async (req,
       return res.status(400).json({ error: "El nombre, categoría y descripción son obligatorios" });
     }
 
-    let productsPath = path.join(process.cwd(), "recommendedProducts.json");
-    if (!fs.existsSync(productsPath)) {
-      const serverDir = path.dirname(fileURLToPath(import.meta.url));
-      productsPath = path.join(serverDir, "recommendedProducts.json");
-    }
-    let products = [];
-    if (fs.existsSync(productsPath)) {
-      const rawData = fs.readFileSync(productsPath, "utf-8");
-      products = JSON.parse(rawData);
-    }
-
-    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    
     let imagePath = null;
     if (file) {
       imagePath = `/uploads/${file.filename}`;
@@ -1570,26 +1679,27 @@ app.post("/api/products/recommended", uploadCalorie.single("image"), async (req,
             data: fileData.toString("base64")
           }
         });
-        // Delete local temporary file from serverless environment
         fs.unlinkSync(file.path);
       } catch (err) {
         console.error("Error backing up product image to database:", err);
       }
     }
 
-    const newProduct = {
-      id: newId,
-      name,
-      category,
-      region: region || "Colombia",
-      isLocalStore: isLocalStore === "true" || isLocalStore === true,
-      purchaseLink: purchaseLink || "",
-      description,
-      imagePath
-    };
+    // The creator is the logged-in coach (or null if admin)
+    const creatorId = req.user.role === "admin" ? null : req.user.id;
 
-    products.push(newProduct);
-    fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), "utf-8");
+    const newProduct = await prisma.recommendedProduct.create({
+      data: {
+        name,
+        category,
+        region: region || "Colombia",
+        isLocalStore: isLocalStore === "true" || isLocalStore === true,
+        purchaseLink: purchaseLink || "",
+        description,
+        imagePath,
+        creatorId
+      }
+    });
 
     res.status(201).json(newProduct);
   } catch (error) {
@@ -1598,11 +1708,241 @@ app.post("/api/products/recommended", uploadCalorie.single("image"), async (req,
   }
 });
 
+// 5c. Hide a global recommended product for a trainer
+app.post("/api/trainer/products/:id/hide", async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id);
+    const trainerId = req.user.id;
+    
+    if (isNaN(productId)) return res.status(400).json({ error: "ID de producto inválido" });
 
+    await prisma.trainerHiddenProduct.upsert({
+      where: {
+        trainerId_productId: { trainerId, productId }
+      },
+      create: { trainerId, productId },
+      update: {}
+    });
+
+    res.json({ message: "Producto ocultado exitosamente" });
+  } catch (error) {
+    console.error("Error hiding product:", error);
+    res.status(500).json({ error: "Error al ocultar el producto" });
+  }
+});
+
+// 5d. Show (unhide) a global recommended product for a trainer
+app.post("/api/trainer/products/:id/show", async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id);
+    const trainerId = req.user.id;
+
+    if (isNaN(productId)) return res.status(400).json({ error: "ID de producto inválido" });
+
+    await prisma.trainerHiddenProduct.deleteMany({
+      where: { trainerId, productId }
+    });
+
+    res.json({ message: "Producto visible nuevamente" });
+  } catch (error) {
+    console.error("Error showing product:", error);
+    res.status(500).json({ error: "Error al mostrar el producto" });
+  }
+});
+
+// 5e. Delete a custom product created by a trainer
+app.delete("/api/trainer/products/:id", async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id);
+    const trainerId = req.user.id;
+
+    if (isNaN(productId)) return res.status(400).json({ error: "ID de producto inválido" });
+
+    // Ensure the product belongs to this trainer
+    const product = await prisma.recommendedProduct.findUnique({ where: { id: productId } });
+    if (!product) return res.status(404).json({ error: "Producto no encontrado" });
+
+    if (product.creatorId !== trainerId && req.user.role !== "admin") {
+      return res.status(403).json({ error: "No tienes permiso para eliminar este producto" });
+    }
+
+    await prisma.recommendedProduct.delete({ where: { id: productId } });
+    res.json({ message: "Producto eliminado exitosamente" });
+  } catch (error) {
+    console.error("Error deleting trainer product:", error);
+    res.status(500).json({ error: "Error al eliminar el producto personalizado" });
+  }
+});
+
+
+// --- TRAINER EXERCISE LIBRARY ROUTES ---
+app.get("/api/trainer/exercises", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+
+    // Load global templates
+    const templatesPath = path.join(process.cwd(), "trainingTemplates.json");
+    let globalExercises = [];
+    if (fs.existsSync(templatesPath)) {
+      try {
+        const templateData = JSON.parse(fs.readFileSync(templatesPath, "utf-8"));
+        const list = [];
+        for (const key of Object.keys(templateData.days)) {
+          for (const ex of templateData.days[key]) {
+            list.push({
+              name: ex.name,
+              muscleGroup: ex.muscleGroup === "arms" ? "arms, triceps, biceps" : (ex.muscleGroup === "legs" ? "legs, quads, glutes" : ex.muscleGroup === "chest" ? "chest, triceps" : ex.muscleGroup === "back" ? "back, lats" : ex.muscleGroup),
+              videoUrl: ex.videoUrl || "",
+              technique: ex.technique || "",
+              notes: ex.notes || "",
+              isCustom: false
+            });
+          }
+        }
+        
+        // Deduplicate
+        const seen = new Set();
+        for (const ex of list) {
+          const norm = ex.name.trim().toUpperCase();
+          if (!seen.has(norm)) {
+            seen.add(norm);
+            globalExercises.push(ex);
+          }
+        }
+      } catch (err) {
+        console.error("Error parsing trainingTemplates.json:", err);
+      }
+    }
+
+    // Get hidden global exercise names
+    const hidden = await prisma.trainerHiddenExercise.findMany({
+      where: { trainerId }
+    });
+    const hiddenNames = new Set(hidden.map(h => h.exerciseName.trim().toUpperCase()));
+
+    // Mark globals as hidden/visible
+    const globalsWithStatus = globalExercises.map(ex => ({
+      ...ex,
+      hidden: hiddenNames.has(ex.name.trim().toUpperCase())
+    }));
+
+    // Get custom exercises
+    const customs = await prisma.customExercise.findMany({
+      where: { trainerId }
+    });
+
+    const mappedCustoms = customs.map(c => ({
+      id: c.id,
+      name: c.name,
+      muscleGroup: c.muscleGroup,
+      videoUrl: c.videoUrl || "",
+      technique: c.technique || "",
+      notes: c.notes || "",
+      isCustom: true,
+      hidden: false
+    }));
+
+    res.json({
+      globals: globalsWithStatus,
+      customs: mappedCustoms
+    });
+  } catch (error) {
+    console.error("Error fetching trainer exercise library:", error);
+    res.status(500).json({ error: "Error al obtener la biblioteca de ejercicios" });
+  }
+});
+
+app.post("/api/trainer/exercises", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+    const { name, muscleGroup, videoUrl, technique, notes } = req.body;
+
+    if (!name || !muscleGroup) {
+      return res.status(400).json({ error: "El nombre y el grupo muscular son obligatorios" });
+    }
+
+    const custom = await prisma.customExercise.create({
+      data: {
+        trainerId,
+        name,
+        muscleGroup,
+        videoUrl: videoUrl || "",
+        technique: technique || "",
+        notes: notes || ""
+      }
+    });
+
+    res.status(201).json(custom);
+  } catch (error) {
+    console.error("Error creating custom exercise:", error);
+    res.status(500).json({ error: "Error al registrar el ejercicio personalizado" });
+  }
+});
+
+app.delete("/api/trainer/exercises/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const trainerId = req.user.id;
+
+    if (isNaN(id)) return res.status(400).json({ error: "ID de ejercicio inválido" });
+
+    const exercise = await prisma.customExercise.findUnique({ where: { id } });
+    if (!exercise) return res.status(404).json({ error: "Ejercicio no encontrado" });
+
+    if (exercise.trainerId !== trainerId && req.user.role !== "admin") {
+      return res.status(403).json({ error: "No tienes permiso para eliminar este ejercicio" });
+    }
+
+    await prisma.customExercise.delete({ where: { id } });
+    res.json({ message: "Ejercicio personalizado eliminado exitosamente" });
+  } catch (error) {
+    console.error("Error deleting custom exercise:", error);
+    res.status(500).json({ error: "Error al eliminar el ejercicio personalizado" });
+  }
+});
+
+app.post("/api/trainer/exercises/hide", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+    const { exerciseName } = req.body;
+
+    if (!exerciseName) return res.status(400).json({ error: "El nombre del ejercicio es requerido" });
+
+    await prisma.trainerHiddenExercise.upsert({
+      where: {
+        trainerId_exerciseName: { trainerId, exerciseName }
+      },
+      create: { trainerId, exerciseName },
+      update: {}
+    });
+
+    res.json({ message: "Ejercicio global ocultado exitosamente" });
+  } catch (error) {
+    console.error("Error hiding exercise:", error);
+    res.status(500).json({ error: "Error al ocultar el ejercicio" });
+  }
+});
+
+app.post("/api/trainer/exercises/show", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+    const { exerciseName } = req.body;
+
+    if (!exerciseName) return res.status(400).json({ error: "El nombre del ejercicio es requerido" });
+
+    await prisma.trainerHiddenExercise.deleteMany({
+      where: { trainerId, exerciseName }
+    });
+
+    res.json({ message: "Ejercicio global visible nuevamente" });
+  } catch (error) {
+    console.error("Error showing exercise:", error);
+    res.status(500).json({ error: "Error al mostrar el ejercicio" });
+  }
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRAINING PLANS — CRUD
-// ─────────────────────────────────────────────────────────────────────────────
 
 // GET /api/patients/:id/training-plans — list all plans for a patient
 app.get("/api/patients/:id/training-plans", async (req, res) => {
@@ -1654,8 +1994,37 @@ app.post("/api/patients/:id/training-plans", async (req, res) => {
       bodyFat: latestEval ? latestEval.bodyFat : 15
     };
 
+    // Fetch trainer customization if applicable
+    let hiddenExercises = [];
+    let customExercises = [];
+    if (patient && patient.creatorId) {
+      const trainerId = patient.creatorId;
+      const hidden = await prisma.trainerHiddenExercise.findMany({
+        where: { trainerId }
+      });
+      hiddenExercises = hidden.map(h => h.exerciseName);
+
+      const customs = await prisma.customExercise.findMany({
+        where: { trainerId }
+      });
+      customExercises = customs.map(c => ({
+        name: c.name,
+        muscleGroup: c.muscleGroup,
+        videoUrl: c.videoUrl || "",
+        technique: c.technique || "",
+        notes: c.notes || ""
+      }));
+    }
+
     // Generate training plan via AI (or fallback to simulator)
-    const generatedDays = await generateTrainingPlanWithAI({ goal, planName: name, patientInfo, daysPerWeek: daysPerWeek ? parseInt(daysPerWeek) : 4 });
+    const generatedDays = await generateTrainingPlanWithAI({ 
+      goal, 
+      planName: name, 
+      patientInfo, 
+      daysPerWeek: daysPerWeek ? parseInt(daysPerWeek) : 4,
+      hiddenExercises,
+      customExercises
+    });
 
     // Deactivate previous plans
     await prisma.trainingPlan.updateMany({
