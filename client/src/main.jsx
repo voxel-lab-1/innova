@@ -5,29 +5,23 @@ import App from './App.jsx'
 
 // Global fetch interceptor to inject JWT token in all API calls
 const originalFetch = window.fetch;
-window.fetch = async function (input, init = {}) {
-  let url = typeof input === 'string' ? input : input.url;
-  const isApi = url && (url.startsWith('/api') || url.includes('/api/'));
-  if (isApi) {
+window.fetch = async function (input, init) {
+  if (typeof input === 'string' && (input.startsWith('/api') || input.includes('/api/'))) {
     const token = localStorage.getItem("innova_token") || sessionStorage.getItem("innova_token");
     if (token) {
-      if (typeof input === 'string') {
-        init.headers = {
-          ...init.headers,
+      init = init || {};
+      let headers = init.headers || {};
+      if (headers instanceof Headers) {
+        headers.set("Authorization", `Bearer ${token}`);
+      } else if (Array.isArray(headers)) {
+        headers.push(["Authorization", `Bearer ${token}`]);
+      } else {
+        headers = {
+          ...headers,
           "Authorization": `Bearer ${token}`
         };
-      } else {
-        try {
-          input.headers.set("Authorization", `Bearer ${token}`);
-        } catch (e) {
-          input = new Request(input, {
-            headers: {
-              ...Object.fromEntries(input.headers.entries()),
-              "Authorization": `Bearer ${token}`
-            }
-          });
-        }
       }
+      init.headers = headers;
     }
   }
   return originalFetch(input, init);
