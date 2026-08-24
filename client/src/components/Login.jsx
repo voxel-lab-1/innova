@@ -25,6 +25,9 @@ export default function Login({ onLogin }) {
   const [googleGender, setGoogleGender] = useState("male");
   const [googleSport, setGoogleSport] = useState("General");
 
+  // FAQ State
+  const [activeFaq, setActiveFaq] = useState(null);
+
   // Interactive Showcase states
   const [showcaseTab, setShowcaseTab] = useState("somatochart");
   const [mesoVal, setMesoVal] = useState(4);
@@ -461,19 +464,18 @@ export default function Login({ onLogin }) {
         }
         .marquee-track {
           display: flex;
-          width: 200%;
+          width: max-content;
           animation: marquee 25s linear infinite;
         }
         .marquee-content {
           display: flex;
-          justify-content: space-around;
-          width: 50%;
+          align-items: center;
+          gap: 80px;
+          padding-right: 80px;
           font-size: 1.1rem;
           font-weight: 800;
           color: var(--sano-dark);
           white-space: nowrap;
-          align-items: center;
-          gap: 40px;
         }
         .marquee-content span {
           display: flex;
@@ -486,8 +488,8 @@ export default function Login({ onLogin }) {
           font-weight: bold;
         }
         @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
 
         /* Mockup iPhone Container */
@@ -1689,8 +1691,41 @@ export default function Login({ onLogin }) {
 
       {/* Hero Section */}
       <section className="hero-section">
-        {/* Centered Mockup iPhone Container on Top (Sano y Punto Style) */}
-        <div className="mockup-container" style={{ marginBottom: "20px" }}>
+        <div className="hero-content">
+          <div className="hero-tag">Consola de Logística Deportiva</div>
+          <h1 className="hero-title">
+            Tu CRM Deportivo e Inteligencia Antropométrica <br />
+            <span className="hero-gradient-text">Potenciada con IA</span>
+          </h1>
+          <p className="hero-subtitle">
+            La plataforma definitiva para preparadores físicos y nutricionistas. Diseña somatocartas, 
+            monitorea macronutrientes, prescribe suplementos con alertas inteligentes y analiza biomecánica en tiempo real.
+          </p>
+
+          {/* Social Proof Stats */}
+          <div className="stats-row">
+            <div className="stat-card">
+              <span className="stat-val">1k+</span>
+              <span className="stat-label">atletas activos de alto rendimiento</span>
+            </div>
+            <div className="stat-card">
+              <div className="stars-container">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ))}
+              </div>
+              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
+            </div>
+          </div>
+
+          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
+            Ingresar al Portal
+            <span className="arrow-icon">→</span>
+          </button>
+        </div>
+
+        {/* Mockup iPhone Container on Right (Original Layout) */}
+        <div className="mockup-container">
           <div className="iphone-frame">
             <div className="iphone-screen">
               <div className="iphone-notch"></div>
@@ -1746,61 +1781,6 @@ export default function Login({ onLogin }) {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Content Text below the phone */}
-        <div className="hero-content">
-          <div className="hero-tag">Consola de Logística Deportiva</div>
-          <h1 className="hero-title">
-            Tu CRM Deportivo e Inteligencia Antropométrica <br />
-            <span className="hero-gradient-text">Potenciada con IA</span>
-          </h1>
-          <p className="hero-subtitle">
-            La plataforma definitiva para preparadores físicos y nutricionistas. Diseña somatocartas, 
-            monitorea macronutrientes, prescribe suplementos con alertas inteligentes y analiza biomecánica en tiempo real.
-          </p>
-
-          {/* Social Proof Stats */}
-          <div className="stats-row">
-            <div className="stat-card">
-              <span className="stat-val">1k+</span>
-              <span className="stat-label">atletas activos de alto rendimiento</span>
-            </div>
-            <div className="stat-card">
-              <div className="stars-container">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                ))}
-              </div>
-              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
-            </div>
-          </div>
-
-          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
-            Ingresar al Portal
-            <span className="arrow-icon">→</span>
-          </button>
-        </div>
-
-        {/* Auto Scrolling Marquee (Ticker tape) */}
-        <div className="marquee-container">
-          <div className="marquee-title">LA COMUNIDAD DE NUTRICIÓN EMERGENTE MEJOR VALORADA</div>
-          <div className="marquee-track">
-            <div className="marquee-content">
-              <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
-              <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
-              <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
-              <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
-              <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
-            </div>
-            <div className="marquee-content">
-              <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
-              <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
-              <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
-              <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
-              <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
             </div>
           </div>
         </div>
@@ -1874,6 +1854,27 @@ export default function Login({ onLogin }) {
           </div>
         </div>
       </section>
+
+      {/* Auto Scrolling Marquee (Ticker tape) */}
+      <div className="marquee-container">
+        <div className="marquee-title">LA COMUNIDAD DE ENTRENADORES Y PREPARADORES DE ALTO RENDIMIENTO</div>
+        <div className="marquee-track">
+          <div className="marquee-content">
+            <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
+            <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
+            <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
+            <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
+            <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
+          </div>
+          <div className="marquee-content">
+            <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
+            <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
+            <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
+            <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
+            <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
+          </div>
+        </div>
+      </div>
 
       {/* Challenge Section: El Problema vs La Plataforma */}
       <section className="challenge-section">
@@ -2369,6 +2370,135 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item"><span className="feature-check">✓</span> Todas las funciones de la IA</li>
             </ul>
             <button className="plan-btn" onClick={scrollToLogin}>Contactar Elite</button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="faq-section" style={{ maxWidth: "800px", margin: "80px auto", padding: "0 24px" }}>
+        <div className="pricing-header" style={{ marginBottom: "40px" }}>
+          <span className="hero-tag">Preguntas Frecuentes</span>
+          <h2 className="pricing-title">Respuestas a tus Dudas</h2>
+          <p className="pricing-subtitle">
+            Todo lo que necesitas saber sobre cómo Innova ayuda a potenciar los resultados de tus atletas.
+          </p>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* FAQ 1 */}
+          <div 
+            className="glass-card faq-item" 
+            style={{ 
+              background: "white", 
+              border: "1px solid var(--sano-glass-border)", 
+              borderRadius: "20px", 
+              padding: "20px 24px", 
+              cursor: "pointer",
+              boxShadow: "var(--sano-card-shadow)",
+              transition: "all 0.2s ease"
+            }}
+            onClick={() => setActiveFaq(activeFaq === 0 ? null : 0)}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: "var(--sano-dark)" }}>
+                ¿Cómo acceden mis atletas a sus módulos?
+              </h4>
+              <span style={{ fontSize: "1.4rem", color: "var(--sano-teal)", fontWeight: "bold" }}>
+                {activeFaq === 0 ? "−" : "+"}
+              </span>
+            </div>
+            {activeFaq === 0 && (
+              <p style={{ margin: "12px 0 0 0", fontSize: "0.95rem", lineHeight: "1.6", color: "var(--text-muted)" }}>
+                Cada atleta tiene un código QR único e independiente que puedes generar y compartir desde tu consola de entrenador. Al escanear el QR, tu alumno entra a su portal web personalizado donde puede consultar sus pautas nutricionales, entrenamientos y stock de suplementación, sin necesidad de crear contraseñas.
+              </p>
+            )}
+          </div>
+
+          {/* FAQ 2 */}
+          <div 
+            className="glass-card faq-item" 
+            style={{ 
+              background: "white", 
+              border: "1px solid var(--sano-glass-border)", 
+              borderRadius: "20px", 
+              padding: "20px 24px", 
+              cursor: "pointer",
+              boxShadow: "var(--sano-card-shadow)",
+              transition: "all 0.2s ease"
+            }}
+            onClick={() => setActiveFaq(activeFaq === 1 ? null : 1)}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: "var(--sano-dark)" }}>
+                ¿Qué es el análisis biomecánico por visión artificial?
+              </h4>
+              <span style={{ fontSize: "1.4rem", color: "var(--sano-teal)", fontWeight: "bold" }}>
+                {activeFaq === 1 ? "−" : "+"}
+              </span>
+            </div>
+            {activeFaq === 1 && (
+              <p style={{ margin: "12px 0 0 0", fontSize: "0.95rem", lineHeight: "1.6", color: "var(--text-muted)" }}>
+                Es un software que mide ángulos articulares en tiempo real. Mediante la cámara del teléfono o laptop del atleta, analiza los grados de inclinación en rodillas y columna durante movimientos críticos (como la sentadilla profunda) para alertar sobre riesgos de lesión antes de levantar cargas pesadas.
+              </p>
+            )}
+          </div>
+
+          {/* FAQ 3 */}
+          <div 
+            className="glass-card faq-item" 
+            style={{ 
+              background: "white", 
+              border: "1px solid var(--sano-glass-border)", 
+              borderRadius: "20px", 
+              padding: "20px 24px", 
+              cursor: "pointer",
+              boxShadow: "var(--sano-card-shadow)",
+              transition: "all 0.2s ease"
+            }}
+            onClick={() => setActiveFaq(activeFaq === 2 ? null : 2)}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: "var(--sano-dark)" }}>
+                ¿Cómo ayuda Innova a evitar que mis atletas olviden sus suplementos?
+              </h4>
+              <span style={{ fontSize: "1.4rem", color: "var(--sano-teal)", fontWeight: "bold" }}>
+                {activeFaq === 2 ? "−" : "+"}
+              </span>
+            </div>
+            {activeFaq === 2 && (
+              <p style={{ margin: "12px 0 0 0", fontSize: "0.95rem", lineHeight: "1.6", color: "var(--text-muted)" }}>
+                Contamos con un sistema inteligente de control de stock. Al prescribir un suplemento con su dosis diaria, la app calcula la vida útil del tarro. Si los niveles bajan del 20%, envía una notificación al panel del entrenador para recordar la reposición, mejorando la consistencia del atleta.
+              </p>
+            )}
+          </div>
+
+          {/* FAQ 4 */}
+          <div 
+            className="glass-card faq-item" 
+            style={{ 
+              background: "white", 
+              border: "1px solid var(--sano-glass-border)", 
+              borderRadius: "20px", 
+              padding: "20px 24px", 
+              cursor: "pointer",
+              boxShadow: "var(--sano-card-shadow)",
+              transition: "all 0.2s ease"
+            }}
+            onClick={() => setActiveFaq(activeFaq === 3 ? null : 3)}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: "var(--sano-dark)" }}>
+                ¿El plan gratuito tiene algún límite?
+              </h4>
+              <span style={{ fontSize: "1.4rem", color: "var(--sano-teal)", fontWeight: "bold" }}>
+                {activeFaq === 3 ? "−" : "+"}
+              </span>
+            </div>
+            {activeFaq === 3 && (
+              <p style={{ margin: "12px 0 0 0", fontSize: "0.95rem", lineHeight: "1.6", color: "var(--text-muted)" }}>
+                El plan Semilla (gratuito) te permite registrar 1 atleta de forma permanente con somatocarta básica y registro manual. Para gestionar grupos mayores de atletas, habilitar el generador de dietas por IA (Gemini), la visión artificial de postura o exportar reportes estéticos PDF, debes actualizar a los planes Pro o Elite.
+              </p>
+            )}
           </div>
         </div>
       </section>
