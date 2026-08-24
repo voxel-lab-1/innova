@@ -1029,6 +1029,26 @@ const TrainingPlanner = ({ patientId, isAdminMode = false }) => {
   const [newExWeight, setNewExWeight] = useState("");
   const [newExMuscle, setNewExMuscle] = useState("legs");
 
+  const [exerciseSuggestions, setExerciseSuggestions] = useState([]);
+
+  useEffect(() => {
+    if (isAdminMode) {
+      fetch(`${API_BASE}/trainer/exercises`)
+        .then(res => {
+          if (res.ok) return res.json();
+          return { globals: [], customs: [] };
+        })
+        .then(data => {
+          const list = [
+            ...(data.globals || []).filter(ex => !ex.hidden).map(ex => ({ name: ex.name })),
+            ...(data.customs || []).map(ex => ({ name: ex.name }))
+          ];
+          setExerciseSuggestions(list);
+        })
+        .catch(err => console.error("Error fetching exercise suggestions:", err));
+    }
+  }, [isAdminMode]);
+
   const today = new Date().toISOString().split("T")[0];
   const DAY_NAMES = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
   const MUSCLE_GROUPS = [
@@ -1443,7 +1463,13 @@ const TrainingPlanner = ({ patientId, isAdminMode = false }) => {
                   <label className="form-label">Nombre del ejercicio</label>
                   <input className="form-input" value={newExName}
                     onChange={(e) => setNewExName(e.target.value)}
-                    placeholder="Ej: Sentadilla libre" />
+                    placeholder="Ej: Sentadilla libre"
+                    list="trainer-exercises-list" />
+                  <datalist id="trainer-exercises-list">
+                    {exerciseSuggestions.map((ex, idx) => (
+                      <option key={idx} value={ex.name} />
+                    ))}
+                  </datalist>
                 </div>
                 <div className="form-group">
                   <label className="form-label">Grupo muscular</label>

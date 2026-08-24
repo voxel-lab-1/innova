@@ -434,7 +434,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false }) => {
 
   const fetchRecommendedProducts = async () => {
     try {
-      const res = await fetch(`${API_BASE}/products/recommended`);
+      const res = await fetch(`${API_BASE}/products/recommended?athleteId=${patientId}`);
       if (res.ok) {
         const data = await res.json();
         setProducts(data);
