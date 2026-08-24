@@ -321,16 +321,17 @@ export default function Login({ onLogin }) {
           max-width: 1200px;
           margin: 0 auto;
           padding: 80px 24px 60px 24px;
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 40px;
+          display: flex;
+          flex-direction: column;
           align-items: center;
+          text-align: center;
+          gap: 30px;
         }
         .hero-content {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          text-align: left;
+          align-items: center;
+          text-align: center;
         }
         .hero-tag {
           font-size: 0.8rem;
@@ -350,6 +351,7 @@ export default function Login({ onLogin }) {
           letter-spacing: -1.5px;
           color: var(--sano-dark);
           margin-bottom: 20px;
+          max-width: 900px;
         }
         .hero-gradient-text {
           background: linear-gradient(135deg, var(--sano-teal) 0%, var(--sano-lime) 100%);
@@ -358,20 +360,21 @@ export default function Login({ onLogin }) {
           font-style: italic;
         }
         .hero-subtitle {
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           line-height: 1.6;
           color: var(--text-muted);
           margin-bottom: 32px;
-          max-width: 520px;
+          max-width: 720px;
         }
         
         /* Stats Row */
         .stats-row {
           display: flex;
+          justify-content: center;
           gap: 16px;
-          margin-bottom: 40px;
+          margin-bottom: 30px;
           width: 100%;
-          max-width: 520px;
+          max-width: 600px;
         }
         .stat-card {
           flex: 1;
@@ -433,6 +436,58 @@ export default function Login({ onLogin }) {
         }
         .hero-cta-btn:hover .arrow-icon {
           transform: translateX(4px);
+        }
+
+        /* Auto Scrolling Marquee */
+        .marquee-container {
+          width: 100%;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.4);
+          border-top: 1.5px solid rgba(0,0,0,0.03);
+          border-bottom: 1.5px solid rgba(0,0,0,0.03);
+          padding: 24px 0;
+          margin-top: 40px;
+          position: relative;
+        }
+        .marquee-title {
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: var(--text-muted);
+          margin-bottom: 15px;
+          text-align: center;
+          opacity: 0.6;
+        }
+        .marquee-track {
+          display: flex;
+          width: 200%;
+          animation: marquee 25s linear infinite;
+        }
+        .marquee-content {
+          display: flex;
+          justify-content: space-around;
+          width: 50%;
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: var(--sano-dark);
+          white-space: nowrap;
+          align-items: center;
+          gap: 40px;
+        }
+        .marquee-content span {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .marquee-tick {
+          color: var(--sano-teal);
+          font-size: 1.3rem;
+          font-weight: bold;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
         }
 
         /* Mockup iPhone Container */
@@ -1634,41 +1689,8 @@ export default function Login({ onLogin }) {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-content">
-          <div className="hero-tag">Consola de Logística Deportiva</div>
-          <h1 className="hero-title">
-            Tu CRM Deportivo e Inteligencia Antropométrica <br />
-            <span className="hero-gradient-text">Potenciada con IA</span>
-          </h1>
-          <p className="hero-subtitle">
-            La plataforma definitiva para preparadores físicos y nutricionistas. Diseña somatocartas, 
-            monitorea macronutrientes, prescribe suplementos con alertas inteligentes y analiza biomecánica en tiempo real.
-          </p>
-
-          {/* Social Proof Stats */}
-          <div className="stats-row">
-            <div className="stat-card">
-              <span className="stat-val">1k+</span>
-              <span className="stat-label">atletas activos de alto rendimiento</span>
-            </div>
-            <div className="stat-card">
-              <div className="stars-container">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                ))}
-              </div>
-              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
-            </div>
-          </div>
-
-          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
-            Ingresar al Portal
-            <span className="arrow-icon">→</span>
-          </button>
-        </div>
-
-        {/* Mockup iPhone Container */}
-        <div className="mockup-container">
+        {/* Centered Mockup iPhone Container on Top (Sano y Punto Style) */}
+        <div className="mockup-container" style={{ marginBottom: "20px" }}>
           <div className="iphone-frame">
             <div className="iphone-screen">
               <div className="iphone-notch"></div>
@@ -1724,6 +1746,61 @@ export default function Login({ onLogin }) {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Content Text below the phone */}
+        <div className="hero-content">
+          <div className="hero-tag">Consola de Logística Deportiva</div>
+          <h1 className="hero-title">
+            Tu CRM Deportivo e Inteligencia Antropométrica <br />
+            <span className="hero-gradient-text">Potenciada con IA</span>
+          </h1>
+          <p className="hero-subtitle">
+            La plataforma definitiva para preparadores físicos y nutricionistas. Diseña somatocartas, 
+            monitorea macronutrientes, prescribe suplementos con alertas inteligentes y analiza biomecánica en tiempo real.
+          </p>
+
+          {/* Social Proof Stats */}
+          <div className="stats-row">
+            <div className="stat-card">
+              <span className="stat-val">1k+</span>
+              <span className="stat-label">atletas activos de alto rendimiento</span>
+            </div>
+            <div className="stat-card">
+              <div className="stars-container">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ))}
+              </div>
+              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
+            </div>
+          </div>
+
+          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
+            Ingresar al Portal
+            <span className="arrow-icon">→</span>
+          </button>
+        </div>
+
+        {/* Auto Scrolling Marquee (Ticker tape) */}
+        <div className="marquee-container">
+          <div className="marquee-title">LA COMUNIDAD DE NUTRICIÓN EMERGENTE MEJOR VALORADA</div>
+          <div className="marquee-track">
+            <div className="marquee-content">
+              <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
+              <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
+              <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
+              <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
+              <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
+            </div>
+            <div className="marquee-content">
+              <span><strong className="marquee-tick">✓</strong> Trustpilot 4.9/5</span>
+              <span><strong className="marquee-tick">✓</strong> +1,000 Entrenadores</span>
+              <span><strong className="marquee-tick">✓</strong> Respaldo Antropométrico ISAK</span>
+              <span><strong className="marquee-tick">✓</strong> Seguridad Supabase (Postgres)</span>
+              <span><strong className="marquee-tick">✓</strong> IA Gemini Core Partner</span>
             </div>
           </div>
         </div>
@@ -1800,11 +1877,14 @@ export default function Login({ onLogin }) {
 
       {/* Challenge Section: El Problema vs La Plataforma */}
       <section className="challenge-section">
-        <div className="pricing-header">
-          <span className="hero-tag">El Desafío Deportivo</span>
-          <h2 className="pricing-title">¿Por qué fallan los métodos tradicionales?</h2>
-          <p className="pricing-subtitle">
-            El seguimiento de atletas en hojas de cálculo y mensajes dispersos disminuye la adherencia y limita los resultados deportivos.
+        <div className="pricing-header" style={{ marginBottom: "50px" }}>
+          <span className="hero-tag">El Desafío del Preparador Físico</span>
+          <h2 className="pricing-title" style={{ fontSize: "2.8rem", lineHeight: "1.1", letterSpacing: "-1.5px" }}>
+            Llevar el control de tus atletas se volvió <br />
+            <span style={{ fontWeight: 900 }}>un caos operativo.</span>
+          </h2>
+          <p className="pricing-subtitle" style={{ fontSize: "1.2rem", maxWidth: "680px", margin: "20px auto 0 auto", color: "var(--text-muted)", fontWeight: 500 }}>
+            No es tu falta de profesionalismo. Es la ausencia de herramientas integradas diseñadas para conectar la ciencia antropométrica, la biomecánica y la suplementación en un solo lugar.
           </p>
         </div>
 
