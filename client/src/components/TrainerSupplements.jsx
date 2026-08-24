@@ -10,7 +10,7 @@ const CATEGORIES = [
   "Otros"
 ];
 
-const TrainerSupplements = ({ apiBase }) => {
+const TrainerSupplements = ({ apiBase, planType }) => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("Todos");
   const [loading, setLoading] = useState(false);
@@ -129,6 +129,8 @@ const TrainerSupplements = ({ apiBase }) => {
     }
   };
 
+  const isFree = planType === "free";
+
   return (
     <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "30px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
@@ -138,10 +140,22 @@ const TrainerSupplements = ({ apiBase }) => {
             Configura los productos y marcas que verán tus atletas en sus perfiles (puedes añadir tus propios enlaces o silenciar los predeterminados).
           </p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowAddForm(!showAddForm)}>
-          {showAddForm ? "Volver al Catálogo" : "+ Agregar Mi Suplemento"}
-        </button>
+        {!isFree ? (
+          <button className="btn btn-primary" onClick={() => setShowAddForm(!showAddForm)}>
+            {showAddForm ? "Volver al Catálogo" : "+ Agregar Mi Suplemento"}
+          </button>
+        ) : (
+          <button className="btn btn-secondary" style={{ opacity: 0.6, cursor: "not-allowed" }} disabled>
+            🔒 Agregar Mi Suplemento (Pro)
+          </button>
+        )}
       </div>
+
+      {isFree && (
+        <div style={{ background: "rgba(255, 69, 0, 0.05)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "10px", padding: "16px", fontSize: "0.9rem", color: "var(--error)", display: "flex", alignItems: "center", gap: "10px" }}>
+          <span>🔒</span> <span><strong>Plan Semilla limitado:</strong> Para silenciar/ocultar suplementos de la biblioteca o añadir tus propios productos personalizados, adquiere la membresía <strong>Profesional (Pro)</strong>.</span>
+        </div>
+      )}
 
       {showAddForm ? (
         <form onSubmit={handleAddSubmit} className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "16px", background: "rgba(255,255,255,0.01)" }}>
@@ -298,8 +312,13 @@ const TrainerSupplements = ({ apiBase }) => {
                           Eliminar
                         </button>
                       ) : (
-                        <button className="btn btn-secondary" style={{ width: "100%", padding: "6px", color: "var(--error)" }} onClick={() => handleHideProduct(p.id)}>
-                          🚫 Ocultar de mis atletas
+                        <button 
+                          className="btn btn-secondary" 
+                          style={{ width: "100%", padding: "6px", color: isFree ? "var(--text-muted)" : "var(--error)", cursor: isFree ? "not-allowed" : "pointer" }} 
+                          disabled={isFree}
+                          onClick={() => handleHideProduct(p.id)}
+                        >
+                          {isFree ? "🔒 Ocultar (Pro)" : "🚫 Ocultar de mis atletas"}
                         </button>
                       )}
                     </div>

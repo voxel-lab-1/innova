@@ -115,7 +115,7 @@ const TrainerSubscription = ({ apiBase }) => {
             <h4 style={{ fontSize: "1.2rem", margin: 0, fontWeight: "700" }}>Semilla (Free)</h4>
             <div style={{ fontSize: "1.8rem", fontWeight: "800", color: "var(--text-main)" }}>$0 <span style={{ fontSize: "0.9rem", fontWeight: "normal", color: "var(--text-muted)" }}>/ mes</span></div>
             <ul style={{ paddingLeft: "20px", margin: 0, fontSize: "0.85rem", color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: "8px" }}>
-              <li>Hasta 3 atletas activos</li>
+              <li>1 atleta activo</li>
               <li>Somatocarta básica</li>
               <li>Planes de suplementación sencillos</li>
             </ul>

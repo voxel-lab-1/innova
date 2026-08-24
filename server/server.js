@@ -490,7 +490,7 @@ app.post("/api/patients", async (req, res) => {
         }
 
         const count = await prisma.patient.count({ where: { creatorId } });
-        const limit = plan === "free" ? 3 : plan === "pro" ? 30 : 999999;
+        const limit = plan === "free" ? 1 : plan === "pro" ? 30 : 999999;
 
         if (count >= limit) {
           return res.status(403).json({ 
@@ -1105,6 +1105,16 @@ app.post("/api/patients/:id/posture", upload.single("video"), async (req, res) =
       return res.status(400).json({ error: "ID de paciente inválido" });
     }
 
+    if (req.user.role !== "admin") {
+      const athlete = await prisma.patient.findUnique({ where: { id: patientId } });
+      if (athlete && athlete.creatorId) {
+        const trainer = await prisma.patient.findUnique({ where: { id: athlete.creatorId } });
+        if (trainer && (trainer.planType || "free") === "free") {
+          return res.status(403).json({ error: "El análisis biomecánico por IA es exclusivo para planes Profesional y Elite. Actualiza la membresía para desbloquearlo." });
+        }
+      }
+    }
+
     if (!req.file) {
       return res.status(400).json({ error: "No se subió ningún archivo de video" });
     }
@@ -1547,7 +1557,7 @@ app.get("/api/trainer/subscription", async (req, res) => {
 
     const count = await prisma.patient.count({ where: { creatorId: trainerId } });
     const plan = trainer.planType || "free";
-    const limit = plan === "free" ? 3 : plan === "pro" ? 30 : 999999;
+    const limit = plan === "free" ? 1 : plan === "pro" ? 30 : 999999;
 
     res.json({
       planType: plan,
@@ -1660,6 +1670,13 @@ app.get("/api/products/recommended", async (req, res) => {
 // 5b. Add a new recommended product with image upload and Supabase backup
 app.post("/api/products/recommended", uploadCalorie.single("image"), async (req, res) => {
   try {
+    if (req.user.role !== "admin") {
+      const trainer = await prisma.patient.findUnique({ where: { id: req.user.id } });
+      if (trainer && (trainer.planType || "free") === "free") {
+        return res.status(403).json({ error: "El plan Semilla (Gratuito) no permite agregar suplementos personalizados. Actualiza a un plan superior para desbloquear esta función." });
+      }
+    }
+
     const { name, category, region, isLocalStore, purchaseLink, description } = req.body;
     const file = req.file;
 
@@ -1854,6 +1871,13 @@ app.get("/api/trainer/exercises", async (req, res) => {
 
 app.post("/api/trainer/exercises", async (req, res) => {
   try {
+    if (req.user.role !== "admin") {
+      const trainer = await prisma.patient.findUnique({ where: { id: req.user.id } });
+      if (trainer && (trainer.planType || "free") === "free") {
+        return res.status(403).json({ error: "El plan Semilla (Gratuito) no permite agregar ejercicios personalizados. Actualiza a un plan superior para desbloquear esta función." });
+      }
+    }
+
     const trainerId = req.user.id;
     const { name, muscleGroup, videoUrl, technique, notes } = req.body;
 
@@ -1980,6 +2004,13 @@ app.post("/api/patients/:id/training-plans", async (req, res) => {
     const patient = await prisma.patient.findUnique({
       where: { id: patientId }
     });
+
+    if (req.user.role !== "admin" && patient && patient.creatorId) {
+      const trainer = await prisma.patient.findUnique({ where: { id: patient.creatorId } });
+      if (trainer && (trainer.planType || "free") === "free") {
+        return res.status(403).json({ error: "La generación de rutinas por IA (Gemini) es exclusiva para planes Profesional y Elite. Actualiza tu cuenta para habilitarla." });
+      }
+    }
 
     const latestEval = await prisma.evaluation.findFirst({
       where: { patientId },

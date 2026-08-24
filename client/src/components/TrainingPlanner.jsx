@@ -953,7 +953,7 @@ const ExerciseCard = ({ exercise, log, onToggle, onUpdateLog, onDelete, isAdminM
 };
 
 // ─── Main TrainingPlanner Component ──────────────────────────────────────────
-const TrainingPlanner = ({ patientId, isAdminMode = false }) => {
+const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
   const [plans, setPlans] = useState([]);
   const [activePlan, setActivePlan] = useState(null);
   const [selectedDayIdx, setSelectedDayIdx] = useState(() => {
@@ -1378,11 +1378,23 @@ const TrainingPlanner = ({ patientId, isAdminMode = false }) => {
               ⚠️ {planError}
             </div>
           )}
-          <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end" }}>
-            <button className="btn btn-secondary" onClick={() => setShowNewPlan(false)} disabled={creatingPlan}>Cancelar</button>
-            <button className="btn btn-primary" onClick={handleCreatePlan} disabled={creatingPlan}>
-              {creatingPlan ? "⏳ Generando plan..." : "Crear Plan con IA"}
-            </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "10px" }}>
+            {planType === "free" && (
+              <span style={{ fontSize: "0.85rem", color: "var(--error)", background: "rgba(255, 69, 0, 0.05)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "6px", padding: "8px 12px" }}>
+                🔒 <strong>Acción Limitada:</strong> La autogeneración de rutinas con IA (Gemini) es exclusiva para planes <strong>Profesional (Pro)</strong> y <strong>Elite</strong>.
+              </span>
+            )}
+            <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", width: "100%" }}>
+              <button className="btn btn-secondary" onClick={() => setShowNewPlan(false)} disabled={creatingPlan}>Cancelar</button>
+              <button 
+                className="btn btn-primary" 
+                onClick={handleCreatePlan} 
+                disabled={creatingPlan || planType === "free"}
+                style={{ opacity: planType === "free" ? 0.6 : 1, cursor: planType === "free" ? "not-allowed" : "pointer" }}
+              >
+                {creatingPlan ? "⏳ Generando plan..." : "🔒 Crear Plan con IA (Pro)"}
+              </button>
+            </div>
           </div>
         </div>
       )}

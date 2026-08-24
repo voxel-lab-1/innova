@@ -1098,6 +1098,151 @@ export default function Login({ onLogin }) {
             padding: 30px 20px;
           }
         }
+
+        /* Pricing Section */
+        .pricing-section {
+          max-width: 1200px;
+          margin: 80px auto;
+          padding: 0 24px;
+          position: relative;
+          z-index: 10;
+          text-align: center;
+        }
+        .pricing-header {
+          margin-bottom: 50px;
+        }
+        .pricing-title {
+          font-size: 2.8rem;
+          font-weight: 800;
+          letter-spacing: -1.5px;
+          color: var(--sano-dark);
+          margin-bottom: 12px;
+        }
+        .pricing-subtitle {
+          font-size: 1.1rem;
+          color: var(--text-muted);
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          margin-top: 30px;
+          align-items: stretch;
+        }
+        .pricing-card {
+          background: white;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 24px;
+          padding: 40px 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          box-shadow: var(--sano-card-shadow);
+          transition: all 0.3s ease;
+          position: relative;
+        }
+        .pricing-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 40px rgba(0, 128, 128, 0.08);
+          border-color: rgba(0, 128, 128, 0.2);
+        }
+        .pricing-card.popular {
+          border: 2.5px solid var(--sano-teal);
+          box-shadow: 0 20px 45px rgba(0, 128, 128, 0.12);
+        }
+        .popular-badge {
+          position: absolute;
+          top: -14px;
+          right: 30px;
+          background: var(--sano-teal);
+          color: white;
+          padding: 4px 14px;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .plan-name {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: var(--sano-dark);
+          text-transform: capitalize;
+          margin: 0;
+          text-align: left;
+        }
+        .plan-price {
+          font-size: 3rem;
+          font-weight: 900;
+          color: var(--sano-dark);
+          text-align: left;
+          line-height: 1;
+        }
+        .plan-price span {
+          font-size: 1rem;
+          font-weight: 500;
+          color: var(--text-muted);
+        }
+        .plan-features {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          text-align: left;
+        }
+        .plan-feature-item {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .feature-check {
+          color: var(--sano-teal);
+          font-weight: bold;
+          font-size: 1.1rem;
+        }
+        .plan-btn {
+          width: 100%;
+          background: var(--sano-cream);
+          color: var(--sano-dark);
+          border: 1px solid var(--sano-glass-border);
+          padding: 14px 20px;
+          font-size: 0.95rem;
+          font-weight: 700;
+          border-radius: 16px;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          margin-top: auto;
+          font-family: inherit;
+        }
+        .plan-btn:hover {
+          background: var(--sano-dark);
+          color: white;
+        }
+        .plan-btn.primary-btn {
+          background: var(--sano-teal);
+          color: white;
+          border: none;
+          box-shadow: 0 8px 20px rgba(0, 128, 128, 0.2);
+        }
+        .plan-btn.primary-btn:hover {
+          background: var(--sano-teal-hover);
+          box-shadow: 0 12px 25px rgba(0, 128, 128, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+          .pricing-grid {
+            grid-template-columns: 1fr;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
       `}</style>
 
       {/* Ambient decorative glow elements */}
@@ -1280,6 +1425,61 @@ export default function Login({ onLogin }) {
                 Contador logístico de calorías diarias ingeridas y quemadas. Reportes de macronutrientes personalizados según la disciplina.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Plans Section */}
+      <section className="pricing-section" id="plans-section">
+        <div className="pricing-header">
+          <span className="hero-tag">Membresías Innova</span>
+          <h2 className="pricing-title">Planes para Entrenadores y Preparadores</h2>
+          <p className="pricing-subtitle">
+            Elige el plan ideal para llevar el control de tus atletas y brindarles una experiencia premium.
+          </p>
+        </div>
+
+        <div className="pricing-grid">
+          {/* Plan Seed */}
+          <div className="pricing-card">
+            <h3 className="plan-name">Semilla (Gratuito)</h3>
+            <div className="plan-price">$0 <span>/ mes</span></div>
+            <ul className="plan-features">
+              <li className="plan-feature-item"><span className="feature-check">✓</span> 1 Atleta activo</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Somatocarta básica</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Registro manual de datos</li>
+              <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> Planes de ejercicio ilimitados</li>
+              <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> IA de Postura avanzada</li>
+            </ul>
+            <button className="plan-btn" onClick={scrollToLogin}>Comenzar Gratis</button>
+          </div>
+
+          {/* Plan Pro */}
+          <div className="pricing-card popular">
+            <span className="popular-badge">Más Popular</span>
+            <h3 className="plan-name">Profesional (Pro)</h3>
+            <div className="plan-price">$19.99 <span>/ mes</span></div>
+            <ul className="plan-features">
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Hasta 30 Atletas activos</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Inteligencia Artificial de Postura</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Catálogo de Suplementos a medida</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Biblioteca de Ejercicios personalizada</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Generación con Gemini AI</li>
+            </ul>
+            <button className="plan-btn primary-btn" onClick={scrollToLogin}>Adquirir Plan Pro</button>
+          </div>
+
+          {/* Plan Gym */}
+          <div className="pricing-card">
+            <h3 className="plan-name">Elite (Gimnasio)</h3>
+            <div className="plan-price">$49.99 <span>/ mes</span></div>
+            <ul className="plan-features">
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Atletas ilimitados</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Reportes Estéticos PDF</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Soporte Prioritario 24/7</li>
+              <li className="plan-feature-item"><span className="feature-check">✓</span> Todas las funciones de la IA</li>
+            </ul>
+            <button className="plan-btn" onClick={scrollToLogin}>Contactar Elite</button>
           </div>
         </div>
       </section>

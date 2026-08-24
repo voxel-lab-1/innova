@@ -2,7 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 
 const API_BASE = "/api";
 
-const PostureAnalyzer = ({ patientId }) => {
+const PostureAnalyzer = ({ patientId, planType }) => {
+  const isFree = planType === "free";
+
+  if (isFree) {
+    return (
+      <div className="glass-card animate-fade-in" style={{ padding: "50px 30px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
+        <div style={{ fontSize: "3rem" }}>🔒</div>
+        <h2 className="glow-text" style={{ fontSize: "2rem" }}>Análisis de Postura Limitado</h2>
+        <p style={{ color: "var(--text-muted)", fontSize: "1rem", maxWidth: "550px" }}>
+          La evaluación biomecánica y análisis de postura automatizado por visión artificial (IA) es exclusivo para usuarios con membresías <strong>Profesional (Pro)</strong> y <strong>Elite</strong>.
+        </p>
+        <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>
+          Actualiza tu suscripción en la sección <strong>Mi Suscripción</strong> en el menú lateral para desbloquear esta funcionalidad.
+        </p>
+      </div>
+    );
+  }
+
   const [jobs, setJobs] = useState([]);
   const [activeJob, setActiveJob] = useState(null);
   const [uploading, setUploading] = useState(false);

@@ -10,7 +10,7 @@ const MUSCLE_GROUPS = [
   { value: "full_body", label: "Cuerpo Completo" }
 ];
 
-const TrainerExercises = ({ apiBase }) => {
+const TrainerExercises = ({ apiBase, planType }) => {
   const [globals, setGlobals] = useState([]);
   const [customs, setCustoms] = useState([]);
   const [selectedMuscle, setSelectedMuscle] = useState("Todos");
@@ -137,6 +137,8 @@ const TrainerExercises = ({ apiBase }) => {
   const hiddenGlobals = filterByMuscle(globals.filter(ex => ex.hidden));
   const filteredCustoms = filterByMuscle(customs);
 
+  const isFree = planType === "free";
+
   return (
     <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "30px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
@@ -146,10 +148,22 @@ const TrainerExercises = ({ apiBase }) => {
             Personaliza el catálogo de ejercicios que utilizas para prescribir rutinas a tus atletas.
           </p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowAddForm(!showAddForm)}>
-          {showAddForm ? "Volver a la Biblioteca" : "+ Crear Ejercicio Propio"}
-        </button>
+        {!isFree ? (
+          <button className="btn btn-primary" onClick={() => setShowAddForm(!showAddForm)}>
+            {showAddForm ? "Volver a la Biblioteca" : "+ Crear Ejercicio Propio"}
+          </button>
+        ) : (
+          <button className="btn btn-secondary" style={{ opacity: 0.6, cursor: "not-allowed" }} disabled>
+            🔒 Crear Ejercicio Propio (Pro)
+          </button>
+        )}
       </div>
+
+      {isFree && (
+        <div style={{ background: "rgba(255, 69, 0, 0.05)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "10px", padding: "16px", fontSize: "0.9rem", color: "var(--error)", display: "flex", alignItems: "center", gap: "10px" }}>
+          <span>🔒</span> <span><strong>Plan Semilla limitado:</strong> Para silenciar/ocultar ejercicios de la biblioteca global o registrar tus propios movimientos personalizados, adquiere la membresía <strong>Profesional (Pro)</strong>.</span>
+        </div>
+      )}
 
       {showAddForm ? (
         <form onSubmit={handleAddSubmit} className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "16px", background: "rgba(255,255,255,0.01)" }}>
@@ -313,8 +327,13 @@ const TrainerExercises = ({ apiBase }) => {
                       </td>
                       <td style={{ padding: "12px 16px" }}>Predeterminado</td>
                       <td style={{ padding: "12px 16px", textAlign: "right" }}>
-                        <button className="btn btn-secondary" style={{ padding: "4px 8px", fontSize: "0.8rem", height: "auto", color: "var(--error)" }} onClick={() => handleHideExercise(ex.name)}>
-                          🚫 Ocultar
+                        <button 
+                          className="btn btn-secondary" 
+                          style={{ padding: "4px 8px", fontSize: "0.8rem", height: "auto", color: isFree ? "var(--text-muted)" : "var(--error)", cursor: isFree ? "not-allowed" : "pointer" }} 
+                          disabled={isFree}
+                          onClick={() => handleHideExercise(ex.name)}
+                        >
+                          {isFree ? "🔒 Ocultar (Pro)" : "🚫 Ocultar"}
                         </button>
                       </td>
                     </tr>
@@ -328,8 +347,13 @@ const TrainerExercises = ({ apiBase }) => {
                       <td style={{ padding: "12px 16px" }}>-</td>
                       <td style={{ padding: "12px 16px" }}>Ocultado</td>
                       <td style={{ padding: "12px 16px", textAlign: "right" }}>
-                        <button className="btn btn-primary" style={{ padding: "4px 8px", fontSize: "0.8rem", height: "auto" }} onClick={() => handleShowExercise(ex.name)}>
-                          🔓 Activar
+                        <button 
+                          className="btn btn-primary" 
+                          style={{ padding: "4px 8px", fontSize: "0.8rem", height: "auto", cursor: isFree ? "not-allowed" : "pointer" }} 
+                          disabled={isFree}
+                          onClick={() => handleShowExercise(ex.name)}
+                        >
+                          {isFree ? "🔒 Activar (Pro)" : "🔓 Activar"}
                         </button>
                       </td>
                     </tr>

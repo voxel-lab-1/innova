@@ -128,6 +128,19 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [addingAthleteForCreatorId, setAddingAthleteForCreatorId] = useState(null);
+  const [trainerSub, setTrainerSub] = useState(null);
+
+  const fetchTrainerSub = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/trainer/subscription`);
+      if (res.ok) {
+        const data = await res.json();
+        setTrainerSub(data);
+      }
+    } catch (err) {
+      console.error("Error loading subscription:", err);
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated && currentUser) {
@@ -135,6 +148,7 @@ function App() {
         fetchPatients();
       } else {
         fetchPatients(currentUser.id);
+        fetchTrainerSub();
       }
     }
   }, [isAuthenticated, currentUser]);
@@ -726,11 +740,11 @@ function App() {
           
           {/* Trainer Customized Views */}
           {showTrainerSupplements && (
-            <TrainerSupplements apiBase={API_BASE} />
+            <TrainerSupplements apiBase={API_BASE} planType={trainerSub?.planType || "free"} />
           )}
 
           {showTrainerExercises && (
-            <TrainerExercises apiBase={API_BASE} />
+            <TrainerExercises apiBase={API_BASE} planType={trainerSub?.planType || "free"} />
           )}
 
           {showTrainerSubscription && (
@@ -1244,17 +1258,17 @@ function App() {
 
                 {/* Sub-section 3: Training Plan */}
                 {activeTab === "training" && (
-                  <TrainingPlanner patientId={selectedPatient.id} isAdminMode={currentUser?.role === "admin"} />
+                  <TrainingPlanner patientId={selectedPatient.id} isAdminMode={true} planType={trainerSub?.planType || "free"} />
                 )}
 
                 {/* Sub-section 4: Posture Biomechanics */}
                 {activeTab === "posture" && (
-                  <PostureAnalyzer patientId={selectedPatient.id} />
+                  <PostureAnalyzer patientId={selectedPatient.id} planType={trainerSub?.planType || "free"} />
                 )}
 
                 {/* Sub-section 5: Nutrition Control */}
                 {activeTab === "nutrition" && (
-                  <CalorieCounter patientId={selectedPatient.id} isAdminMode={currentUser?.role === "admin"} />
+                  <CalorieCounter patientId={selectedPatient.id} isAdminMode={true} />
                 )}
               </div>
             )
