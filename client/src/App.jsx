@@ -76,6 +76,10 @@ function App() {
     setIsAthleteView(false);
   };
 
+  const [patients, setPatients] = useState([]);
+  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [shareToken, setShareToken] = useState("");
 
   useEffect(() => {
@@ -94,10 +98,6 @@ function App() {
         });
     }
   }, [showQrModal, selectedPatient]);
-
-  const [patients, setPatients] = useState([]);
-  const [selectedPatient, setSelectedPatient] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
   
   // UI states
   const [isAddingPatient, setIsAddingPatient] = useState(false);
