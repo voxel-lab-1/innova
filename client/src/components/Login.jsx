@@ -25,6 +25,38 @@ export default function Login({ onLogin }) {
   const [googleGender, setGoogleGender] = useState("male");
   const [googleSport, setGoogleSport] = useState("General");
 
+  // Interactive Showcase states
+  const [showcaseTab, setShowcaseTab] = useState("somatochart");
+  const [mesoVal, setMesoVal] = useState(4);
+  const [endoVal, setEndoVal] = useState(3);
+  const [ectoVal, setEctoVal] = useState(3);
+  const [suppStock, setSuppStock] = useState(80);
+  const [postureAngle, setPostureAngle] = useState(135);
+  const [isSquattingUp, setIsSquattingUp] = useState(true);
+
+  // Simulated live posture tracking effect
+  useEffect(() => {
+    if (showcaseTab !== "posture") return;
+    const interval = setInterval(() => {
+      setPostureAngle((prev) => {
+        if (isSquattingUp) {
+          if (prev >= 170) {
+            setIsSquattingUp(false);
+            return prev - 2;
+          }
+          return prev + 2;
+        } else {
+          if (prev <= 95) {
+            setIsSquattingUp(true);
+            return prev + 2;
+          }
+          return prev - 2;
+        }
+      });
+    }, 40);
+    return () => clearInterval(interval);
+  }, [showcaseTab, isSquattingUp]);
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -1431,6 +1463,155 @@ export default function Login({ onLogin }) {
           font-size: 0.75rem;
           color: var(--text-muted);
         }
+
+        /* Showcase Playground Styles */
+        .showcase-section {
+          max-width: 1200px;
+          margin: 80px auto;
+          padding: 0 24px;
+          position: relative;
+          z-index: 10;
+          text-align: center;
+        }
+        .showcase-container {
+          background: white;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 30px;
+          padding: 40px;
+          box-shadow: var(--sano-card-shadow);
+          margin-top: 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+        .showcase-tabs {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          border-bottom: 1px solid rgba(18, 26, 26, 0.05);
+          padding-bottom: 20px;
+          flex-wrap: wrap;
+        }
+        .showcase-tab-btn {
+          background: transparent;
+          border: 1px solid var(--sano-glass-border);
+          padding: 10px 20px;
+          border-radius: 30px;
+          font-weight: 700;
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          outline: none;
+        }
+        .showcase-tab-btn:hover {
+          border-color: var(--sano-teal);
+          color: var(--sano-teal);
+        }
+        .showcase-tab-btn.active {
+          background: var(--sano-teal);
+          color: white;
+          border-color: var(--sano-teal);
+          box-shadow: 0 5px 15px rgba(0, 128, 128, 0.2);
+        }
+        .showcase-content {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 40px;
+          text-align: left;
+          align-items: center;
+          min-height: 400px;
+        }
+        .playground-card {
+          background: #f8fafc;
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 20px;
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        /* Interactive Somatochart widget */
+        .interactive-somatocarta {
+          width: 100%;
+          height: 220px;
+          background: white;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 12px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .somato-grid-x {
+          position: absolute;
+          left: 0; right: 0; top: 50%;
+          height: 1px;
+          background: #cbd5e1;
+          border-style: dashed;
+        }
+        .somato-grid-y {
+          position: absolute;
+          top: 0; bottom: 0; left: 50%;
+          width: 1px;
+          background: #cbd5e1;
+          border-style: dashed;
+        }
+        .somato-interactive-point {
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          background: var(--sano-teal);
+          border: 3px solid white;
+          border-radius: 50%;
+          box-shadow: 0 0 10px var(--sano-teal);
+          transition: left 0.2s ease, top 0.2s ease;
+          transform: translate(-50%, -50%);
+        }
+
+        /* Posture IA Animation */
+        .scanner-line {
+          position: absolute;
+          left: 0; right: 0; height: 3px;
+          background: rgba(244, 63, 94, 0.5);
+          box-shadow: 0 0 8px #f43f5e;
+          animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+          0% { top: 0%; }
+          50% { top: 100%; }
+          100% { top: 0%; }
+        }
+
+        /* Value range slider styles */
+        .showcase-slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 6px;
+          background: #e2e8f0;
+          border-radius: 5px;
+          outline: none;
+        }
+        .showcase-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: var(--sano-teal);
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 1024px) {
+          .showcase-content {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+        }
       `}</style>
 
       {/* Ambient decorative glow elements */}
@@ -1668,6 +1849,297 @@ export default function Login({ onLogin }) {
                 <span><strong>Somatocarta Interactiva:</strong> Mapeo científico del somatotipo (Endo, Meso, Ectomorfia) en tiempo real para motivar a tus atletas mostrando su evolución real.</span>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Showcase Playground */}
+      <section className="showcase-section">
+        <div className="pricing-header">
+          <span className="hero-tag">Demostración Interactiva</span>
+          <h2 className="pricing-title">Experimenta la Tecnología de Innova</h2>
+          <p className="pricing-subtitle">
+            Prueba en tiempo real los motores de análisis y control que tus atletas verán en sus perfiles web.
+          </p>
+        </div>
+
+        <div className="showcase-container">
+          <div className="showcase-tabs">
+            <button
+              type="button"
+              className={`showcase-tab-btn ${showcaseTab === "somatochart" ? "active" : ""}`}
+              onClick={() => setShowcaseTab("somatochart")}
+            >
+              📊 Somatocarta Dinámica
+            </button>
+            <button
+              type="button"
+              className={`showcase-tab-btn ${showcaseTab === "posture" ? "active" : ""}`}
+              onClick={() => setShowcaseTab("posture")}
+            >
+              🎥 Biomecánica IA (Squat)
+            </button>
+            <button
+              type="button"
+              className={`showcase-tab-btn ${showcaseTab === "supplements" ? "active" : ""}`}
+              onClick={() => setShowcaseTab("supplements")}
+            >
+              💊 Control de Stock
+            </button>
+          </div>
+
+          <div className="showcase-content">
+            {/* Left Column: Interactive Playground Panel */}
+            {showcaseTab === "somatochart" && (
+              <>
+                <div className="playground-card animate-fade-in">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                    <h4 style={{ margin: 0, fontWeight: 800 }}>Simulador de Somatotipo</h4>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                      Ajusta los sliders de desarrollo físico para calcular el somatotipo Heath-Carter y ver el punto en el gráfico.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "4px" }}>
+                        <span>Mesomorfia (Muscularidad)</span>
+                        <strong>{mesoVal}</strong>
+                      </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="10"
+                        className="showcase-slider"
+                        value={mesoVal}
+                        onChange={(e) => setMesoVal(parseInt(e.target.value))}
+                      />
+                    </div>
+
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "4px" }}>
+                        <span>Endomorfia (Adiposidad)</span>
+                        <strong>{endoVal}</strong>
+                      </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="10"
+                        className="showcase-slider"
+                        value={endoVal}
+                        onChange={(e) => setEndoVal(parseInt(e.target.value))}
+                      />
+                    </div>
+
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "4px" }}>
+                        <span>Ectomorfia (Delgadez/Longitud)</span>
+                        <strong>{ectoVal}</strong>
+                      </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="10"
+                        className="showcase-slider"
+                        value={ectoVal}
+                        onChange={(e) => setEctoVal(parseInt(e.target.value))}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ background: "rgba(0,128,128,0.05)", border: "1px solid rgba(0,128,128,0.15)", borderRadius: "10px", padding: "12px" }}>
+                    <span style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Clasificación del Somatotipo:</span>
+                    <h5 style={{ margin: "4px 0 0 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--sano-teal)" }}>
+                      {mesoVal > endoVal && mesoVal > ectoVal ? "Mesomorfo Dominante (Alta masa muscular)" :
+                       endoVal > mesoVal && endoVal > ectoVal ? "Endomorfo Dominante (Mayor retención lipídica)" :
+                       ectoVal > mesoVal && ectoVal > endoVal ? "Ectomorfo Dominante (Estructura ósea delgada/magra)" :
+                       "Somatotipo Balanceado"}
+                    </h5>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
+                  <div className="interactive-somatocarta">
+                    <div className="somato-grid-x"></div>
+                    <div className="somato-grid-y"></div>
+                    
+                    {/* Dynamic Point on Somatochart */}
+                    <div 
+                      className="somato-interactive-point"
+                      style={{
+                        left: `${50 + (ectoVal - endoVal) * 4.5}%`,
+                        top: `${50 - (2 * mesoVal - (endoVal + ectoVal)) * 2.5}%`
+                      }}
+                    ></div>
+                    
+                    <span style={{ position: "absolute", top: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Mesomorfo (Fuerza)</span>
+                    <span style={{ position: "absolute", bottom: "10px", left: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Endomorfo (Grasa)</span>
+                    <span style={{ position: "absolute", bottom: "10px", right: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Ectomorfo (Magra)</span>
+                  </div>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Gráfico de Somatocarta interactivo tridimensional</span>
+                </div>
+              </>
+            )}
+
+            {showcaseTab === "posture" && (
+              <>
+                <div className="playground-card animate-fade-in">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                    <h4 style={{ margin: 0, fontWeight: 800 }}>Evaluación Biomecánica por Visión Artificial</h4>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                      Monitoreo angular del fémur y la columna lumbar durante la sentadilla para prevenir sobrecargas.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span>Ángulo de Flexión de Rodilla:</span>
+                      <strong style={{ color: "var(--sano-teal)", fontSize: "1.1rem" }}>{Math.round(postureAngle)}°</strong>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span>Estado del Ejercicio:</span>
+                      <strong style={{ color: postureAngle < 120 ? "#f43f5e" : "#10b981" }}>
+                        {postureAngle < 120 ? "🚨 Rango Crítico de Butt Wink" : "✓ Rango Seguro"}
+                      </strong>
+                    </div>
+                  </div>
+
+                  {postureAngle < 120 ? (
+                    <div style={{ background: "rgba(244,63,94,0.06)", border: "1px solid rgba(244,63,94,0.2)", borderRadius: "10px", padding: "12px", fontSize: "0.85rem", color: "#f43f5e", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span>🚨</span> <span><strong>Retroversión Pélvica Detectada:</strong> El fémur desciende por debajo de la horizontal y hay flexión lumbar.</span>
+                    </div>
+                  ) : (
+                    <div style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: "10px", padding: "12px", fontSize: "0.85rem", color: "#10b981", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span>✓</span> <span>Alineación óptima de la columna lumbar. Rango articular seguro.</span>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
+                  <div className="interactive-somatocarta" style={{ background: "#0f172a", border: "1px solid #334155" }}>
+                    <div className="scanner-line"></div>
+                    
+                    {/* Simulated stick-figure posture skeleton */}
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                      <line x1="50" y1="20" x2="50" y2="50" stroke="white" strokeWidth="3" />
+                      <line 
+                        x1="50" 
+                        y1="50" 
+                        x2={50 - (180 - postureAngle) * 0.15} 
+                        y2={50 + (180 - postureAngle) * 0.25} 
+                        stroke={postureAngle < 120 ? "#f43f5e" : "#00f2fe"} 
+                        strokeWidth="3.5" 
+                      />
+                      <line 
+                        x1={50 - (180 - postureAngle) * 0.15} 
+                        y1={50 + (180 - postureAngle) * 0.25} 
+                        x2="45" 
+                        y2="85" 
+                        stroke="white" 
+                        strokeWidth="3" 
+                      />
+                      <circle cx="50" cy="12" r="5" fill="white" />
+                      <circle cx="50" cy="50" r="3" fill="#fbbf24" />
+                      <circle 
+                        cx={50 - (180 - postureAngle) * 0.15} 
+                        cy={50 + (180 - postureAngle) * 0.25} 
+                        r="3" 
+                        fill={postureAngle < 120 ? "#f43f5e" : "#00f2fe"} 
+                      />
+                    </svg>
+
+                    <span style={{ position: "absolute", top: "10px", right: "10px", fontSize: "0.65rem", color: "#94a3b8", background: "rgba(255,255,255,0.05)", padding: "2px 6px", borderRadius: "4px" }}>
+                      IA TELEMETRY ACTIVE
+                    </span>
+                  </div>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Simulación del modelo biomecánico en sentadilla profunda</span>
+                </div>
+              </>
+            )}
+
+            {showcaseTab === "supplements" && (
+              <>
+                <div className="playground-card animate-fade-in">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                    <h4 style={{ margin: 0, fontWeight: 800 }}>Monitoreo de Suplementación y Control de Stock</h4>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                      Simula el consumo diario de un deportista para ver cómo se desgasta el stock y se activa la alerta inteligente de reposición.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span>Suplemento:</span>
+                      <strong>Creatina Creapure (300g)</strong>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span>Dosis Diaria:</span>
+                      <strong>5 gramos / día</strong>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span>Stock Restante:</span>
+                      <strong style={{ color: suppStock <= 20 ? "#f43f5e" : "#10b981", fontSize: "1.1rem" }}>{suppStock}%</strong>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      style={{ padding: "8px 12px", fontSize: "0.85rem", flex: 1 }}
+                      onClick={() => setSuppStock(prev => Math.max(0, prev - 10))}
+                    >
+                      Consumo Diario (-10%)
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      style={{ padding: "8px 12px", fontSize: "0.85rem" }}
+                      onClick={() => setSuppStock(100)}
+                    >
+                      Recargar Tarro
+                    </button>
+                  </div>
+
+                  {suppStock <= 20 ? (
+                    <div style={{ background: "rgba(244,63,94,0.06)", border: "1px solid rgba(244,63,94,0.2)", borderRadius: "10px", padding: "12px", fontSize: "0.85rem", color: "#f43f5e", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span>🚨</span> <span><strong>Alerta de Stock Crítico:</strong> Notificación enviada al panel del entrenador. Reposición requerida de inmediato.</span>
+                    </div>
+                  ) : (
+                    <div style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: "10px", padding: "12px", fontSize: "0.85rem", color: "#10b981", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span>✓</span> <span>Niveles de stock estables. Quedan ${(suppStock * 300) / 100} gramos en despensa.</span>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                  <div className="interactive-somatocarta">
+                    <svg width="150" height="150">
+                      <circle cx="75" cy="75" r="55" stroke="#f1f5f9" strokeWidth="12" fill="transparent" />
+                      <circle 
+                        cx="75" 
+                        cy="75" 
+                        r="55" 
+                        stroke={suppStock <= 20 ? "#f43f5e" : "#00f2fe"} 
+                        strokeWidth="12" 
+                        fill="transparent" 
+                        strokeDasharray="345" 
+                        strokeDashoffset={345 - (345 * suppStock) / 100} 
+                        strokeLinecap="round"
+                        style={{ transition: "stroke-dashoffset 0.4s ease" }}
+                      />
+                    </svg>
+                    <div style={{ position: "absolute", fontSize: "1.8rem", fontWeight: "900", color: "var(--sano-dark)" }}>
+                      {suppStock}%
+                    </div>
+                  </div>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Anillo logístico de stock restante del atleta</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
