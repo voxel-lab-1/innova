@@ -185,7 +185,7 @@ const getMealNutrients = (meal) => {
   };
 };
 
-const CalorieCounter = ({ patientId, isAdminMode = false }) => {
+const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
   // Navigation tabs: "diary" | "plan" | "products"
   const [subTab, setSubTab] = useState("diary");
 
@@ -581,6 +581,66 @@ const CalorieCounter = ({ patientId, isAdminMode = false }) => {
     } catch (err) {
       console.error(err);
       setErrorMsg(err.message || "Error al estructurar el plan.");
+    } finally {
+      setGeneratingPlan(false);
+    }
+  };
+
+  const handleGenerateMealPlanAI = async (e) => {
+    e.preventDefault();
+    if (planType === "free") {
+      setErrorMsg("La generación de dietas y macros por IA es exclusiva para planes Profesional y Elite.");
+      return;
+    }
+    setGeneratingPlan(true);
+    setErrorMsg("");
+
+    try {
+      const resGen = await fetch(`${API_BASE}/patients/${patientId}/mealplans/generate-ai`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          weight: customWeight,
+          height: customHeight,
+          age: customAge,
+          goal: planGoal,
+          activityLevel: planActivityLevel,
+          bodyFat: customBodyFat
+        })
+      });
+
+      if (!resGen.ok) {
+        const errJson = await resGen.json();
+        throw new Error(errJson.error || "No se pudo generar el plan con IA.");
+      }
+
+      const generatedPlan = await resGen.json();
+
+      // Save it automatically to database
+      const resSave = await fetch(`${API_BASE}/patients/${patientId}/mealplans`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: planName + " (IA Gemini)",
+          goal: planGoal,
+          calories: generatedPlan.calories,
+          protein: generatedPlan.protein,
+          carbs: generatedPlan.carbs,
+          fat: generatedPlan.fat,
+          planJson: generatedPlan
+        })
+      });
+
+      if (!resSave.ok) {
+        throw new Error("El plan de IA se calculó pero falló al guardar en la base de datos.");
+      }
+
+      await fetchActivePlan();
+      await fetchPlanHistory();
+      setSubTab("plan");
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || "Error al estructurar el plan de IA.");
     } finally {
       setGeneratingPlan(false);
     }
@@ -1493,14 +1553,36 @@ const CalorieCounter = ({ patientId, isAdminMode = false }) => {
 
               {errorMsg && <div style={{ padding: "10px", borderRadius: "8px", background: "rgba(255, 69, 0, 0.08)", border: "1px solid rgba(255, 69, 0, 0.2)", color: "var(--error)", fontSize: "0.85rem" }}>⚠️ {errorMsg}</div>}
 
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={generatingPlan}
-                style={{ padding: "12px", fontSize: "1rem", marginTop: "10px" }}
-              >
-                {generatingPlan ? "Generando Pautas y Distribuyendo..." : "⚡ Generar Plan de Alimentación y Pautas"}
-              </button>
+              <div style={{ display: "flex", gap: "12px", marginTop: "10px", flexWrap: "wrap" }}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={generatingPlan}
+                  style={{ flex: 1, padding: "12px", fontSize: "0.95rem" }}
+                >
+                  {generatingPlan ? "⏳ Generando..." : "📊 Generar con Métodos Matemáticos"}
+                </button>
+                {planType !== "free" ? (
+                  <button
+                    type="button"
+                    className="btn btn-accent"
+                    disabled={generatingPlan}
+                    onClick={handleGenerateMealPlanAI}
+                    style={{ flex: 1, padding: "12px", fontSize: "0.95rem" }}
+                  >
+                    {generatingPlan ? "⏳ Generando con IA..." : "🤖 Generar Dieta Completa con IA"}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    disabled
+                    style={{ flex: 1, padding: "12px", fontSize: "0.95rem", opacity: 0.6, cursor: "not-allowed" }}
+                  >
+                    🔒 Generar con IA (Pro)
+                  </button>
+                )}
+              </div>
             </form>
           ) : activePlan ? (
             // Active Plan view
@@ -1557,151 +1639,209 @@ const CalorieCounter = ({ patientId, isAdminMode = false }) => {
                 </div>
               </div>
 
-              {/* Exchanges Portions Board */}
-              <div className="glass-card">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                  <h4 className="glow-text" style={{ fontSize: "1.15rem", margin: 0 }}>Distribución Total de Porciones (Intercambios)</h4>
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => setShowExchangeModal(true)}
-                    style={{ padding: "6px 12px", fontSize: "0.75rem", height: "auto" }}
-                  >
-                    📖 Ver Equivalencias y Sustitutos
-                  </button>
-                </div>
-                <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "-6px" }}>
-                  Equivalentes diarios asignados basados en la Lista Oficial de Intercambios.
-                </p>
+              {activePlan.planJson?.planJson?.desayuno ? (
+                /* AI Plan Render Layout */
+                <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "20px" }}>
+                  {/* Motivación Metabólica */}
+                  {activePlan.planJson?.planJson?.motivoMetabolico && (
+                    <div className="glass-card" style={{ borderLeft: "5px solid var(--primary)", background: "rgba(0, 128, 128, 0.02)", padding: "20px" }}>
+                      <h4 className="glow-text" style={{ fontSize: "1.15rem", margin: "0 0 8px 0", display: "flex", alignItems: "center", gap: "6px" }}>🧬 Análisis Metabólico IA</h4>
+                      <p style={{ fontSize: "0.92rem", color: "var(--text-muted)", margin: 0, lineHeight: "1.5" }}>
+                        {activePlan.planJson?.planJson?.motivoMetabolico}
+                      </p>
+                    </div>
+                  )}
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: "10px", marginTop: "12px" }}>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🥛</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Lácteos</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.lacteos || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🍳</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Sustitutos</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.sustitutos || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🍗</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Carnes Magras</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.carnes || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🥞</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Harinas</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.harinas || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🍎</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Frutas</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.frutas || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🥦</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Verduras</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.verduras || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🥜</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Nueces</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.nueces || 0}</div>
-                  </div>
-                  <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
-                    <span style={{ fontSize: "1.2rem" }}>🥑</span>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Grasas</div>
-                    <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.grasas || 0}</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dynamic Day Plan Schedule (dynamic number of meals depending on goal) */}
-              <div className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                <h4 className="glow-text" style={{ fontSize: "1.2rem", margin: 0 }}>Cronograma Diario del Plan ({activePlan.planJson?.meals?.length || 5} Comidas)</h4>
-                <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "-12px", margin: 0 }}>
-                  Comidas sugeridas distribuidas a lo largo del día para el objetivo de {
-                    activePlan.goal === "hypertrophy" ? "Aumento de Masa (Volumen)" :
-                    activePlan.goal === "fat_loss" ? "Definición (Pérdida Grasa)" : "Mantenimiento"
-                  }.
-                </p>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                  {activePlan.planJson?.meals?.map((meal, idx) => {
-                    const logName = `[Plan] ${meal.name}`;
-                    const isEaten = filteredLogs.some(log => log.foodName === logName);
-                    const nutrients = getMealNutrients(meal);
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "rgba(255,255,255,0.01)",
-                          border: isEaten ? "1.5px solid var(--primary)" : "1px solid var(--border-color)",
-                          borderRadius: "12px",
-                          padding: "16px",
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "10px",
-                          boxShadow: isEaten ? "0 0 10px rgba(0, 128, 128, 0.08)" : "none",
-                          transition: "all var(--transition-fast)"
-                        }}
-                      >
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px" }}>
-                          <h5 style={{ fontSize: "1.05rem", color: "var(--text-main)", fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: "6px" }}>
-                            {isEaten ? "✅" : "🍽️"} {meal.name}
-                          </h5>
-                          <span style={{ fontSize: "0.8rem", color: "var(--primary)", fontWeight: "bold", background: "var(--primary-glow)", padding: "2px 8px", borderRadius: "10px" }}>
-                            ⏱️ {meal.time}
-                          </span>
-                        </div>
-
-                        <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", background: "rgba(0,0,0,0.1)", padding: "10px", borderRadius: "8px" }}>
-                          <strong>Porciones: </strong>
-                          {Object.entries(meal.portions || {})
-                            .filter(([_, val]) => val > 0)
-                            .map(([key, val]) => `${val} ${key}`)
-                            .join(" | ") || "Sin porciones registradas"}
-                        </div>
-
-                        <div style={{ fontSize: "0.9rem", color: "var(--text-main)", whiteSpace: "pre-line", lineHeight: "1.4", paddingLeft: "6px" }}>
-                          {meal.foods}
-                        </div>
-
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--border-color)", paddingTop: "10px", marginTop: "4px", flexWrap: "wrap", gap: "8px" }}>
-                          <div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>
-                            <strong>{nutrients.calories} kcal</strong> | P: {nutrients.protein}g | C: {nutrients.carbs}g | G: {nutrients.fat}g
-                          </div>
-                          {!isAdminMode && (
-                            <button
-                              type="button"
-                              onClick={() => handleToggleMealEaten(meal)}
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "6px",
-                                padding: "6px 12px",
-                                borderRadius: "20px",
-                                fontSize: "0.78rem",
-                                fontWeight: 700,
-                                cursor: "pointer",
-                                transition: "all var(--transition-fast)",
-                                border: "1px solid",
-                                background: isEaten ? "var(--primary-glow)" : "transparent",
-                                color: isEaten ? "var(--primary)" : "var(--text-muted)",
-                                borderColor: isEaten ? "var(--primary)" : "var(--border-color)",
-                                outline: "none"
-                              }}
-                            >
-                              {isEaten ? "✓ Consumido" : "⚪ Consumido"}
-                            </button>
-                          )}
-                        </div>
+                  {/* Meals grid */}
+                  <div className="grid-2-cols" style={{ gap: "20px" }}>
+                    {activePlan.planJson?.planJson?.desayuno && (
+                      <div className="glass-card" style={{ padding: "20px", background: "rgba(255,255,255,0.01)" }}>
+                        <h5 style={{ fontSize: "1.05rem", margin: "0 0 8px 0", color: "var(--primary)", fontWeight: "bold" }}>🍳 Desayuno Recomendado</h5>
+                        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0, lineHeight: "1.4" }}>{activePlan.planJson?.planJson?.desayuno}</p>
                       </div>
-                    );
-                  })}
+                    )}
+                    {activePlan.planJson?.planJson?.almuerzo && (
+                      <div className="glass-card" style={{ padding: "20px", background: "rgba(255,255,255,0.01)" }}>
+                        <h5 style={{ fontSize: "1.05rem", margin: "0 0 8px 0", color: "var(--primary)", fontWeight: "bold" }}>🍗 Almuerzo Recomendado</h5>
+                        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0, lineHeight: "1.4" }}>{activePlan.planJson?.planJson?.almuerzo}</p>
+                      </div>
+                    )}
+                    {activePlan.planJson?.planJson?.merienda && (
+                      <div className="glass-card" style={{ padding: "20px", background: "rgba(255,255,255,0.01)" }}>
+                        <h5 style={{ fontSize: "1.05rem", margin: "0 0 8px 0", color: "var(--primary)", fontWeight: "bold" }}>🥜 Merienda / Colación</h5>
+                        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0, lineHeight: "1.4" }}>{activePlan.planJson?.planJson?.merienda}</p>
+                      </div>
+                    )}
+                    {activePlan.planJson?.planJson?.cena && (
+                      <div className="glass-card" style={{ padding: "20px", background: "rgba(255,255,255,0.01)" }}>
+                        <h5 style={{ fontSize: "1.05rem", margin: "0 0 8px 0", color: "var(--primary)", fontWeight: "bold" }}>🥗 Cena Recomendada</h5>
+                        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0, lineHeight: "1.4" }}>{activePlan.planJson?.planJson?.cena}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Hydration card */}
+                  {activePlan.planJson?.planJson?.hidratacion && (
+                    <div className="glass-card" style={{ display: "flex", alignItems: "center", gap: "15px", padding: "20px" }}>
+                      <span style={{ fontSize: "2rem" }}>💧</span>
+                      <div>
+                        <h4 style={{ margin: "0 0 4px 0", fontWeight: "bold" }}>Meta de Hidratación IA</h4>
+                        <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0 }}>
+                          {activePlan.planJson?.planJson?.hidratacion}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ) : (
+                <>
+                  {/* Exchanges Portions Board */}
+                  <div className="glass-card">
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                      <h4 className="glow-text" style={{ fontSize: "1.15rem", margin: 0 }}>Distribución Total de Porciones (Intercambios)</h4>
+                      <button
+                        className="btn btn-secondary"
+                        onClick={() => setShowExchangeModal(true)}
+                        style={{ padding: "6px 12px", fontSize: "0.75rem", height: "auto" }}
+                      >
+                        📖 Ver Equivalencias y Sustitutos
+                      </button>
+                    </div>
+                    <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "-6px" }}>
+                      Equivalentes diarios asignados basados en la Lista Oficial de Intercambios.
+                    </p>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: "10px", marginTop: "12px" }}>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🥛</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Lácteos</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.lacteos || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🍳</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Sustitutos</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.sustitutos || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🍗</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Carnes Magras</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.carnes || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🥞</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Harinas</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.harinas || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🍎</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Frutas</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.frutas || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🥦</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Verduras</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.verduras || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🥜</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Nueces</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.nueces || 0}</div>
+                      </div>
+                      <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid var(--border-color)", borderRadius: "10px", padding: "8px 4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "1.2rem" }}>🥑</span>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "4px" }}>Grasas</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "bold", color: "var(--text-main)" }}>{activePlan.planJson?.portions?.grasas || 0}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dynamic Day Plan Schedule */}
+                  <div className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    <h4 className="glow-text" style={{ fontSize: "1.2rem", margin: 0 }}>Cronograma Diario del Plan ({activePlan.planJson?.meals?.length || 5} Comidas)</h4>
+                    <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "-12px", margin: 0 }}>
+                      Comidas sugeridas distribuidas a lo largo del día para el objetivo de {
+                        activePlan.goal === "hypertrophy" ? "Aumento de Masa (Volumen)" :
+                        activePlan.goal === "fat_loss" ? "Definición (Pérdida Grasa)" : "Mantenimiento"
+                      }.
+                    </p>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                      {activePlan.planJson?.meals?.map((meal, idx) => {
+                        const logName = `[Plan] ${meal.name}`;
+                        const isEaten = filteredLogs.some(log => log.foodName === logName);
+                        const nutrients = getMealNutrients(meal);
+                        return (
+                          <div
+                            key={idx}
+                            style={{
+                              background: "rgba(255,255,255,0.01)",
+                              border: isEaten ? "1.5px solid var(--primary)" : "1px solid var(--border-color)",
+                              borderRadius: "12px",
+                              padding: "16px",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "10px",
+                              boxShadow: isEaten ? "0 0 10px rgba(0, 128, 128, 0.08)" : "none",
+                              transition: "all var(--transition-fast)"
+                            }}
+                          >
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px" }}>
+                              <h5 style={{ fontSize: "1.05rem", color: "var(--text-main)", fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: "6px" }}>
+                                {isEaten ? "✅" : "🍽️"} {meal.name}
+                              </h5>
+                              <span style={{ fontSize: "0.8rem", color: "var(--primary)", fontWeight: "bold", background: "var(--primary-glow)", padding: "2px 8px", borderRadius: "10px" }}>
+                                ⏱️ {meal.time}
+                              </span>
+                            </div>
+
+                            <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", background: "rgba(0,0,0,0.1)", padding: "10px", borderRadius: "8px" }}>
+                              <strong>Porciones: </strong>
+                              {Object.entries(meal.portions || {})
+                                .filter(([_, val]) => val > 0)
+                                .map(([key, val]) => `${val} ${key}`)
+                                .join(" | ") || "Sin porciones registradas"}
+                            </div>
+
+                            <div style={{ fontSize: "0.9rem", color: "var(--text-main)", whiteSpace: "pre-line", lineHeight: "1.4", paddingLeft: "6px" }}>
+                              {meal.foods}
+                            </div>
+
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--border-color)", paddingTop: "10px", marginTop: "4px", flexWrap: "wrap", gap: "8px" }}>
+                              <div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>
+                                <strong>{nutrients.calories} kcal</strong> | P: {nutrients.protein}g | C: {nutrients.carbs}g | G: {nutrients.fat}g
+                              </div>
+                              {!isAdminMode && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleToggleMealEaten(meal)}
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "6px",
+                                    padding: "6px 12px",
+                                    borderRadius: "20px",
+                                    fontSize: "0.78rem",
+                                    fontWeight: 700,
+                                    cursor: "pointer",
+                                    transition: "all var(--transition-fast)",
+                                    border: "1px solid",
+                                    background: isEaten ? "var(--primary-glow)" : "transparent",
+                                    color: isEaten ? "var(--primary)" : "var(--text-muted)",
+                                    borderColor: isEaten ? "var(--primary)" : "var(--border-color)",
+                                    outline: "none"
+                                  }}
+                                >
+                                  {isEaten ? "✓ Consumido" : "⚪ Consumido"}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
+              )}
             </>
           ) : (
             // No active plan and !isAdminMode (athlete with no plan assigned)

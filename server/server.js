@@ -1389,6 +1389,127 @@ app.post("/api/patients/:id/mealplans/generate", async (req, res) => {
   }
 });
 
+// 1b. Generate custom meal plan via Gemini AI
+app.post("/api/patients/:id/mealplans/generate-ai", async (req, res) => {
+  try {
+    const patientId = parseInt(req.params.id);
+    if (isNaN(patientId)) return res.status(400).json({ error: "ID de paciente inválido" });
+
+    // Check subscription plan limits for AI Diet Generation
+    if (req.user.role !== "admin") {
+      const trainer = await prisma.patient.findUnique({ where: { id: req.user.id } });
+      if (trainer && (trainer.planType || "free") === "free") {
+        return res.status(403).json({ error: "La generación de dietas y macros por IA es exclusiva para planes Profesional y Elite. Actualiza tu membresía para desbloquear esta función." });
+      }
+    }
+
+    const patient = await prisma.patient.findUnique({ where: { id: patientId } });
+    if (!patient) return res.status(404).json({ error: "Paciente no encontrado" });
+
+    // Fetch latest evaluation for fallback anthropometric metrics
+    const latestEval = await prisma.evaluation.findFirst({
+      where: { patientId },
+      orderBy: { date: "desc" }
+    });
+
+    const {
+      weight = latestEval ? latestEval.weight : 70,
+      height = latestEval ? latestEval.height : 170,
+      age = latestEval ? latestEval.age : 30,
+      gender = patient.gender || "male",
+      goal = "maintenance",
+      activityLevel = 1.55,
+      bodyFat = latestEval ? latestEval.bodyFat : 15
+    } = req.body;
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: "Clave de API de Gemini no configurada en el servidor" });
+    }
+
+    // Call Gemini to generate a scientific nutrition plan
+    const systemPrompt = `
+You are an expert sports nutritionist and dietician.
+Create a customized meal plan and daily caloric/macro target for an athlete based on their body metrics, gender, goal, and activity level.
+
+Goals:
+- "hypertrophy" (muscle gain, protein 2.2g/kg, slight calorie surplus)
+- "fat_loss" (fat reduction, protein 2.3-2.5g/kg, safe calorie deficit)
+- "strength" (power output, balanced macros, calorie surplus/maintenance)
+- "endurance" (cardio efficiency, higher carb ratio, calorie maintenance)
+- "maintenance" (stability, standard macro ratio)
+
+Calculate the perfect TDEE and target macronutrient split. Then, devise a daily meal outline (Desayuno, Almuerzo, Merienda, Cena) with actual whole-food suggestions, avoiding clean/unrealistic diets (use standard healthy Latin American ingredients like rice, eggs, chicken, avocado, arepa, etc.).
+Also calculate daily hydration targets in liters.
+
+You must return ONLY a raw JSON object with the following structure (do NOT wrap it in markdown code blocks or any prose):
+{
+  "calories": 2500,
+  "protein": 150,
+  "carbs": 300,
+  "fat": 70,
+  "planJson": {
+    "desayuno": "Detalle de los alimentos recomendados para desayunar...",
+    "almuerzo": "Detalle de los alimentos recomendados para almorzar...",
+    "merienda": "Detalle de la merienda recomendada...",
+    "cena": "Detalle de la cena recomendada...",
+    "hidratacion": "Cantidad en litros recomendada por día...",
+    "motivoMetabolico": "Explicación metabólica y científica del porqué de estos macros según su somatotipo y objetivo..."
+  }
+}
+`;
+
+    const userPrompt = `
+Generate a nutritional plan for:
+- Name: ${patient.name}
+- Gender: ${gender}
+- Age: ${age} years old
+- Height: ${height} cm
+- Weight: ${weight} kg
+- Body Fat: ${bodyFat}%
+- Physical Activity Factor: ${activityLevel}
+- Athletic Goal: ${goal}
+`;
+
+    const payload = {
+      contents: [{
+        parts: [{ text: userPrompt }]
+      }],
+      systemInstruction: {
+        parts: [{ text: systemPrompt }]
+      },
+      generationConfig: {
+        responseMimeType: "application/json",
+        temperature: 0.3
+      }
+    };
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gemini API returned status ${response.status}`);
+    }
+
+    const result = await response.json();
+    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) {
+      throw new Error("Empty response from Gemini");
+    }
+
+    const parsed = JSON.parse(text.trim());
+    res.json(parsed);
+
+  } catch (error) {
+    console.error("Error generating AI diet:", error);
+    res.status(500).json({ error: "Error al generar el plan de alimentación con Inteligencia Artificial" });
+  }
+});
+
 // 2. Save meal plan to Database
 app.post("/api/patients/:id/mealplans", async (req, res) => {
   try {
@@ -1534,6 +1655,113 @@ app.post("/api/mealplans/:id/active", async (req, res) => {
     res.status(500).json({ error: "Error al activar el plan de alimentación" });
   }
 });
+
+// --- TRAINER DASHBOARD CENTRAL ENDPOINT ---
+app.get("/api/trainer/dashboard", async (req, res) => {
+  try {
+    const trainerId = req.user.id;
+
+    // Get all athlete IDs under this trainer
+    const athletes = await prisma.patient.findMany({
+      where: { creatorId: trainerId },
+      select: { id: true, name: true }
+    });
+    const athleteIds = athletes.map(a => a.id);
+
+    // 1. Stats
+    const totalAthletes = athletes.length;
+
+    const activeCycles = await prisma.supplementCycle.count({
+      where: { patientId: { in: athleteIds } }
+    });
+
+    const postureJobs = await prisma.postureAnalysisJob.count({
+      where: { patientId: { in: athleteIds } }
+    });
+
+    // Get low stock alerts
+    const allSupplements = await prisma.supplementCycle.findMany({
+      where: { patientId: { in: athleteIds } },
+      select: {
+        id: true,
+        name: true,
+        stockRemaining: true,
+        patient: { select: { name: true } }
+      }
+    });
+
+    const lowStockSupplements = allSupplements.filter(s => s.stockRemaining !== null && s.stockRemaining <= 20);
+    const lowStockAlerts = lowStockSupplements.length;
+
+    // 2. Build Alerts List
+    const alertsList = [];
+    for (const s of lowStockSupplements) {
+      alertsList.push({
+        id: `stock-${s.id}`,
+        type: "warning",
+        text: `Stock bajo para ${s.name} de ${s.patient.name} (${s.stockRemaining} unidades restantes).`
+      });
+    }
+
+    // Add general alert if no athletes
+    if (totalAthletes === 0) {
+      alertsList.push({
+        id: "no-athletes",
+        type: "info",
+        text: "Aún no has registrado ningún atleta. Comienza registrando tu primer atleta."
+      });
+    }
+
+    // 3. Recent Activity (latest evaluations & cycles & training plans)
+    const evals = await prisma.evaluation.findMany({
+      where: { patientId: { in: athleteIds } },
+      orderBy: { date: "desc" },
+      take: 3,
+      include: { patient: { select: { name: true } } }
+    });
+
+    const plans = await prisma.trainingPlan.findMany({
+      where: { patientId: { in: athleteIds } },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+      include: { patient: { select: { name: true } } }
+    });
+
+    const activities = [];
+    for (const e of evals) {
+      activities.push({
+        type: "eval",
+        text: `Nueva evaluación registrada para ${e.patient.name} (${e.weight} kg, ${e.bodyFat}% grasa).`,
+        date: e.date
+      });
+    }
+    for (const p of plans) {
+      activities.push({
+        type: "plan",
+        text: `Se actualizó el plan de entrenamiento "${p.name}" de ${p.patient.name}.`,
+        date: p.createdAt.toISOString().split("T")[0]
+      });
+    }
+
+    // Sort activities by date descending
+    activities.sort((a, b) => b.date.localeCompare(a.date));
+
+    res.json({
+      stats: {
+        totalAthletes,
+        activeCycles,
+        postureJobs,
+        lowStockAlerts
+      },
+      alerts: alertsList,
+      recentActivity: activities.slice(0, 5)
+    });
+  } catch (error) {
+    console.error("Error fetching trainer dashboard:", error);
+    res.status(500).json({ error: "Error al obtener el dashboard del entrenador" });
+  }
+});
+
 
 // --- TRAINER SUBSCRIPTION & BILLING ROUTES ---
 app.get("/api/trainer/subscription", async (req, res) => {

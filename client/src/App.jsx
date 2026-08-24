@@ -13,6 +13,7 @@ import SomatotypeBodyVisualizer from "./components/SomatotypeBodyVisualizer";
 import TrainerSupplements from "./components/TrainerSupplements";
 import TrainerExercises from "./components/TrainerExercises";
 import TrainerSubscription from "./components/TrainerSubscription";
+import TrainerDashboard from "./components/TrainerDashboard";
 
 const API_BASE = "/api";
 
@@ -235,6 +236,247 @@ function App() {
       console.error("Error updating patient:", err);
       alert("Error de conexión al actualizar el atleta");
     }
+  };
+
+  const handlePrintReport = () => {
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    const ath = selectedPatient;
+    const ev = ath.evaluations?.[0] || {};
+    const cycles = ath.cycles || [];
+    const activeDiet = ath.mealPlans?.find(p => p.isActive) || ath.mealPlans?.[0] || null;
+    const activeRoutine = ath.trainingPlans?.find(p => p.isActive) || ath.trainingPlans?.[0] || null;
+
+    let routineHtml = "";
+    if (activeRoutine) {
+      routineHtml = `
+        <div class="card" style="margin-bottom: 30px;">
+          <h3>Plan de Entrenamiento Activo: ${activeRoutine.name}</h3>
+          <p>Objetivo: <strong>${activeRoutine.goal || "Hipertrofia"}</strong> | Días/Semana: <strong>${activeRoutine.daysPerWeek || 4}</strong></p>
+        </div>
+      `;
+    } else {
+      routineHtml = `
+        <div class="card" style="margin-bottom: 30px;">
+          <h3>Plan de Entrenamiento Activo</h3>
+          <p style="color: #718096; font-style: italic;">No hay rutinas asignadas en este momento.</p>
+        </div>
+      `;
+    }
+
+    let dietHtml = "";
+    if (activeDiet) {
+      const isAi = activeDiet.planJson?.desayuno || activeDiet.planJson?.planJson?.desayuno;
+      const parsedJson = activeDiet.planJson?.planJson || activeDiet.planJson || {};
+
+      if (isAi) {
+        dietHtml = `
+          <div class="card" style="margin-bottom: 30px;">
+            <h3>Plan de Alimentación Activo: ${activeDiet.name} (IA Gemini)</h3>
+            <div class="metric">Calorías Meta: <strong>${activeDiet.calories} kcal/día</strong></div>
+            <div class="metric">Distribución Macros: <strong>P: ${activeDiet.protein}g | C: ${activeDiet.carbs}g | G: ${activeDiet.fat}g</strong></div>
+            
+            <h4 style="color: #008080; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px; margin-top: 16px;">Menú Sugerido por IA</h4>
+            <p><strong>Desayuno:</strong> ${parsedJson.desayuno || "N/A"}</p>
+            <p><strong>Almuerzo:</strong> ${parsedJson.almuerzo || "N/A"}</p>
+            <p><strong>Merienda:</strong> ${parsedJson.merienda || "N/A"}</p>
+            <p><strong>Cena:</strong> ${parsedJson.cena || "N/A"}</p>
+            <p><strong>Hidratación:</strong> ${parsedJson.hidratacion || "N/A"}</p>
+            <p style="background: #f1f5f9; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #4a5568; line-height: 1.4;">
+              <strong>Análisis Metabólico:</strong> ${parsedJson.motivoMetabolico || "N/A"}
+            </p>
+          </div>
+        `;
+      } else {
+        dietHtml = `
+          <div class="card" style="margin-bottom: 30px;">
+            <h3>Plan de Alimentación Activo: ${activeDiet.name}</h3>
+            <div class="metric">Calorías Meta: <strong>${activeDiet.calories} kcal/día</strong></div>
+            <div class="metric">Distribución Macros: <strong>P: ${activeDiet.protein}g | C: ${activeDiet.carbs}g | G: ${activeDiet.fat}g</strong></div>
+            
+            <h4 style="color: #008080; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px; margin-top: 16px;">Porciones Asignadas</h4>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; font-size: 0.85rem; margin-top: 10px;">
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Lácteos: <strong>${parsedJson.portions?.lacteos || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Sustitutos: <strong>${parsedJson.portions?.sustitutos || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Carnes: <strong>${parsedJson.portions?.carnes || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Harinas: <strong>${parsedJson.portions?.harinas || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Frutas: <strong>${parsedJson.portions?.frutas || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Verduras: <strong>${parsedJson.portions?.verduras || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Nueces: <strong>${parsedJson.portions?.nueces || 0}</strong></div>
+              <div style="background: white; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;">Grasas: <strong>${parsedJson.portions?.grasas || 0}</strong></div>
+            </div>
+          </div>
+        `;
+      }
+    } else {
+      dietHtml = `
+        <div class="card" style="margin-bottom: 30px;">
+          <h3>Plan de Alimentación Activo</h3>
+          <p style="color: #718096; font-style: italic;">No hay planes nutricionales activos en este momento.</p>
+        </div>
+      `;
+    }
+
+    let html = `
+      <html>
+        <head>
+          <title>Reporte de Rendimiento - ${ath.name}</title>
+          <style>
+            body {
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              color: #1a202c;
+              margin: 40px;
+              line-height: 1.5;
+            }
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border-bottom: 2px solid #008080;
+              padding-bottom: 20px;
+              margin-bottom: 30px;
+            }
+            .logo {
+              font-size: 1.8rem;
+              font-weight: 800;
+              color: #008080;
+              letter-spacing: -1px;
+            }
+            .title {
+              font-size: 1.5rem;
+              font-weight: 700;
+              text-align: right;
+            }
+            .grid-2 {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 30px;
+              margin-bottom: 30px;
+            }
+            .card {
+              border: 1px solid #e2e8f0;
+              border-radius: 12px;
+              padding: 20px;
+              background: #f8fafc;
+            }
+            h3 {
+              color: #008080;
+              margin-top: 0;
+              border-bottom: 1px solid #e2e8f0;
+              padding-bottom: 8px;
+              font-size: 1.2rem;
+            }
+            .metric {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 8px;
+              font-size: 0.95rem;
+            }
+            .metric strong {
+              color: #2d3748;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 10px;
+              font-size: 0.9rem;
+            }
+            th, td {
+              border-bottom: 1px solid #e2e8f0;
+              padding: 10px 8px;
+              text-align: left;
+            }
+            th {
+              color: #4a5568;
+              font-weight: 700;
+            }
+            .footer {
+              margin-top: 50px;
+              text-align: center;
+              font-size: 0.8rem;
+              color: #718096;
+              border-top: 1px solid #e2e8f0;
+              padding-top: 20px;
+            }
+            @media print {
+              body { margin: 20px; }
+              .card { background: transparent; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="logo">INNOVA <span style="font-size: 0.9rem; font-weight: normal; color: #4a5568;">CRM</span></div>
+            <div class="title">REPORTE FÍSICO DE ATLETA</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3>Datos del Atleta</h3>
+              <div class="metric">Nombre: <strong>${ath.name}</strong></div>
+              <div class="metric">Disciplina: <strong>${ath.sport || "Acondicionamiento General"}</strong></div>
+              <div class="metric">Género: <strong>${ath.gender === "male" ? "Masculino" : "Femenino"}</strong></div>
+              <div class="metric">Fecha Nacimiento: <strong>${ath.birthdate}</strong></div>
+            </div>
+
+            <div class="card">
+              <h3>Última Antropometría (ISAK)</h3>
+              <div class="metric">Peso Actual: <strong>${ev.weight ? `${ev.weight} kg` : "N/A"}</strong></div>
+              <div class="metric">Estatura: <strong>${ev.height ? `${ev.height} cm` : "N/A"}</strong></div>
+              <div class="metric">% Grasa Corporal: <strong>${ev.bodyFat ? `${ev.bodyFat}%` : "N/A"}</strong></div>
+              <div class="metric">Somatotipo (Endo-Meso-Ecto): <strong>${ev.endomorphy || "N/A"}-${ev.mesomorphy || "N/A"}-${ev.ectomorphy || "N/A"}</strong></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 30px;">
+            <h3>Pauta de Suplementación y Logística</h3>
+            ${cycles.length === 0 ? "<p style='color: #718096; font-style: italic; font-size: 0.9rem;'>No hay ciclos de suplementación activos en este período.</p>" : `
+              <table>
+                <thead>
+                  <tr>
+                    <th>Protocolo</th>
+                    <th>Suplemento</th>
+                    <th>Dosis</th>
+                    <th>Frecuencia</th>
+                    <th>Stock Restante</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${cycles.map(c => `
+                    <tr>
+                      <td><strong>${c.name}</strong></td>
+                      <td>${c.supplement?.name || "Sin vincular"}</td>
+                      <td>${c.dose || "N/A"}</td>
+                      <td>Cada ${c.frequencyHours || "N/A"} horas</td>
+                      <td>${c.stockRemaining !== null ? `${c.stockRemaining} uds` : "N/A"}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            `}
+          </div>
+
+          ${dietHtml}
+
+          ${routineHtml}
+
+          <div class="footer">
+            <p>Reporte generado automáticamente por la Consola de Comando de Innova. Todos los derechos reservados.</p>
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+              setTimeout(function() { window.close(); }, 500);
+            };
+          </script>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(html);
+    printWindow.document.close();
   };
 
   const handleDeletePatient = async (id, isSubAthlete = false, parentId = null) => {
@@ -957,6 +1199,9 @@ function App() {
                   </div>
 
                   <div className="profile-actions">
+                    <button className="btn btn-secondary" style={{ border: "1px solid var(--accent)", color: "var(--accent)" }} onClick={handlePrintReport}>
+                      🖨️ Imprimir Reporte PDF
+                    </button>
                     <button className="btn btn-secondary" style={{ border: "1px solid var(--primary)", color: "var(--primary)" }} onClick={() => setShowQrModal(true)}>
                       🔗 Generar QR de Acceso
                     </button>
@@ -1268,7 +1513,7 @@ function App() {
 
                 {/* Sub-section 5: Nutrition Control */}
                 {activeTab === "nutrition" && (
-                  <CalorieCounter patientId={selectedPatient.id} isAdminMode={true} />
+                  <CalorieCounter patientId={selectedPatient.id} isAdminMode={true} planType={trainerSub?.planType || "free"} />
                 )}
               </div>
             )
@@ -1276,104 +1521,98 @@ function App() {
 
           {/* Patient welcome view for normal users */}
           {currentUser?.role !== "admin" && !selectedPatient && !isAddingPatient && !isEditingPatient && !isAddingEvaluation && !isAddingCycle && !showTrainerSupplements && !showTrainerExercises && !showTrainerSubscription && (
-            <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "40px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-                <div>
-                  <h2 className="glow-text" style={{ fontSize: "2.2rem", marginBottom: "8px" }}>
-                    Bienvenido, {currentUser?.name || "Entrenador"} ✨
-                  </h2>
-                  <p style={{ fontSize: "1.05rem", color: "var(--text-muted)" }}>
-                    Gestiona los atletas y perfiles de rendimiento bajo tu cuenta.
-                  </p>
-                </div>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    setSelectedPatient(null);
-                    setIsAddingPatient(true);
-                  }}
-                >
-                  + Registrar Nuevo Atleta
-                </button>
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+              <TrainerDashboard 
+                apiBase={API_BASE}
+                onSelectAthlete={(id) => fetchPatientDetail(id)}
+                onCreateAthlete={() => {
+                  setSelectedPatient(null);
+                  setIsAddingPatient(true);
+                }}
+                planType={trainerSub?.planType || "free"}
+              />
 
-              {loading ? (
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "30vh", color: "var(--text-muted)" }}>
-                  <div style={{ width: "20px", height: "20px", border: "3px solid rgba(0, 128, 128, 0.2)", borderTopColor: "var(--primary)", borderRadius: "50%", animation: "spin 0.8s linear infinite", marginRight: "10px" }}></div>
-                  Cargando...
-                </div>
-              ) : patients.length === 0 ? (
-                <div style={{ textAlign: "center", padding: "40px 20px", border: "1px dashed var(--border-color)", borderRadius: "12px", background: "rgba(255,255,255,0.01)" }}>
-                  <p style={{ color: "var(--text-muted)", fontSize: "1.1rem", marginBottom: "16px" }}>
-                    Aún no has registrado ningún atleta.
-                  </p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      setSelectedPatient(null);
-                      setIsAddingPatient(true);
-                    }}
-                  >
-                    Crea tu primer atleta
-                  </button>
-                </div>
-              ) : (
-                <div className="grid-3-cols" style={{ gap: "20px", marginTop: "12px" }}>
-                  {patients.map((ath) => (
-                    <div
-                      key={ath.id}
-                      className="glass-card table-row-hover animate-fade-in"
-                      style={{
-                        padding: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "16px",
-                        background: "rgba(255, 255, 255, 0.02)",
-                        border: "1px solid var(--border-color)",
-                        borderRadius: "16px",
-                        transition: "transform 0.2s, border-color 0.2s",
-                        cursor: "pointer",
+              {/* Athletes List inside Dashboard */}
+              <div className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "30px" }}>
+                <h3 className="glow-text" style={{ fontSize: "1.35rem", margin: 0 }}>Mis Atletas Registrados</h3>
+                {loading ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15vh", color: "var(--text-muted)" }}>
+                    <div style={{ width: "20px", height: "20px", border: "3px solid rgba(0, 128, 128, 0.2)", borderTopColor: "var(--primary)", borderRadius: "50%", animation: "spin 0.8s linear infinite", marginRight: "10px" }}></div>
+                    Cargando atletas...
+                  </div>
+                ) : patients.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "30px 20px", border: "1px dashed var(--border-color)", borderRadius: "12px", background: "rgba(255,255,255,0.01)" }}>
+                    <p style={{ color: "var(--text-muted)", fontSize: "1rem", marginBottom: "16px" }}>
+                      Aún no has registrado ningún atleta.
+                    </p>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setSelectedPatient(null);
+                        setIsAddingPatient(true);
                       }}
-                      onClick={() => fetchPatientDetail(ath.id)}
                     >
-                      <div>
-                        <h3 className="glow-text" style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "4px" }}>
-                          {ath.name}
-                        </h3>
-                        <span
-                          style={{
-                            background: "rgba(0, 128, 128, 0.1)",
-                            color: "var(--primary)",
-                            padding: "2px 8px",
-                            borderRadius: "6px",
-                            fontSize: "0.8rem",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {ath.sport || "General"}
-                        </span>
+                      Crea tu primer atleta
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid-3-cols" style={{ gap: "20px" }}>
+                    {patients.map((ath) => (
+                      <div
+                        key={ath.id}
+                        className="glass-card table-row-hover animate-fade-in"
+                        style={{
+                          padding: "24px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "16px",
+                          background: "rgba(255, 255, 255, 0.02)",
+                          border: "1px solid var(--border-color)",
+                          borderRadius: "16px",
+                          transition: "transform 0.2s, border-color 0.2s",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => fetchPatientDetail(ath.id)}
+                      >
+                        <div>
+                          <h3 className="glow-text" style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "4px" }}>
+                            {ath.name}
+                          </h3>
+                          <span
+                            style={{
+                              background: "rgba(0, 128, 128, 0.1)",
+                              color: "var(--primary)",
+                              padding: "2px 8px",
+                              borderRadius: "6px",
+                              fontSize: "0.8rem",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {ath.sport || "General"}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: "0.9rem", color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: "6px" }}>
+                          <div>Género: <strong>{ath.gender === "male" ? "Masculino" : "Femenino"}</strong></div>
+                          <div>Nacimiento: <strong>{ath.birthdate}</strong></div>
+                          <div>Evaluaciones: <strong>{ath.evaluations?.length || ath._count?.evaluations || 0}</strong></div>
+                        </div>
+                        <div style={{ marginTop: "auto", paddingTop: "12px", borderTop: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "flex-end" }}>
+                          <button
+                            className="btn btn-secondary"
+                            style={{ width: "100%", padding: "8px" }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              fetchPatientDetail(ath.id);
+                            }}
+                          >
+                            Ingresar al Workspace →
+                          </button>
+                        </div>
                       </div>
-                      <div style={{ fontSize: "0.9rem", color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: "6px" }}>
-                        <div>Género: <strong>{ath.gender === "male" ? "Masculino" : "Femenino"}</strong></div>
-                        <div>Nacimiento: <strong>{ath.birthdate}</strong></div>
-                        <div>Evaluaciones: <strong>{ath.evaluations?.length || ath._count?.evaluations || 0}</strong></div>
-                      </div>
-                      <div style={{ marginTop: "auto", paddingTop: "12px", borderTop: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "flex-end" }}>
-                        <button
-                          className="btn btn-secondary"
-                          style={{ width: "100%", padding: "8px" }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            fetchPatientDetail(ath.id);
-                          }}
-                        >
-                          Ingresar al Workspace →
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
