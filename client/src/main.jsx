@@ -9,19 +9,23 @@ window.fetch = async function (input, init) {
   if (typeof input === 'string' && (input.startsWith('/api') || input.includes('/api/'))) {
     const token = localStorage.getItem("innova_token") || sessionStorage.getItem("innova_token");
     if (token) {
-      init = init || {};
-      let headers = init.headers || {};
+      const newInit = init ? { ...init } : {};
+      let headers = newInit.headers || {};
       if (headers instanceof Headers) {
-        headers.set("Authorization", `Bearer ${token}`);
+        const newHeaders = new Headers(headers);
+        newHeaders.set("Authorization", `Bearer ${token}`);
+        newInit.headers = newHeaders;
       } else if (Array.isArray(headers)) {
-        headers.push(["Authorization", `Bearer ${token}`]);
+        const newHeaders = [...headers];
+        newHeaders.push(["Authorization", `Bearer ${token}`]);
+        newInit.headers = newHeaders;
       } else {
-        headers = {
+        newInit.headers = {
           ...headers,
           "Authorization": `Bearer ${token}`
         };
       }
-      init.headers = headers;
+      return originalFetch.call(window, input, newInit);
     }
   }
   return originalFetch.call(window, input, init);
