@@ -10,6 +10,9 @@ import CalorieCounter from "./components/CalorieCounter";
 import TrainingPlanner from "./components/TrainingPlanner";
 import Login from "./components/Login";
 import SomatotypeBodyVisualizer from "./components/SomatotypeBodyVisualizer";
+import TrainerSupplements from "./components/TrainerSupplements";
+import TrainerExercises from "./components/TrainerExercises";
+import TrainerSubscription from "./components/TrainerSubscription";
 
 const API_BASE = "/api";
 
@@ -101,6 +104,21 @@ function App() {
   
   // UI states
   const [isAddingPatient, setIsAddingPatient] = useState(false);
+  const [showTrainerSupplements, setShowTrainerSupplements] = useState(false);
+  const [showTrainerExercises, setShowTrainerExercises] = useState(false);
+  const [showTrainerSubscription, setShowTrainerSubscription] = useState(false);
+
+  const resetAllViews = () => {
+    setSelectedPatient(null);
+    setIsAddingPatient(false);
+    setIsEditingPatient(false);
+    setIsAddingEvaluation(false);
+    setIsAddingCycle(false);
+    setShowTrainerSupplements(false);
+    setShowTrainerExercises(false);
+    setShowTrainerSubscription(false);
+  };
+
   const [isEditingPatient, setIsEditingPatient] = useState(false);
   const [isAddingEvaluation, setIsAddingEvaluation] = useState(false);
   const [isAddingCycle, setIsAddingCycle] = useState(false);
@@ -143,6 +161,9 @@ function App() {
       if (res.ok) {
         const data = await res.json();
         setSelectedPatient(data);
+        setShowTrainerSupplements(false);
+        setShowTrainerExercises(false);
+        setShowTrainerSubscription(false);
       }
     } catch (err) {
       console.error("Error fetching patient details:", err);
@@ -492,6 +513,87 @@ function App() {
             </button>
           </div>
 
+          {/* Coach Customization Links */}
+          {currentUser?.role !== "admin" && (
+            <div style={{ padding: "0 20px", display: "flex", flexDirection: "column", gap: "8px", borderBottom: "1px solid var(--border-color)", paddingBottom: "16px", marginTop: "12px" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  resetAllViews();
+                  setShowTrainerSupplements(true);
+                  setIsSidebarOpen(false);
+                }}
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: "8px",
+                  background: showTrainerSupplements ? "rgba(0, 128, 128, 0.12)" : "var(--bg-main)",
+                  border: "1px solid var(--border-color)",
+                  color: showTrainerSupplements ? "var(--primary)" : "var(--text-main)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  transition: "all var(--transition-fast)",
+                  textAlign: "left"
+                }}
+              >
+                <span>🛒</span> Mis Suplementos
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetAllViews();
+                  setShowTrainerExercises(true);
+                  setIsSidebarOpen(false);
+                }}
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: "8px",
+                  background: showTrainerExercises ? "rgba(0, 128, 128, 0.12)" : "var(--bg-main)",
+                  border: "1px solid var(--border-color)",
+                  color: showTrainerExercises ? "var(--primary)" : "var(--text-main)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  transition: "all var(--transition-fast)",
+                  textAlign: "left"
+                }}
+              >
+                <span>💪</span> Mis Ejercicios
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetAllViews();
+                  setShowTrainerSubscription(true);
+                  setIsSidebarOpen(false);
+                }}
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: "8px",
+                  background: showTrainerSubscription ? "rgba(0, 128, 128, 0.12)" : "var(--bg-main)",
+                  border: "1px solid var(--border-color)",
+                  color: showTrainerSubscription ? "var(--primary)" : "var(--text-main)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  transition: "all var(--transition-fast)",
+                  textAlign: "left"
+                }}
+              >
+                <span>💳</span> Mi Suscripción
+              </button>
+            </div>
+          )}
+
           {/* Patient Scroll List or Section Trigger */}
           {!(showHistory || searchQuery.trim() !== "") ? (
             <div style={{ padding: "10px", marginTop: "10px" }}>
@@ -611,19 +713,28 @@ function App() {
         {/* Content Area */}
         <main className="content-panel">
           {/* Mobile Back Button */}
-          {(selectedPatient || isAddingPatient || isEditingPatient || isAddingEvaluation || isAddingCycle) && (
+          {(selectedPatient || isAddingPatient || isEditingPatient || isAddingEvaluation || isAddingCycle || showTrainerSupplements || showTrainerExercises || showTrainerSubscription) && (
             <button
               className="btn btn-secondary mobile-back-btn"
               onClick={() => {
-                setSelectedPatient(null);
-                setIsAddingPatient(false);
-                setIsEditingPatient(false);
-                setIsAddingEvaluation(false);
-                setIsAddingCycle(false);
+                resetAllViews();
               }}
             >
               ← Volver a {currentUser?.role === "admin" ? "Entrenadores" : "Atletas"}
             </button>
+          )}
+          
+          {/* Trainer Customized Views */}
+          {showTrainerSupplements && (
+            <TrainerSupplements apiBase={API_BASE} />
+          )}
+
+          {showTrainerExercises && (
+            <TrainerExercises apiBase={API_BASE} />
+          )}
+
+          {showTrainerSubscription && (
+            <TrainerSubscription apiBase={API_BASE} />
           )}
           
           {/* 1. Add Patient View */}
@@ -1150,7 +1261,7 @@ function App() {
           )}
 
           {/* Patient welcome view for normal users */}
-          {currentUser?.role !== "admin" && !selectedPatient && !isAddingPatient && !isEditingPatient && !isAddingEvaluation && !isAddingCycle && (
+          {currentUser?.role !== "admin" && !selectedPatient && !isAddingPatient && !isEditingPatient && !isAddingEvaluation && !isAddingCycle && !showTrainerSupplements && !showTrainerExercises && !showTrainerSubscription && (
             <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "40px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
                 <div>
@@ -1253,7 +1364,7 @@ function App() {
           )}
 
           {/* 6. Welcome Dashboard (When no patient is selected) */}
-          {currentUser?.role === "admin" && !isAddingPatient && !isEditingPatient && !isAddingEvaluation && !isAddingCycle && !selectedPatient && (
+          {currentUser?.role === "admin" && !isAddingPatient && !isEditingPatient && !isAddingEvaluation && !isAddingCycle && !selectedPatient && !showTrainerSupplements && !showTrainerExercises && !showTrainerSubscription && (
             <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "40px" }}>
               <div style={{ maxWidth: "600px" }}>
                 <h2 className="glow-text" style={{ fontSize: "2.5rem", marginBottom: "12px" }}>
