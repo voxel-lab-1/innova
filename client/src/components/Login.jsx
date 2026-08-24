@@ -39,7 +39,7 @@ export default function Login({ onLogin }) {
 
       if (res.ok) {
         const data = await res.json();
-        onLogin(data.user, rememberMe);
+        onLogin(data.user, rememberMe, data.token);
       } else {
         const data = await res.json().catch(() => ({}));
         setError(data.error || "Usuario o contraseña incorrectos");
@@ -87,7 +87,7 @@ export default function Login({ onLogin }) {
         
         if (loginRes.ok) {
           const data = await loginRes.json();
-          onLogin(data.user, rememberMe);
+          onLogin(data.user, rememberMe, data.token);
         } else {
           setIsLogin(true);
           setError("Registro completado. Por favor inicia sesión.");
@@ -116,7 +116,7 @@ export default function Login({ onLogin }) {
       });
       if (res.ok) {
         const data = await res.json();
-        onLogin(data.user, rememberMe);
+        onLogin(data.user, rememberMe, data.token);
       } else {
         const data = await res.json().catch(() => ({}));
         setError(data.error || "Error de autenticación con Google");

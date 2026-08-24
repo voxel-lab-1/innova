@@ -13,6 +13,19 @@ import SomatotypeBodyVisualizer from "./components/SomatotypeBodyVisualizer";
 
 const API_BASE = "/api";
 
+const decodeJwt = (token) => {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    return null;
+  }
+};
+
 function App() {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
@@ -27,29 +40,60 @@ function App() {
 
   const [sharedAthleteId, setSharedAthleteId] = useState(() => {
     try {
-      return new URLSearchParams(window.location.search).get("athleteId");
+      const params = new URLSearchParams(window.location.search);
+      const shareToken = params.get("shareToken");
+      if (shareToken) {
+        sessionStorage.setItem("innova_token", shareToken);
+        const decoded = decodeJwt(shareToken);
+        return decoded ? decoded.athleteId : null;
+      }
+      return params.get("athleteId");
     } catch {
       return null;
     }
   });
   const [showQrModal, setShowQrModal] = useState(false);
 
-  const handleLoginSuccess = (user, rememberMe) => {
+  const handleLoginSuccess = (user, rememberMe, token) => {
     setCurrentUser(user);
     const storage = rememberMe ? localStorage : sessionStorage;
     storage.setItem("innova_auth", "true");
     storage.setItem("innova_user", JSON.stringify(user));
+    if (token) {
+      storage.setItem("innova_token", token);
+    }
   };
 
   const handleLogout = () => {
     setCurrentUser(null);
     localStorage.removeItem("innova_auth");
     localStorage.removeItem("innova_user");
+    localStorage.removeItem("innova_token");
     sessionStorage.removeItem("innova_auth");
     sessionStorage.removeItem("innova_user");
+    sessionStorage.removeItem("innova_token");
     setSelectedPatient(null);
     setIsAthleteView(false);
   };
+
+  const [shareToken, setShareToken] = useState("");
+
+  useEffect(() => {
+    if (showQrModal && selectedPatient) {
+      setShareToken("");
+      fetch(`${API_BASE}/patients/${selectedPatient.id}/share-token`)
+        .then(res => {
+          if (res.ok) return res.json();
+          throw new Error("Failed to fetch share token");
+        })
+        .then(data => {
+          setShareToken(data.shareToken);
+        })
+        .catch(err => {
+          console.error("Error loading share token:", err);
+        });
+    }
+  }, [showQrModal, selectedPatient]);
 
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -1297,22 +1341,32 @@ function App() {
                 padding: "16px",
                 borderRadius: "16px",
                 border: "1px solid var(--border-color)",
+                minHeight: "200px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
               }}
             >
-              <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
-                  `${window.location.protocol}//${window.location.host}${window.location.pathname}?athleteId=${selectedPatient.id}`
-                )}&color=008080&bgcolor=ffffff`}
-                alt="Código QR del Atleta"
-                style={{ display: "block", width: "200px", height: "200px", borderRadius: "8px" }}
-              />
+              {shareToken ? (
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
+                    `${window.location.protocol}//${window.location.host}${window.location.pathname}?shareToken=${shareToken}`
+                  )}&color=008080&bgcolor=ffffff`}
+                  alt="Código QR del Atleta"
+                  style={{ display: "block", width: "200px", height: "200px", borderRadius: "8px" }}
+                />
+              ) : (
+                <div style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                  Generando acceso seguro...
+                </div>
+              )}
             </div>
 
             <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
               <input
                 type="text"
                 readOnly
-                value={`${window.location.protocol}//${window.location.host}${window.location.pathname}?athleteId=${selectedPatient.id}`}
+                value={shareToken ? `${window.location.protocol}//${window.location.host}${window.location.pathname}?shareToken=${shareToken}` : "Cargando enlace..."}
                 style={{
                   width: "100%",
                   padding: "10px 14px",
@@ -1324,13 +1378,14 @@ function App() {
                   color: "var(--text-main)",
                   fontWeight: "500",
                 }}
-                onClick={(e) => e.target.select()}
+                onClick={(e) => shareToken && e.target.select()}
               />
               <button
                 className="btn btn-primary"
                 style={{ width: "100%" }}
+                disabled={!shareToken}
                 onClick={() => {
-                  const url = `${window.location.protocol}//${window.location.host}${window.location.pathname}?athleteId=${selectedPatient.id}`;
+                  const url = `${window.location.protocol}//${window.location.host}${window.location.pathname}?shareToken=${shareToken}`;
                   navigator.clipboard.writeText(url);
                   alert("¡Enlace copiado al portapapeles!");
                 }}

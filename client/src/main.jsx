@@ -3,6 +3,36 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Global fetch interceptor to inject JWT token in all API calls
+const originalFetch = window.fetch;
+window.fetch = async function (input, init = {}) {
+  let url = typeof input === 'string' ? input : input.url;
+  const isApi = url && (url.startsWith('/api') || url.includes('/api/'));
+  if (isApi) {
+    const token = localStorage.getItem("innova_token") || sessionStorage.getItem("innova_token");
+    if (token) {
+      if (typeof input === 'string') {
+        init.headers = {
+          ...init.headers,
+          "Authorization": `Bearer ${token}`
+        };
+      } else {
+        try {
+          input.headers.set("Authorization", `Bearer ${token}`);
+        } catch (e) {
+          input = new Request(input, {
+            headers: {
+              ...Object.fromEntries(input.headers.entries()),
+              "Authorization": `Bearer ${token}`
+            }
+          });
+        }
+      }
+    }
+  }
+  return originalFetch(input, init);
+};
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />

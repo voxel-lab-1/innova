@@ -5,7 +5,14 @@ import fs from "fs";
 import path from "path";
 import multer from "multer";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import { fileURLToPath } from "url";
+
+const JWT_SECRET = process.env.JWT_SECRET || "innova_jwt_secret_token_secure_9872";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "innova2026";
+
 let prismaInstance = null;
 const prisma = new Proxy({}, {
   get(target, prop) {
@@ -36,8 +43,55 @@ import { generateMealPlan } from "./mealPlanEngine.js";
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://innova-eta.vercel.app"
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    const isAllowed = allowedOrigins.includes(origin) || origin.endsWith(".vercel.app");
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por CORS"));
+    }
+  }
+}));
 app.use(express.json());
+
+// Token Authentication Middleware
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ error: "Acceso denegado. Token no proporcionado." });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Token inválido o expirado." });
+    }
+    req.user = decoded;
+
+    // If it's an athlete share token, restrict access to their own ID
+    if (decoded.role === "athlete_share") {
+      const parts = req.path.split("/");
+      const pathId = parseInt(parts[1]);
+      const queryId = parseInt(req.query.patientId || req.body.patientId);
+      const targetPatientId = !isNaN(pathId) ? pathId : queryId;
+
+      if (!isNaN(targetPatientId) && decoded.athleteId !== targetPatientId) {
+        return res.status(403).json({ error: "Acceso denegado. Este token no corresponde a este atleta." });
+      }
+    }
+
+    next();
+  });
+};
 
 // Log requests
 app.use((req, res, next) => {
@@ -45,12 +99,18 @@ app.use((req, res, next) => {
   next();
 });
 
-// --- AUTHENTICATION ROUTES ---
+// Protect all /api/ routes except /api/auth/*
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api/auth/")) {
+    return next();
+  }
+  if (req.path.startsWith("/api/")) {
+    return authenticateToken(req, res, next);
+  }
+  next();
+});
 
-// Helper function to hash password
-const hashPassword = (password) => {
-  return crypto.createHash("sha256").update(password).digest("hex");
-};
+// --- AUTHENTICATION ROUTES ---
 
 // Register route
 app.post("/api/auth/register", async (req, res) => {
@@ -69,7 +129,7 @@ app.post("/api/auth/register", async (req, res) => {
       return res.status(400).json({ error: "El correo ya está registrado" });
     }
 
-    const hashedPassword = hashPassword(password);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newPatient = await prisma.patient.create({
       data: {
@@ -84,8 +144,15 @@ app.post("/api/auth/register", async (req, res) => {
       }
     });
 
+    const token = jwt.sign(
+      { id: newPatient.id, email: newPatient.email, role: "patient" },
+      JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
     res.status(201).json({
       success: true,
+      token,
       user: {
         id: newPatient.id,
         name: newPatient.name,
@@ -108,9 +175,15 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Correo y contraseña son obligatorios" });
     }
 
-    if (email.trim().toLowerCase() === "admin" && password === "innova2026") {
+    if (email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASSWORD) {
+      const token = jwt.sign(
+        { id: "admin", email: "admin@innova.com", role: "admin" },
+        JWT_SECRET,
+        { expiresIn: "30d" }
+      );
       return res.json({
         success: true,
+        token,
         user: {
           id: "admin",
           name: "Administrador",
@@ -130,13 +203,20 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
     }
 
-    const hashedInputPassword = hashPassword(password);
-    if (patient.password !== hashedInputPassword) {
+    const isMatch = await bcrypt.compare(password, patient.password);
+    if (!isMatch) {
       return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
     }
 
+    const token = jwt.sign(
+      { id: patient.id, email: patient.email, role: "patient" },
+      JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
     res.json({
       success: true,
+      token,
       user: {
         id: patient.id,
         name: patient.name,
@@ -190,8 +270,15 @@ app.post("/api/auth/google", async (req, res) => {
       });
     }
 
+    const token = jwt.sign(
+      { id: patient.id, email: patient.email, role: "patient" },
+      JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
     res.json({
       success: true,
+      token,
       user: {
         id: patient.id,
         name: patient.name,
@@ -211,15 +298,24 @@ app.post("/api/auth/google", async (req, res) => {
 app.get("/api/patients", async (req, res) => {
   console.log("ROUTE /api/patients: Request received.");
   try {
-    const creatorIdQuery = req.query.creatorId;
     let whereClause = {};
 
-    if (creatorIdQuery) {
-      // User is fetching their own athletes
-      whereClause = { creatorId: parseInt(creatorIdQuery) };
+    if (req.user.role === "admin") {
+      const creatorIdQuery = req.query.creatorId;
+      if (creatorIdQuery) {
+        whereClause = { creatorId: parseInt(creatorIdQuery) };
+      } else {
+        whereClause = { creatorId: null };
+      }
+    } else if (req.user.role === "athlete_share") {
+      whereClause = { id: req.user.athleteId };
     } else {
-      // Admin fetching: only show root accounts (registered users)
-      whereClause = { creatorId: null };
+      whereClause = {
+        OR: [
+          { creatorId: req.user.id },
+          { id: req.user.id }
+        ]
+      };
     }
 
     console.log("ROUTE /api/patients: Querying Prisma with clause:", whereClause);
@@ -240,8 +336,21 @@ app.get("/api/patients", async (req, res) => {
         }
       }
     });
-    console.log(`ROUTE /api/patients: Query successful. Patients found: ${patients.length}`);
-    res.json(patients);
+
+    // Sanitize passwords
+    const sanitizedPatients = patients.map(p => {
+      const { password, ...rest } = p;
+      if (rest.athletes) {
+        rest.athletes = rest.athletes.map(a => {
+          const { password: _, ...athRest } = a;
+          return athRest;
+        });
+      }
+      return rest;
+    });
+
+    console.log(`ROUTE /api/patients: Query successful. Patients found: ${sanitizedPatients.length}`);
+    res.json(sanitizedPatients);
   } catch (error) {
     console.error("ROUTE /api/patients: Error fetching patients:", error);
     res.status(500).json({ error: "Error al obtener los pacientes" });
@@ -254,6 +363,25 @@ app.get("/api/patients/:id", async (req, res) => {
     const patientId = parseInt(req.params.id);
     if (isNaN(patientId)) {
       return res.status(400).json({ error: "ID de paciente inválido" });
+    }
+
+    // Enforce authorization checks (BOLA)
+    if (req.user.role !== "admin") {
+      if (req.user.role === "athlete_share") {
+        if (req.user.athleteId !== patientId) {
+          return res.status(403).json({ error: "Acceso denegado. No tienes autorización para ver este atleta." });
+        }
+      } else {
+        const targetPatient = await prisma.patient.findUnique({
+          where: { id: patientId }
+        });
+        if (!targetPatient) {
+          return res.status(404).json({ error: "Paciente no encontrado" });
+        }
+        if (targetPatient.id !== req.user.id && targetPatient.creatorId !== req.user.id) {
+          return res.status(403).json({ error: "Acceso denegado. No tienes permiso para ver este paciente." });
+        }
+      }
     }
 
     const patient = await prisma.patient.findUnique({
@@ -289,6 +417,13 @@ app.get("/api/patients/:id", async (req, res) => {
       return res.status(404).json({ error: "Paciente no encontrado" });
     }
 
+    // Sanitize passwords
+    delete patient.password;
+    if (patient.creator) delete patient.creator.password;
+    if (patient.athletes) {
+      patient.athletes.forEach(a => delete a.password);
+    }
+
     res.json(patient);
   } catch (error) {
     console.error("Error fetching patient detail:", error);
@@ -296,14 +431,51 @@ app.get("/api/patients/:id", async (req, res) => {
   }
 });
 
+// Get a secure read-only share token for a patient (QR code)
+app.get("/api/patients/:id/share-token", async (req, res) => {
+  try {
+    const patientId = parseInt(req.params.id);
+    if (isNaN(patientId)) {
+      return res.status(400).json({ error: "ID de paciente inválido" });
+    }
+
+    const patient = await prisma.patient.findUnique({
+      where: { id: patientId }
+    });
+
+    if (!patient) {
+      return res.status(404).json({ error: "Paciente no encontrado" });
+    }
+
+    // Only the creator, the athlete themselves, or admin can generate the share token
+    if (req.user.role !== "admin" && patient.creatorId !== req.user.id && patient.id !== req.user.id) {
+      return res.status(403).json({ error: "Acceso denegado. No tienes autorización para compartir este paciente." });
+    }
+
+    const shareToken = jwt.sign(
+      { athleteId: patientId, role: "athlete_share" },
+      JWT_SECRET,
+      { expiresIn: "365d" }
+    );
+
+    res.json({ shareToken });
+  } catch (error) {
+    console.error("Error generating share token:", error);
+    res.status(500).json({ error: "Error al generar el token de compartición" });
+  }
+});
+
 // Create a new patient
 app.post("/api/patients", async (req, res) => {
   try {
-    const { name, birthdate, gender, email, phone, sport, creatorId } = req.body;
+    const { name, birthdate, gender, email, phone, sport } = req.body;
     
     if (!name || !birthdate || !gender) {
       return res.status(400).json({ error: "El nombre, fecha de nacimiento y género son obligatorios" });
     }
+
+    // Automatically set creatorId based on logged-in user unless admin specifies another creator
+    let creatorId = req.user.role === "admin" ? (req.body.creatorId ? parseInt(req.body.creatorId) : null) : req.user.id;
 
     const newPatient = await prisma.patient.create({
       data: {
@@ -313,10 +485,11 @@ app.post("/api/patients", async (req, res) => {
         email,
         phone,
         sport,
-        creatorId: creatorId ? parseInt(creatorId) : null
+        creatorId
       }
     });
 
+    delete newPatient.password;
     res.status(201).json(newPatient);
   } catch (error) {
     console.error("Error creating patient:", error);
@@ -346,6 +519,7 @@ app.put("/api/patients/:id", async (req, res) => {
       }
     });
 
+    delete updatedPatient.password;
     res.json(updatedPatient);
   } catch (error) {
     console.error("Error updating patient:", error);
