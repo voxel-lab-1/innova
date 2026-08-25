@@ -1902,9 +1902,7 @@ export default function Login({ onLogin }) {
       {/* Navigation Header */}
       <header className="landing-header">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <div className="logo-dot"></div>
-          <span className="logo-text">ZEROFIT</span>
-          <span className="logo-badge">CRM</span>
+          <img src="/logo-full.png" alt="ZEROFIT" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
         </div>
         <button type="button" className="header-btn" onClick={scrollToLogin}>
           Acceder
