@@ -1177,12 +1177,102 @@ export default function Login({ onLogin }) {
         }
         
         @media (max-width: 640px) {
+          /* Global overflow guard */
+          * {
+            box-sizing: border-box;
+          }
+          body, html {
+            overflow-x: hidden;
+          }
+
+          /* Hero */
+          .hero-section {
+            display: flex;
+            flex-direction: column;
+            padding: 40px 16px 30px 16px;
+            gap: 36px;
+          }
+          .hero-content {
+            align-items: center;
+            text-align: center;
+            order: 1;
+          }
+          .mockup-container {
+            order: 2;
+          }
+          .hero-title {
+            font-size: 2rem;
+            letter-spacing: -1px;
+          }
+          .hero-subtitle {
+            font-size: 1rem;
+            max-width: 100%;
+          }
+          .stats-row {
+            justify-content: center;
+            max-width: 100%;
+          }
+
+          /* Challenge (Problema / Solución) */
+          .challenge-section {
+            padding: 0 16px;
+          }
+          .challenge-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+          .challenge-card {
+            padding: 24px 20px;
+          }
+
+          /* Science */
+          .science-section {
+            padding: 60px 16px;
+          }
+          .science-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .science-badge-card {
+            padding: 24px 20px;
+          }
+
+          /* Testimonials */
+          .testimonials-section {
+            padding: 0 16px;
+          }
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+          .testimonial-card {
+            padding: 24px 20px;
+          }
+
+          /* Pricing */
+          .pricing-section {
+            padding: 0 16px;
+          }
+          .pricing-grid {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+          }
+          .pricing-card {
+            padding: 28px 20px;
+          }
+          .pricing-title {
+            font-size: 2rem;
+          }
+
+          /* Features */
           .features-grid {
             grid-template-columns: 1fr;
           }
-          .hero-title {
-            font-size: 2.2rem;
+          .features-section {
+            padding: 40px 16px;
           }
+
+          /* Header / Login card */
           .landing-header {
             padding: 16px 20px;
           }
@@ -1337,6 +1427,35 @@ export default function Login({ onLogin }) {
           .challenge-grid, .science-grid, .testimonials-grid {
             grid-template-columns: 1fr;
             gap: 30px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .pricing-title, .features-title, .challenge-section h2, .science-section h2, .testimonials-section h2 {
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+          }
+          .challenge-card {
+            padding: 28px 20px;
+          }
+          .science-section {
+            padding: 60px 20px;
+          }
+          .science-grid {
+            grid-template-columns: 1fr;
+            gap: 28px;
+          }
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+          }
+          .challenge-grid {
+            grid-template-columns: 1fr;
+          }
+          .features-section {
+            padding: 60px 20px;
+          }
+          .challenge-section, .testimonials-section {
+            padding: 0 20px;
           }
         }
 
