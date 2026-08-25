@@ -1,4 +1,4 @@
-const CACHE_NAME = "zerofit-cache-v15";
+const CACHE_NAME = "zerofit-cache-v16";
 
 // Install Event - Immediate activation
 self.addEventListener("install", (e) => {

@@ -1637,7 +1637,12 @@ export default function Login({ onLogin }) {
           text-align: left;
         }
         .science-item {
+          background: var(--sano-card-bg);
+          border: 1px solid var(--sano-glass-border);
+          border-radius: 20px;
+          padding: 24px;
           margin-bottom: 24px;
+          box-shadow: var(--sano-card-shadow);
         }
         .science-item-title {
           font-size: 1.15rem;
@@ -1707,8 +1712,8 @@ export default function Login({ onLogin }) {
           height: 44px;
           border-radius: 50%;
           background: var(--sano-teal);
-          color: white;
-          font-weight: bold;
+          color: #0a0d14;
+          font-weight: 800;
           display: flex;
           align-items: center;
           justify-content: center;
