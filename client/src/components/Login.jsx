@@ -222,14 +222,14 @@ export default function Login({ onLogin }) {
       {/* Styles Autocontenidos - Premium Aesthetics */}
       <style>{`
         .login-landing-container {
-          --sano-cream: #0d1117;
-          --sano-dark: #e2e8f0;
-          --sano-card-bg: #161b22;
-          --sano-input-bg: #0d1117;
-          --sano-teal: #22c55e;
-          --sano-teal-hover: #16a34a;
-          --sano-lime: #22c55e;
-          --sano-lime-glow: rgba(34, 197, 94, 0.15);
+          --sano-cream: #0a0d14;
+          --sano-dark: #f1f5f9;
+          --sano-card-bg: #121721;
+          --sano-input-bg: #0a0d14;
+          --sano-teal: #1fd390;
+          --sano-teal-hover: #18b67b;
+          --sano-lime: #1fd390;
+          --sano-lime-glow: rgba(31, 211, 144, 0.18);
           --sano-glass-border: rgba(255, 255, 255, 0.08);
           --sano-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
           
@@ -246,10 +246,10 @@ export default function Login({ onLogin }) {
           --sano-dark: #121A1A;
           --sano-card-bg: #ffffff;
           --sano-input-bg: #f8faf9;
-          --sano-teal: #008080;
-          --sano-teal-hover: #006666;
-          --sano-lime: #32CD32;
-          --sano-lime-glow: rgba(50, 205, 50, 0.15);
+          --sano-teal: #1fd390;
+          --sano-teal-hover: #18b67b;
+          --sano-lime: #1fd390;
+          --sano-lime-glow: rgba(31, 211, 144, 0.18);
           --sano-glass-border: rgba(18, 26, 26, 0.06);
           --sano-card-shadow: 0 10px 40px rgba(47, 79, 79, 0.04);
         }
@@ -269,7 +269,7 @@ export default function Login({ onLogin }) {
           width: 50vw;
           height: 60vh;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, rgba(13, 17, 23, 0) 70%);
+          background: radial-gradient(circle, rgba(31, 211, 144, 0.08) 0%, rgba(10, 13, 20, 0) 70%);
           filter: blur(80px);
         }
         .glow-2 {
@@ -279,7 +279,7 @@ export default function Login({ onLogin }) {
           width: 60vw;
           height: 70vh;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(34, 197, 94, 0.06) 0%, rgba(13, 17, 23, 0) 70%);
+          background: radial-gradient(circle, rgba(31, 211, 144, 0.06) 0%, rgba(10, 13, 20, 0) 70%);
           filter: blur(100px);
         }
 
