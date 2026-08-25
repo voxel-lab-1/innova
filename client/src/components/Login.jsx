@@ -1596,6 +1596,9 @@ export default function Login({ onLogin }) {
           gap: 12px;
           line-height: 1.5;
         }
+        .challenge-list-item strong {
+          color: var(--sano-dark);
+        }
         .challenge-dot {
           width: 8px;
           height: 8px;
@@ -1798,8 +1801,8 @@ export default function Login({ onLogin }) {
         .interactive-somatocarta {
           width: 100%;
           height: 220px;
-          background: white;
-          border: 1.5px solid #e2e8f0;
+          background: var(--sano-input-bg);
+          border: 1.5px solid var(--sano-glass-border);
           border-radius: 12px;
           position: relative;
           display: flex;
@@ -1811,14 +1814,14 @@ export default function Login({ onLogin }) {
           position: absolute;
           left: 0; right: 0; top: 50%;
           height: 1px;
-          background: #cbd5e1;
+          background: var(--sano-glass-border);
           border-style: dashed;
         }
         .somato-grid-y {
           position: absolute;
           top: 0; bottom: 0; left: 50%;
           width: 1px;
-          background: #cbd5e1;
+          background: var(--sano-glass-border);
           border-style: dashed;
         }
         .somato-interactive-point {
@@ -2833,7 +2836,7 @@ export default function Login({ onLogin }) {
 
             <div className="science-badge-card">
               <span style={{ fontSize: "2.5rem" }}>🧬</span>
-              <h3 style={{ margin: 0, fontWeight: 800 }}>Efecto Fisiológico</h3>
+              <h3 style={{ margin: 0, fontWeight: 800, color: "var(--sano-dark)" }}>Efecto Fisiológico</h3>
               <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", margin: 0, lineHeight: 1.5 }}>
                 Estudios científicos indican que el seguimiento visual del progreso somatotípico y la consistencia en planes nutricionales estructurados incrementan la tasa de retención de atletas en un 85% y aceleran los resultados de ganancia de masa magra en un 18%.
               </p>
