@@ -1364,36 +1364,6 @@ export default function Login({ onLogin }) {
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
           margin-top: 30px;
-        /* Pricing Section */
-        .pricing-section {
-          max-width: 1200px;
-          margin: 80px auto;
-          padding: 0 24px;
-          position: relative;
-          z-index: 10;
-          text-align: center;
-        }
-        .pricing-header {
-          margin-bottom: 50px;
-        }
-        .pricing-title {
-          font-size: 2.8rem;
-          font-weight: 800;
-          letter-spacing: -1.5px;
-          color: var(--sano-dark);
-          margin-bottom: 12px;
-        }
-        .pricing-subtitle {
-          font-size: 1.1rem;
-          color: var(--text-muted);
-          max-width: 600px;
-          margin: 0 auto;
-        }
-        .pricing-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 30px;
-          margin-top: 30px;
           align-items: stretch;
         }
         .pricing-card {
