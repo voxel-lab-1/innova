@@ -76,11 +76,14 @@ export default function Login({ onLogin }) {
     setError("");
     setLoading(true);
 
+    const cleanEmail = (email || "").trim();
+    const cleanPassword = (password || "").trim();
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email: cleanEmail, password: cleanPassword })
       });
 
       if (res.ok) {

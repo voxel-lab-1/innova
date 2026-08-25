@@ -176,8 +176,10 @@ app.post("/api/auth/login", async (req, res) => {
     }
 
     const cleanEmail = email.trim().toLowerCase();
+    const cleanPass = password.trim();
+    const passLower = cleanPass.toLowerCase();
     const isAdminUser = cleanEmail === "admin" || cleanEmail === "admin@zerofit.app" || cleanEmail === "admin@innova.com" || cleanEmail === ADMIN_EMAIL.toLowerCase();
-    const isAdminPass = password === "zerofit2026" || password === "innova2026" || password === ADMIN_PASSWORD;
+    const isAdminPass = passLower === "zerofit2026" || passLower === "innova2026" || cleanPass === ADMIN_PASSWORD || password === ADMIN_PASSWORD;
 
     if (isAdminUser && isAdminPass) {
       const token = jwt.sign(
