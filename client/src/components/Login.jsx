@@ -1844,6 +1844,14 @@ export default function Login({ onLogin }) {
           .mockup-container {
             order: 2 !important;
             width: 100% !important;
+            margin-top: 10px !important;
+          }
+          .iphone-frame {
+            width: 100% !important;
+            max-width: 290px !important;
+            height: 480px !important;
+            margin: 0 auto !important;
+            border-radius: 36px !important;
           }
 
           /* Grid Layouts: Single Column on Mobile */
@@ -1869,7 +1877,7 @@ export default function Login({ onLogin }) {
             background: var(--sano-card-bg) !important;
             border: 1px solid var(--sano-glass-border) !important;
             border-radius: 20px !important;
-            padding: 24px 18px !important;
+            padding: 20px 16px !important;
             box-shadow: var(--sano-card-shadow) !important;
             margin-left: 0 !important;
             margin-right: 0 !important;
@@ -1883,14 +1891,15 @@ export default function Login({ onLogin }) {
           .showcase-section {
             padding-left: 16px !important;
             padding-right: 16px !important;
-            margin-top: 40px !important;
-            margin-bottom: 40px !important;
+            margin-top: 36px !important;
+            margin-bottom: 36px !important;
           }
 
           .pricing-title,
           .features-title,
           .challenge-card-title {
-            font-size: 1.6rem !important;
+            font-size: 1.5rem !important;
+            line-height: 1.25 !important;
           }
         }
       `}</style>
@@ -2555,9 +2564,9 @@ export default function Login({ onLogin }) {
                       }}
                     ></div>
                     
-                    <span style={{ position: "absolute", top: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Mesomorfo (Fuerza)</span>
-                    <span style={{ position: "absolute", bottom: "10px", left: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Endomorfo (Grasa)</span>
-                    <span style={{ position: "absolute", bottom: "10px", right: "10px", fontSize: "0.7rem", color: "#64748b", fontWeight: "bold" }}>Ectomorfo (Magra)</span>
+                    <span style={{ position: "absolute", top: "6px", left: "50%", transform: "translateX(-50%)", fontSize: "0.68rem", color: "var(--sano-teal)", fontWeight: "bold", whiteSpace: "nowrap" }}>Mesomorfo (Fuerza)</span>
+                    <span style={{ position: "absolute", bottom: "6px", left: "8px", fontSize: "0.68rem", color: "var(--text-muted)", fontWeight: "bold" }}>Endomorfo (Grasa)</span>
+                    <span style={{ position: "absolute", bottom: "6px", right: "8px", fontSize: "0.68rem", color: "var(--text-muted)", fontWeight: "bold" }}>Ectomorfo (Magra)</span>
                   </div>
                   <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Gráfico de Somatocarta interactivo tridimensional</span>
                 </div>
