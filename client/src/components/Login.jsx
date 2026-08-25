@@ -324,17 +324,16 @@ export default function Login({ onLogin }) {
           max-width: 1200px;
           margin: 0 auto;
           padding: 80px 24px 60px 24px;
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: 0.95fr 1.05fr;
+          gap: 60px;
           align-items: center;
-          text-align: center;
-          gap: 30px;
         }
         .hero-content {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
+          align-items: flex-start;
+          text-align: left;
         }
         .hero-tag {
           font-size: 0.8rem;
@@ -354,7 +353,6 @@ export default function Login({ onLogin }) {
           letter-spacing: -1.5px;
           color: var(--sano-dark);
           margin-bottom: 20px;
-          max-width: 900px;
         }
         .hero-gradient-text {
           background: linear-gradient(135deg, var(--sano-teal) 0%, var(--sano-lime) 100%);
@@ -367,13 +365,13 @@ export default function Login({ onLogin }) {
           line-height: 1.6;
           color: var(--text-muted);
           margin-bottom: 32px;
-          max-width: 720px;
+          max-width: 600px;
         }
         
         /* Stats Row */
         .stats-row {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
           margin-bottom: 30px;
           width: 100%;
@@ -1144,7 +1142,8 @@ export default function Login({ onLogin }) {
         /* Responsive Breakpoints */
         @media (max-width: 992px) {
           .hero-section {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             padding-top: 50px;
             gap: 50px;
             text-align: center;
@@ -1152,6 +1151,10 @@ export default function Login({ onLogin }) {
           .hero-content {
             align-items: center;
             text-align: center;
+            order: 1;
+          }
+          .mockup-container {
+            order: 2;
           }
           .hero-title {
             font-size: 2.8rem;
@@ -1691,40 +1694,7 @@ export default function Login({ onLogin }) {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-content">
-          <div className="hero-tag">Consola de Logística Deportiva</div>
-          <h1 className="hero-title">
-            La Consola Todo en Uno para Entrenadores de Élite: <br />
-            <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
-          </h1>
-          <p className="hero-subtitle">
-            La plataforma definitiva para preparadores físicos profesionales. Gestiona tus atletas, 
-            diseña somatocartas ISAK, monitorea su stock de suplementación y analiza su postura con IA en un solo lugar.
-          </p>
-
-          {/* Social Proof Stats */}
-          <div className="stats-row">
-            <div className="stat-card">
-              <span className="stat-val">1k+</span>
-              <span className="stat-label">atletas activos de alto rendimiento</span>
-            </div>
-            <div className="stat-card">
-              <div className="stars-container">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                ))}
-              </div>
-              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
-            </div>
-          </div>
-
-          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
-            Ingresar al Portal
-            <span className="arrow-icon">→</span>
-          </button>
-        </div>
-
-        {/* Mockup iPhone Container on Right (Original Layout) */}
+        {/* Mockup iPhone Container on Left */}
         <div className="mockup-container">
           <div className="iphone-frame">
             <div className="iphone-screen">
@@ -1783,6 +1753,40 @@ export default function Login({ onLogin }) {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Hero Content Text on Right */}
+        <div className="hero-content">
+          <div className="hero-tag">Consola de Logística Deportiva</div>
+          <h1 className="hero-title">
+            La Consola Todo en Uno para Entrenadores de Élite: <br />
+            <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
+          </h1>
+          <p className="hero-subtitle">
+            La plataforma definitiva para preparadores físicos profesionales. Gestiona tus atletas, 
+            diseña somatocartas ISAK, monitorea su stock de suplementación y analiza su postura con IA en un solo lugar.
+          </p>
+
+          {/* Social Proof Stats */}
+          <div className="stats-row">
+            <div className="stat-card">
+              <span className="stat-val">1k+</span>
+              <span className="stat-label">atletas activos de alto rendimiento</span>
+            </div>
+            <div className="stat-card">
+              <div className="stars-container">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F3C80A" stroke="#F3C80A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ))}
+              </div>
+              <span className="stat-label">Valorado con 4.9/5 estrellas</span>
+            </div>
+          </div>
+
+          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
+            Ingresar al Portal
+            <span className="arrow-icon">→</span>
+          </button>
         </div>
       </section>
 
