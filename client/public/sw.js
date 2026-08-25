@@ -1,22 +1,11 @@
-const CACHE_NAME = "zerofit-cache-v11";
-const ASSETS = [
-  "/",
-  "/index.html",
-  "/favicon.svg"
-];
+const CACHE_NAME = "zerofit-cache-v12";
 
-// Install Event
+// Install Event - Immediate activation
 self.addEventListener("install", (e) => {
   self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log("Caching shell assets");
-      return cache.addAll(ASSETS).catch(err => console.log("Cache pre-fill skipped: ", err));
-    })
-  );
 });
 
-// Activate Event
+// Activate Event - Clear all old caches
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
@@ -31,17 +20,37 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-// Fetch Event
+// Fetch Event - Network First for HTML, Cache First for assets
 self.addEventListener("fetch", (e) => {
-  // Let API requests and non-GET requests go directly to network
   if (e.request.url.includes("/api/") || e.request.method !== "GET") {
     return;
   }
-  
+
+  // Network First for HTML and root navigation to ensure updates are instant
+  if (e.request.mode === "navigate" || e.request.url.endsWith("/") || e.request.url.includes("index.html")) {
+    e.respondWith(
+      fetch(e.request)
+        .then((response) => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(e.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Cache First for static assets
   e.respondWith(
-    fetch(e.request)
-      .then((response) => {
-        // Cache the new response if it was fetched successfully
+    caches.match(e.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(e.request).then((response) => {
         if (response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
@@ -49,10 +58,7 @@ self.addEventListener("fetch", (e) => {
           });
         }
         return response;
-      })
-      .catch(() => {
-        // Fallback to cache if network fails
-        return caches.match(e.request);
-      })
+      });
+    })
   );
 });
