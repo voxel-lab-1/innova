@@ -1791,6 +1791,106 @@ export default function Login({ onLogin }) {
             gap: 20px;
           }
         }
+
+        /* ============================================
+           MOBILE RESPONSIVE — DEFINITIVE BLOCK
+           (Must be LAST to override base styles)
+        ============================================ */
+        @media (max-width: 768px) {
+          .challenge-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .science-grid {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+          }
+          .testimonials-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .pricing-grid {
+            grid-template-columns: 1fr !important;
+            max-width: 100% !important;
+          }
+          .challenge-section, .testimonials-section, .pricing-section {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .science-section {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .challenge-card {
+            padding: 24px 20px !important;
+          }
+          .pricing-card {
+            padding: 28px 20px !important;
+          }
+          .science-badge-card {
+            padding: 24px 20px !important;
+          }
+          .testimonial-card {
+            padding: 24px 20px !important;
+          }
+          .pricing-title {
+            font-size: 2rem !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .login-landing-container {
+            overflow-x: hidden !important;
+            width: 100% !important;
+          }
+          .hero-section {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 40px 16px 30px 16px !important;
+            gap: 36px !important;
+          }
+          .hero-content {
+            align-items: center !important;
+            text-align: center !important;
+            order: 1 !important;
+          }
+          .mockup-container {
+            order: 2 !important;
+            width: 100% !important;
+          }
+          .hero-title {
+            font-size: 2rem !important;
+            letter-spacing: -1px !important;
+          }
+          .hero-subtitle {
+            font-size: 1rem !important;
+            max-width: 100% !important;
+          }
+          .stats-row {
+            justify-content: center !important;
+            max-width: 100% !important;
+          }
+          .features-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .features-section {
+            padding: 40px 16px !important;
+          }
+          .landing-header {
+            padding: 16px 20px !important;
+          }
+          .login-card {
+            padding: 30px 20px !important;
+          }
+          .challenge-section,
+          .testimonials-section,
+          .pricing-section {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+        }
       `}</style>
 
       {/* Ambient decorative glow elements */}
