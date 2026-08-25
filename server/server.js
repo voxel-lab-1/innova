@@ -11,7 +11,7 @@ import { fileURLToPath } from "url";
 
 const JWT_SECRET = process.env.JWT_SECRET || "innova_jwt_secret_token_secure_9872";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "zerofit2026";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "innova2026";
 
 let prismaInstance = null;
 const prisma = new Proxy({}, {
@@ -166,7 +166,7 @@ app.post("/api/auth/login", async (req, res) => {
     const cleanPass = password.trim();
     const passLower = cleanPass.toLowerCase();
     const isAdminUser = cleanEmail === "admin" || cleanEmail === "admin@zerofit.app" || cleanEmail === "admin@innova.com" || cleanEmail === ADMIN_EMAIL.toLowerCase();
-    const isAdminPass = passLower === "zerofit2026" || passLower === "innova2026" || cleanPass === ADMIN_PASSWORD || password === ADMIN_PASSWORD;
+    const isAdminPass = cleanPass === "innova2026" || cleanPass === ADMIN_PASSWORD;
 
     if (isAdminUser && isAdminPass) {
       const token = jwt.sign(
