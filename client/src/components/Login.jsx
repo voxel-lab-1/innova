@@ -1362,10 +1362,40 @@ export default function Login({ onLogin }) {
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
           margin-top: 30px;
+        /* Pricing Section */
+        .pricing-section {
+          max-width: 1200px;
+          margin: 80px auto;
+          padding: 0 24px;
+          position: relative;
+          z-index: 10;
+          text-align: center;
+        }
+        .pricing-header {
+          margin-bottom: 50px;
+        }
+        .pricing-title {
+          font-size: 2.8rem;
+          font-weight: 800;
+          letter-spacing: -1.5px;
+          color: var(--sano-dark);
+          margin-bottom: 12px;
+        }
+        .pricing-subtitle {
+          font-size: 1.1rem;
+          color: var(--text-muted);
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          margin-top: 30px;
           align-items: stretch;
         }
         .pricing-card {
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 24px;
           padding: 40px 30px;
@@ -1525,7 +1555,7 @@ export default function Login({ onLogin }) {
           margin-top: 40px;
         }
         .challenge-card {
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 24px;
           padding: 40px;
@@ -1618,7 +1648,7 @@ export default function Login({ onLogin }) {
           line-height: 1.5;
         }
         .science-badge-card {
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 24px;
           padding: 40px;
@@ -1645,7 +1675,7 @@ export default function Login({ onLogin }) {
           margin-top: 40px;
         }
         .testimonial-card {
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 24px;
           padding: 30px;
@@ -1665,7 +1695,7 @@ export default function Login({ onLogin }) {
           display: flex;
           align-items: center;
           gap: 12px;
-          border-top: 1px solid rgba(18, 26, 26, 0.05);
+          border-top: 1px solid var(--sano-glass-border);
           padding-top: 12px;
           margin-top: auto;
         }
@@ -1704,7 +1734,7 @@ export default function Login({ onLogin }) {
           text-align: center;
         }
         .showcase-container {
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 30px;
           padding: 40px;
@@ -1718,7 +1748,7 @@ export default function Login({ onLogin }) {
           display: flex;
           justify-content: center;
           gap: 15px;
-          border-bottom: 1px solid rgba(18, 26, 26, 0.05);
+          border-bottom: 1px solid var(--sano-glass-border);
           padding-bottom: 20px;
           flex-wrap: wrap;
         }
@@ -1752,7 +1782,7 @@ export default function Login({ onLogin }) {
           min-height: 400px;
         }
         .playground-card {
-          background: #f8fafc;
+          background: var(--sano-input-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 20px;
           padding: 30px;
@@ -2937,7 +2967,7 @@ export default function Login({ onLogin }) {
           <div 
             className="glass-card faq-item" 
             style={{ 
-              background: "white", 
+              background: "var(--sano-card-bg)", 
               border: "1px solid var(--sano-glass-border)", 
               borderRadius: "20px", 
               padding: "20px 24px", 
@@ -2966,7 +2996,7 @@ export default function Login({ onLogin }) {
           <div 
             className="glass-card faq-item" 
             style={{ 
-              background: "white", 
+              background: "var(--sano-card-bg)", 
               border: "1px solid var(--sano-glass-border)", 
               borderRadius: "20px", 
               padding: "20px 24px", 
@@ -2995,7 +3025,7 @@ export default function Login({ onLogin }) {
           <div 
             className="glass-card faq-item" 
             style={{ 
-              background: "white", 
+              background: "var(--sano-card-bg)", 
               border: "1px solid var(--sano-glass-border)", 
               borderRadius: "20px", 
               padding: "20px 24px", 
@@ -3024,7 +3054,7 @@ export default function Login({ onLogin }) {
           <div 
             className="glass-card faq-item" 
             style={{ 
-              background: "white", 
+              background: "var(--sano-card-bg)", 
               border: "1px solid var(--sano-glass-border)", 
               borderRadius: "20px", 
               padding: "20px 24px", 
