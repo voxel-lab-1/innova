@@ -1677,8 +1677,8 @@ export default function Login({ onLogin }) {
         .science-grid {
           display: grid;
           grid-template-columns: 1.2fr 0.8fr;
-          gap: 50px;
-          align-items: center;
+          gap: 30px;
+          align-items: stretch;
           margin-top: 40px;
         }
         .science-content {
@@ -1707,12 +1707,14 @@ export default function Login({ onLogin }) {
           background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 24px;
-          padding: 40px;
+          padding: 36px 30px;
           box-shadow: var(--sano-card-shadow);
           text-align: left;
           display: flex;
           flex-direction: column;
+          justify-content: center;
           gap: 16px;
+          height: 100%;
         }
         
         /* Testimonials Section */
@@ -2865,16 +2867,18 @@ export default function Login({ onLogin }) {
       {/* Science Section: Respaldo Científico */}
       <section className="science-section">
         <div className="science-container">
+          <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 40px auto" }}>
+            <span className="hero-tag">Ciencia del Deporte</span>
+            <h2 className="pricing-title" style={{ marginTop: "10px" }}>
+              Metodología y Respaldo Fisiológico
+            </h2>
+            <p className="pricing-subtitle" style={{ margin: "0" }}>
+              ZEROFIT no es solo software; está construido bajo estándares y metodologías validadas internacionalmente para la preparación física.
+            </p>
+          </div>
+
           <div className="science-grid">
             <div className="science-content">
-              <span className="hero-tag">Ciencia del Deporte</span>
-              <h2 className="pricing-title" style={{ textAlign: "left", marginTop: "10px" }}>
-                Metodología y Respaldo Fisiológico
-              </h2>
-              <p className="science-subtitle" style={{ margin: "0 0 30px 0", textAlign: "left" }}>
-                ZEROFIT no es solo software; está construido bajo estándares y metodologías validadas internacionalmente para la preparación física.
-              </p>
-
               <div className="science-item">
                 <h4 className="science-item-title">🔬 Protocolo ISAK y Somatocarta de Heath-Carter</h4>
                 <p className="science-item-desc">
@@ -2882,7 +2886,7 @@ export default function Login({ onLogin }) {
                 </p>
               </div>
 
-              <div className="science-item">
+              <div className="science-item" style={{ marginBottom: 0 }}>
                 <h4 className="science-item-title">⚡ Farmacocinética de Suplementos (Saturación y Dosis)</h4>
                 <p className="science-item-desc">
                   La consistencia temporal es vital. Nuestro sistema de alertas calcula la tasa de agotamiento de stock en función de la dosis diaria prescrita (por ejemplo, 5g diarios de creatina para mantener los niveles óptimos de fosfocreatina muscular), asegurando que el atleta reponga su suplementación a tiempo.
@@ -2892,8 +2896,8 @@ export default function Login({ onLogin }) {
 
             <div className="science-badge-card">
               <span style={{ fontSize: "2.5rem" }}>🧬</span>
-              <h3 style={{ margin: 0, fontWeight: 800, color: "var(--sano-dark)" }}>Efecto Fisiológico</h3>
-              <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", margin: 0, lineHeight: 1.5 }}>
+              <h3 style={{ margin: 0, fontWeight: 800, color: "var(--sano-dark)", fontSize: "1.5rem" }}>Efecto Fisiológico</h3>
+              <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", margin: 0, lineHeight: 1.6 }}>
                 Estudios científicos indican que el seguimiento visual del progreso somatotípico y la consistencia en planes nutricionales estructurados incrementan la tasa de retención de atletas en un 85% y aceleran los resultados de ganancia de masa magra en un 18%.
               </p>
             </div>
