@@ -233,15 +233,16 @@ export default function Login({ onLogin }) {
       <style>{`
         .login-landing-container {
           --sano-cream: #0a0d14;
-          --sano-dark: #f1f5f9;
-          --sano-card-bg: #121721;
-          --sano-input-bg: #0a0d14;
+          --sano-dark: #ffffff;
+          --sano-card-bg: #12172a;
+          --sano-input-bg: #0d121e;
           --sano-teal: #1fd390;
           --sano-teal-hover: #18b67b;
           --sano-lime: #1fd390;
           --sano-lime-glow: rgba(31, 211, 144, 0.18);
-          --sano-glass-border: rgba(255, 255, 255, 0.08);
-          --sano-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+          --sano-glass-border: rgba(255, 255, 255, 0.12);
+          --sano-card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          --text-muted: #cbd5e1;
 
           /* Phone Chassis & Screen colors for Dark Theme (light metallic frame + dark inner screen) */
           --phone-frame-bg: linear-gradient(145deg, #475569 0%, #1e293b 100%);
@@ -258,16 +259,17 @@ export default function Login({ onLogin }) {
         }
 
         [data-theme="light"] .login-landing-container {
-          --sano-cream: #FAF9F6;
-          --sano-dark: #121A1A;
+          --sano-cream: #f4f7f6;
+          --sano-dark: #0f172a;
           --sano-card-bg: #ffffff;
-          --sano-input-bg: #f8faf9;
+          --sano-input-bg: #f8fafc;
           --sano-teal: #1fd390;
           --sano-teal-hover: #18b67b;
           --sano-lime: #1fd390;
           --sano-lime-glow: rgba(31, 211, 144, 0.18);
-          --sano-glass-border: rgba(18, 26, 26, 0.06);
-          --sano-card-shadow: 0 10px 40px rgba(47, 79, 79, 0.04);
+          --sano-glass-border: rgba(0, 0, 0, 0.1);
+          --sano-card-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+          --text-muted: #64748b;
 
           /* Phone Chassis & Screen colors for Light Theme (dark frame + light inner screen) */
           --phone-frame-bg: linear-gradient(145deg, #111827 0%, #030712 100%);
