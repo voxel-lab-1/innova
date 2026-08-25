@@ -1,16 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00f2fe;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#4facfe;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <!-- Background -->
-  <rect width="100" height="100" rx="18" fill="#060913"/>
-  <!-- Z letter -->
-  <polygon points="18,22 58,22 58,30 30,68 58,68 58,78 18,78 18,70 46,32 18,32" fill="url(#grad)"/>
-  <!-- F letter -->
-  <rect x="64" y="22" width="8" height="56" fill="url(#grad)"/>
-  <rect x="64" y="22" width="20" height="8" fill="url(#grad)"/>
-  <rect x="64" y="46" width="16" height="8" fill="url(#grad)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Fondo oscuro que llena todo -->
+  <rect width="32" height="32" rx="6" fill="#1a1a2e"/>
+  <!-- Z en blanco -->
+  <polygon points="5,7 18,7 18,10 9,22 18,22 18,25 5,25 5,22 14,10 5,10" fill="white"/>
+  <!-- F en verde (dos barras) -->
+  <rect x="20" y="7" width="7" height="3.5" rx="1.5" fill="#22c55e"/>
+  <rect x="20" y="14" width="6" height="3.5" rx="1.5" fill="#22c55e"/>
 </svg>
