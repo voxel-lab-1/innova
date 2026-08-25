@@ -8,23 +8,31 @@ import TermsOfService from './components/TermsOfService.jsx'
 // Global fetch interceptor to inject JWT token in all API calls
 const originalFetch = window.fetch;
 window.fetch = async function (input, init) {
-  if (typeof input === 'string' && (input.startsWith('/api') || input.includes('/api/'))) {
-    const token = localStorage.getItem("zerofit_token") || sessionStorage.getItem("zerofit_token");
+  let url = typeof input === 'string' ? input : input instanceof Request ? input.url : '';
+  if (url) {
+    const token = localStorage.getItem("ZEROFIT_token") || 
+                  localStorage.getItem("zerofit_token") || 
+                  sessionStorage.getItem("ZEROFIT_token") || 
+                  sessionStorage.getItem("zerofit_token");
     if (token) {
       const newInit = init ? { ...init } : {};
       let headers = newInit.headers || {};
       if (headers instanceof Headers) {
         const newHeaders = new Headers(headers);
-        newHeaders.set("Authorization", `Bearer ${token}`);
+        if (!newHeaders.has("Authorization")) {
+          newHeaders.set("Authorization", `Bearer ${token}`);
+        }
         newInit.headers = newHeaders;
       } else if (Array.isArray(headers)) {
         const newHeaders = [...headers];
-        newHeaders.push(["Authorization", `Bearer ${token}`]);
+        if (!newHeaders.some(h => Array.isArray(h) && h[0] && h[0].toLowerCase() === 'authorization')) {
+          newHeaders.push(["Authorization", `Bearer ${token}`]);
+        }
         newInit.headers = newHeaders;
       } else {
         newInit.headers = {
-          ...headers,
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${token}`,
+          ...headers
         };
       }
       return originalFetch.call(window, input, newInit);

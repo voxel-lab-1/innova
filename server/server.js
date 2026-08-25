@@ -298,7 +298,7 @@ app.get("/api/patients", async (req, res) => {
       if (creatorIdQuery) {
         whereClause = { creatorId: parseInt(creatorIdQuery) };
       } else {
-        whereClause = { creatorId: null };
+        whereClause = {};
       }
     } else if (req.user.role === "athlete_share") {
       whereClause = { id: req.user.athleteId };
@@ -468,7 +468,9 @@ app.post("/api/patients", async (req, res) => {
     }
 
     // Automatically set creatorId based on logged-in user unless admin specifies another creator
-    let creatorId = req.user.role === "admin" ? (req.body.creatorId ? parseInt(req.body.creatorId) : null) : req.user.id;
+    let creatorId = req.user.role === "admin" 
+      ? (req.body.creatorId ? parseInt(req.body.creatorId) : (typeof req.user.id === 'number' ? req.user.id : null)) 
+      : req.user.id;
 
     // Check subscription limits for non-admin creators
     if (creatorId && req.user.role !== "admin") {

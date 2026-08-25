@@ -83,6 +83,7 @@ function App() {
     storage.setItem("ZEROFIT_user", JSON.stringify(user));
     if (token) {
       storage.setItem("ZEROFIT_token", token);
+      storage.setItem("zerofit_token", token);
     }
   };
 
@@ -91,9 +92,11 @@ function App() {
     localStorage.removeItem("ZEROFIT_auth");
     localStorage.removeItem("ZEROFIT_user");
     localStorage.removeItem("ZEROFIT_token");
+    localStorage.removeItem("zerofit_token");
     sessionStorage.removeItem("ZEROFIT_auth");
     sessionStorage.removeItem("ZEROFIT_user");
     sessionStorage.removeItem("ZEROFIT_token");
+    sessionStorage.removeItem("zerofit_token");
     setSelectedPatient(null);
     setIsAthleteView(false);
   };
