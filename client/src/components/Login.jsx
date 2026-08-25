@@ -2268,8 +2268,7 @@ export default function Login({ onLogin }) {
         <div className="hero-content">
           <div className="hero-tag">Consola de Logística Deportiva</div>
           <h1 className="hero-title">
-            CRM Deportivo para Entrenadores: <br />
-            <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
+            CRM Deportivo para Entrenadores: <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
           </h1>
           <p className="hero-subtitle">
             La plataforma definitiva para preparadores físicos profesionales. Gestiona tus atletas, 
@@ -2304,8 +2303,7 @@ export default function Login({ onLogin }) {
         <div className="features-container">
           <div className="features-header">
             <h2 className="features-title">
-              Todo lo que necesitas para optimizar tu <br />
-              <span style={{fontWeight: 900}}>preparación deportiva.</span>
+              Todo lo que necesitas para optimizar tu <span style={{fontWeight: 900}}>preparación deportiva.</span>
             </h2>
           </div>
 
@@ -2394,8 +2392,7 @@ export default function Login({ onLogin }) {
         <div className="pricing-header" style={{ marginBottom: "50px" }}>
           <span className="hero-tag">El Desafío del Preparador Físico</span>
           <h2 className="pricing-title" style={{ fontSize: "2.8rem", lineHeight: "1.1", letterSpacing: "-1.5px" }}>
-            Llevar el control de tus atletas se volvió <br />
-            <span style={{ fontWeight: 900 }}>un caos operativo.</span>
+            Llevar el control de tus atletas se volvió <span style={{ fontWeight: 900 }}>un caos operativo.</span>
           </h2>
           <p className="pricing-subtitle" style={{ fontSize: "1.2rem", maxWidth: "680px", margin: "20px auto 0 auto", color: "var(--text-muted)", fontWeight: 500 }}>
             No es tu falta de profesionalismo. Es la ausencia de herramientas integradas diseñadas para conectar la ciencia antropométrica, la biomecánica y la suplementación en un solo lugar.
