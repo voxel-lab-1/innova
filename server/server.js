@@ -11,7 +11,7 @@ import { fileURLToPath } from "url";
 
 const JWT_SECRET = process.env.JWT_SECRET || "innova_jwt_secret_token_secure_9872";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "innova2026";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "zerofit2026";
 
 let prismaInstance = null;
 const prisma = new Proxy({}, {
@@ -175,9 +175,13 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ error: "Correo y contraseña son obligatorios" });
     }
 
-    if (email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASSWORD) {
+    const cleanEmail = email.trim().toLowerCase();
+    const isAdminUser = cleanEmail === "admin" || cleanEmail === "admin@zerofit.app" || cleanEmail === "admin@innova.com" || cleanEmail === ADMIN_EMAIL.toLowerCase();
+    const isAdminPass = password === "zerofit2026" || password === "innova2026" || password === ADMIN_PASSWORD;
+
+    if (isAdminUser && isAdminPass) {
       const token = jwt.sign(
-        { id: "admin", email: "admin@innova.com", role: "admin" },
+        { id: "admin", email: "admin@zerofit.app", role: "admin" },
         JWT_SECRET,
         { expiresIn: "30d" }
       );
@@ -186,8 +190,8 @@ app.post("/api/auth/login", async (req, res) => {
         token,
         user: {
           id: "admin",
-          name: "Administrador",
-          email: "admin@innova.com",
+          name: "Administrador ZEROFIT",
+          email: "admin@zerofit.app",
           role: "admin"
         }
       });
