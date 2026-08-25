@@ -686,13 +686,12 @@ function App() {
 
           <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => setSelectedPatient(null)}>
             <img 
-              src="/logo-horizontal.svg" 
+              src="/logo-full.png" 
               alt="ZEROFIT" 
               style={{ 
-                height: "50px", 
+                height: "56px", 
                 width: "auto", 
-                objectFit: "contain",
-                filter: "drop-shadow(0 0 12px rgba(0, 230, 118, 0.25))"
+                objectFit: "contain"
               }} 
             />
           </div>

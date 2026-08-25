@@ -1932,13 +1932,12 @@ export default function Login({ onLogin }) {
       <header className="landing-header">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <img 
-            src="/logo-horizontal.svg" 
+            src="/logo-full.png" 
             alt="ZEROFIT" 
             style={{ 
-              height: "56px", 
+              height: "64px", 
               width: "auto", 
-              objectFit: "contain",
-              filter: "drop-shadow(0 0 14px rgba(0, 230, 118, 0.3))"
+              objectFit: "contain"
             }} 
           />
         </div>
