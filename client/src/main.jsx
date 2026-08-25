@@ -2,6 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import PrivacyPolicy from './components/PrivacyPolicy.jsx'
+import TermsOfService from './components/TermsOfService.jsx'
 
 // Global fetch interceptor to inject JWT token in all API calls
 const originalFetch = window.fetch;
@@ -31,9 +33,14 @@ window.fetch = async function (input, init) {
   return originalFetch.call(window, input, init);
 };
 
+const pathname = window.location.pathname;
+let RootComponent = App;
+if (pathname === '/privacy') RootComponent = PrivacyPolicy;
+if (pathname === '/terms') RootComponent = TermsOfService;
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RootComponent />
   </StrictMode>,
 )
 

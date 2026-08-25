@@ -14,8 +14,13 @@ import TrainerSupplements from "./components/TrainerSupplements";
 import TrainerExercises from "./components/TrainerExercises";
 import TrainerSubscription from "./components/TrainerSubscription";
 import TrainerDashboard from "./components/TrainerDashboard";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsOfService from "./components/TermsOfService";
 
 const API_BASE = "/api";
+
+// Routing estático para páginas públicas
+const pathname = window.location.pathname;
 
 const decodeJwt = (token) => {
   try {
