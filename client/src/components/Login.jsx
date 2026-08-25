@@ -208,18 +208,41 @@ export default function Login({ onLogin }) {
       }
     };
 
-    if (window.google) {
-      initGoogle();
-    } else {
-      const interval = setInterval(() => {
-        if (window.google) {
-          initGoogle();
-          clearInterval(interval);
+    if (!showAuthModal) return;
+
+    const timer = setTimeout(() => {
+      if (window.google) {
+        window.google.accounts.id.initialize({
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "1085823985818-6m0krg209lkisffu6vol2ioft8vp0vre.apps.googleusercontent.com",
+          callback: handleGoogleCredentialResponse,
+        });
+        const container = document.getElementById("google-signin-btn-container");
+        if (container) {
+          container.innerHTML = "";
+          window.google.accounts.id.renderButton(container, {
+            theme: "outline",
+            size: "large",
+            text: isLogin ? "signin_with" : "signup_with",
+            width: "320"
+          });
         }
-      }, 500);
-      return () => clearInterval(interval);
-    }
+      }
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [isLogin, showAuthModal]);
+
+  // Lock body scroll while modal is open to prevent page jumps
+  useEffect(() => {
+    if (showAuthModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showAuthModal]);
 
   const openRegisterModal = () => {
     setIsLogin(false);
@@ -284,6 +307,47 @@ export default function Login({ onLogin }) {
           --phone-frame-border: #1f2937;
           --phone-screen-bg: #f8fafc;
           --phone-notch-bg: #000000;
+        /* Ultra-Smooth Hardware-Accelerated Auth Modal */
+        .auth-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 10000;
+          background: rgba(0, 0, 0, 0.72);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          overflow-y: auto;
+          animation: modalOverlayFade 0.2s ease-out forwards;
+          will-change: opacity;
+        }
+        .auth-modal-card {
+          position: relative;
+          max-width: 460px;
+          width: 100%;
+          margin: auto;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+          border: 1px solid var(--sano-glass-border);
+          background: var(--sano-card-bg);
+          border-radius: 28px;
+          animation: modalPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          will-change: transform, opacity;
+          transform: translateZ(0);
+        }
+        @keyframes modalOverlayFade {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes modalPopIn {
+          from { opacity: 0; transform: scale(0.96) translateY(10px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         /* Ambient Background Glows */
@@ -3075,41 +3139,12 @@ export default function Login({ onLogin }) {
       {/* Auth Modal Overlay */}
       {showAuthModal && (
         <div 
-          className="auth-modal-overlay animate-fade-in"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 10000,
-            background: "rgba(0, 0, 0, 0.75)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            overflowY: "auto"
-          }}
+          className="auth-modal-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowAuthModal(false);
           }}
         >
-          <div 
-            className="login-card"
-            style={{
-              position: "relative",
-              maxWidth: "460px",
-              width: "100%",
-              margin: "auto",
-              maxHeight: "90vh",
-              overflowY: "auto",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              border: "1px solid var(--sano-glass-border)",
-              background: "var(--sano-card-bg)"
-            }}
-          >
+          <div className="login-card auth-modal-card">
             <button
               type="button"
               onClick={() => setShowAuthModal(false)}
