@@ -1967,13 +1967,13 @@ export default function Login({ onLogin }) {
             src={theme === "light" ? "/logo-light.png" : "/logo-full.png"} 
             alt="ZEROFIT" 
             style={{ 
-              height: "64px", 
+              height: "50px", 
               width: "auto", 
               objectFit: "contain"
             }} 
           />
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginLeft: "auto" }}>
           <button
             type="button"
             onClick={toggleTheme}
@@ -1981,19 +1981,20 @@ export default function Login({ onLogin }) {
               background: "rgba(255, 255, 255, 0.08)",
               border: "1px solid var(--sano-glass-border)",
               color: "var(--sano-dark)",
-              padding: "8px 16px",
-              borderRadius: "20px",
-              fontSize: "0.85rem",
-              fontWeight: "600",
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              fontSize: "1.25rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
-              gap: "6px",
+              justifyContent: "center",
               transition: "all 0.2s ease",
+              flexShrink: 0
             }}
             title={theme === "dark" ? "Cambiar a Modo Claro" : "Cambiar a Modo Oscuro"}
           >
-            {theme === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+            {theme === "dark" ? "☀️" : "🌙"}
           </button>
           <button type="button" className="header-btn" onClick={scrollToLogin}>
             Acceder
