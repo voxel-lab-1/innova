@@ -63,6 +63,19 @@ function App() {
   });
   const [showQrModal, setShowQrModal] = useState(false);
 
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("zerofit_theme") || "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("zerofit_theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "dark" ? "light" : "dark"));
+  };
+
   const handleLoginSuccess = (user, rememberMe, token) => {
     setCurrentUser(user);
     const storage = rememberMe ? localStorage : sessionStorage;
@@ -690,6 +703,28 @@ function App() {
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            style={{
+              background: "var(--bg-main)",
+              border: "1px solid var(--border-color)",
+              color: "var(--text-main)",
+              padding: "6px 14px",
+              borderRadius: "20px",
+              fontSize: "0.85rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              transition: "all var(--transition-fast)",
+            }}
+            title={theme === "dark" ? "Cambiar a Tema Claro" : "Cambiar a Tema Oscuro"}
+          >
+            {theme === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+          </button>
+
           <div style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
             {currentUser?.role === "admin" ? "Modo Administrador" : `Entrenador: ${currentUser?.name}`}
           </div>
