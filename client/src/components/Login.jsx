@@ -28,6 +28,7 @@ export default function Login({ onLogin }) {
   // FAQ & Modal State
   const [activeFaq, setActiveFaq] = useState(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("free");
 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("zerofit_theme") || "dark";
@@ -244,7 +245,8 @@ export default function Login({ onLogin }) {
     };
   }, [showAuthModal]);
 
-  const openRegisterModal = () => {
+  const openRegisterModal = (plan = "free") => {
+    setSelectedPlan(plan);
     setIsLogin(false);
     setError("");
     setSuccess("");
@@ -2070,8 +2072,8 @@ export default function Login({ onLogin }) {
           >
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
-          <button type="button" className="header-btn" onClick={openLoginModal}>
-            Ingresar
+          <button type="button" className="header-btn" onClick={() => openRegisterModal("free")}>
+            Regístrate
           </button>
         </div>
       </header>
@@ -2412,8 +2414,8 @@ export default function Login({ onLogin }) {
             </div>
           </div>
 
-          <button type="button" className="hero-cta-btn" onClick={openLoginModal}>
-            Ingresar al Portal
+          <button type="button" className="hero-cta-btn" onClick={() => openRegisterModal("free")}>
+            Regístrate Gratis
             <span className="arrow-icon">→</span>
           </button>
         </div>
@@ -2974,7 +2976,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> Planes de ejercicio ilimitados</li>
               <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> IA de Postura avanzada</li>
             </ul>
-            <button className="plan-btn" onClick={openRegisterModal}>Comenzar Gratis</button>
+            <button className="plan-btn" onClick={() => openRegisterModal("free")}>Comenzar Gratis</button>
           </div>
 
           {/* Plan Pro */}
@@ -2989,7 +2991,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item"><span className="feature-check">✓</span> Biblioteca de Ejercicios personalizada</li>
               <li className="plan-feature-item"><span className="feature-check">✓</span> Generación con Gemini AI</li>
             </ul>
-            <button className="plan-btn primary-btn" onClick={openRegisterModal}>Adquirir Plan Pro</button>
+            <button className="plan-btn primary-btn" onClick={() => openRegisterModal("pro")}>Adquirir Plan Pro</button>
           </div>
 
           {/* Plan Gym */}
@@ -3002,7 +3004,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item"><span className="feature-check">✓</span> Soporte Prioritario 24/7</li>
               <li className="plan-feature-item"><span className="feature-check">✓</span> Todas las funciones de la IA</li>
             </ul>
-            <button className="plan-btn" onClick={openRegisterModal}>Contactar Elite</button>
+            <button className="plan-btn" onClick={() => openRegisterModal("elite")}>Contactar Elite</button>
           </div>
         </div>
       </section>
@@ -3191,7 +3193,7 @@ export default function Login({ onLogin }) {
             <p className="login-desc">
               {isLogin 
                 ? "Ingresa tus credenciales de entrenador." 
-                : "Accede a tu propio portal de entrenamiento independiente."}
+                : "Selecciona tu plan y accede a tu plataforma deportiva."}
             </p>
             
             {isLogin ? (
@@ -3251,9 +3253,78 @@ export default function Login({ onLogin }) {
                     "Ingresar a la Plataforma"
                   )}
                 </button>
+
+                <p style={{ textAlign: "center", marginTop: "12px", fontSize: "0.82rem", color: "var(--text-muted)" }}>
+                  ¿Aún no tienes cuenta?{" "}
+                  <span onClick={() => { setIsLogin(false); setError(""); setSuccess(""); }} style={{ color: "var(--sano-teal)", cursor: "pointer", fontWeight: "700", textDecoration: "underline" }}>
+                    Regístrate Gratis aquí
+                  </span>
+                </p>
               </form>
             ) : (
               <form className="login-form" onSubmit={handleRegisterSubmit}>
+                {/* Selector Visual de los 3 Planes */}
+                <div className="input-group" style={{ marginBottom: "14px" }}>
+                  <label className="input-label" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span>Plan Seleccionado</span>
+                    <span style={{ fontSize: "0.75rem", color: "var(--sano-teal)", fontWeight: 700 }}>
+                      {selectedPlan === "free" ? "Semilla (Gratis)" : selectedPlan === "pro" ? "Profesional Pro ($19.99/m)" : "Elite Gimnasio ($49.99/m)"}
+                    </span>
+                  </label>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", marginTop: "6px" }}>
+                    <div 
+                      onClick={() => setSelectedPlan("free")}
+                      style={{
+                        border: selectedPlan === "free" ? "2px solid var(--sano-teal)" : "1px solid var(--sano-glass-border)",
+                        background: selectedPlan === "free" ? "rgba(31, 211, 144, 0.12)" : "var(--sano-input-bg)",
+                        borderRadius: "12px",
+                        padding: "10px 4px",
+                        textAlign: "center",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <div style={{ fontSize: "0.75rem", fontWeight: "800", color: "var(--sano-dark)" }}>Semilla</div>
+                      <div style={{ fontSize: "0.7rem", fontWeight: "700", color: "var(--sano-teal)" }}>Gratis</div>
+                      <div style={{ fontSize: "0.6rem", color: "var(--text-muted)" }}>1 Atleta</div>
+                    </div>
+
+                    <div 
+                      onClick={() => setSelectedPlan("pro")}
+                      style={{
+                        border: selectedPlan === "pro" ? "2px solid var(--sano-teal)" : "1px solid var(--sano-glass-border)",
+                        background: selectedPlan === "pro" ? "rgba(31, 211, 144, 0.12)" : "var(--sano-input-bg)",
+                        borderRadius: "12px",
+                        padding: "10px 4px",
+                        textAlign: "center",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <div style={{ fontSize: "0.75rem", fontWeight: "800", color: "var(--sano-dark)" }}>Pro ⭐</div>
+                      <div style={{ fontSize: "0.7rem", fontWeight: "700", color: "var(--sano-teal)" }}>$19.99/m</div>
+                      <div style={{ fontSize: "0.6rem", color: "var(--text-muted)" }}>30 Atletas</div>
+                    </div>
+
+                    <div 
+                      onClick={() => setSelectedPlan("elite")}
+                      style={{
+                        border: selectedPlan === "elite" ? "2px solid var(--sano-teal)" : "1px solid var(--sano-glass-border)",
+                        background: selectedPlan === "elite" ? "rgba(31, 211, 144, 0.12)" : "var(--sano-input-bg)",
+                        borderRadius: "12px",
+                        padding: "10px 4px",
+                        textAlign: "center",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <div style={{ fontSize: "0.75rem", fontWeight: "800", color: "var(--sano-dark)" }}>Elite</div>
+                      <div style={{ fontSize: "0.7rem", fontWeight: "700", color: "var(--sano-teal)" }}>$49.99/m</div>
+                      <div style={{ fontSize: "0.6rem", color: "var(--text-muted)" }}>Ilimitado</div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="input-group">
                   <label className="input-label">Nombre Completo</label>
                   <div className="input-field-wrapper">
@@ -3359,6 +3430,13 @@ export default function Login({ onLogin }) {
                     "Registrarme como Entrenador"
                   )}
                 </button>
+
+                <p style={{ textAlign: "center", marginTop: "12px", fontSize: "0.82rem", color: "var(--text-muted)" }}>
+                  ¿Ya tienes cuenta de entrenador?{" "}
+                  <span onClick={() => { setIsLogin(true); setError(""); setSuccess(""); }} style={{ color: "var(--sano-teal)", cursor: "pointer", fontWeight: "700", textDecoration: "underline" }}>
+                    Inicia Sesión aquí
+                  </span>
+                </p>
               </form>
             )}
 
