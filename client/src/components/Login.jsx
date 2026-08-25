@@ -1694,12 +1694,12 @@ export default function Login({ onLogin }) {
         <div className="hero-content">
           <div className="hero-tag">Consola de Logística Deportiva</div>
           <h1 className="hero-title">
-            Tu CRM Deportivo e Inteligencia Antropométrica <br />
-            <span className="hero-gradient-text">Potenciada con IA</span>
+            La Consola Todo en Uno para Entrenadores de Élite: <br />
+            <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
           </h1>
           <p className="hero-subtitle">
-            La plataforma definitiva para preparadores físicos y nutricionistas. Diseña somatocartas, 
-            monitorea macronutrientes, prescribe suplementos con alertas inteligentes y analiza biomecánica en tiempo real.
+            La plataforma definitiva para preparadores físicos profesionales. Gestiona tus atletas, 
+            diseña somatocartas ISAK, monitorea su stock de suplementación y analiza su postura con IA en un solo lugar.
           </p>
 
           {/* Social Proof Stats */}
