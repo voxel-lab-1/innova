@@ -315,6 +315,8 @@ export default function Login({ onLogin }) {
           --phone-frame-border: #1f2937;
           --phone-screen-bg: #f8fafc;
           --phone-notch-bg: #000000;
+        }
+
         /* Ultra-Smooth Stable Auth Modal (Zero-Shift & Zero-Jump) */
         .auth-modal-overlay {
           position: fixed;
