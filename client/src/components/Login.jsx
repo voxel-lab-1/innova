@@ -218,13 +218,22 @@ export default function Login({ onLogin }) {
       }, 500);
       return () => clearInterval(interval);
     }
-  }, [isLogin]);
+  }, [isLogin, showAuthModal]);
 
-  const scrollToLogin = () => {
-    const loginSection = document.getElementById("login-section");
-    if (loginSection) {
-      loginSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const openRegisterModal = () => {
+    setIsLogin(false);
+    setError("");
+    setSuccess("");
+    setShowAuthModal(true);
+  };
+
+  const openLoginModal = () => {
+    setIsLogin(true);
+    setError("");
+    setSuccess("");
+    setShowAuthModal(true);
   };
 
   return (
@@ -1996,8 +2005,8 @@ export default function Login({ onLogin }) {
           >
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
-          <button type="button" className="header-btn" onClick={scrollToLogin}>
-            Acceder
+          <button type="button" className="header-btn" onClick={openRegisterModal}>
+            Regístrate
           </button>
         </div>
       </header>
@@ -2338,7 +2347,7 @@ export default function Login({ onLogin }) {
             </div>
           </div>
 
-          <button type="button" className="hero-cta-btn" onClick={scrollToLogin}>
+          <button type="button" className="hero-cta-btn" onClick={openRegisterModal}>
             Ingresar al Portal
             <span className="arrow-icon">→</span>
           </button>
@@ -2900,7 +2909,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> Planes de ejercicio ilimitados</li>
               <li className="plan-feature-item" style={{textDecoration: "line-through", opacity: 0.5}}><span className="feature-check">✕</span> IA de Postura avanzada</li>
             </ul>
-            <button className="plan-btn" onClick={scrollToLogin}>Comenzar Gratis</button>
+            <button className="plan-btn" onClick={openRegisterModal}>Comenzar Gratis</button>
           </div>
 
           {/* Plan Pro */}
@@ -2915,7 +2924,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item"><span className="feature-check">✓</span> Biblioteca de Ejercicios personalizada</li>
               <li className="plan-feature-item"><span className="feature-check">✓</span> Generación con Gemini AI</li>
             </ul>
-            <button className="plan-btn primary-btn" onClick={scrollToLogin}>Adquirir Plan Pro</button>
+            <button className="plan-btn primary-btn" onClick={openRegisterModal}>Adquirir Plan Pro</button>
           </div>
 
           {/* Plan Gym */}
@@ -2928,7 +2937,7 @@ export default function Login({ onLogin }) {
               <li className="plan-feature-item"><span className="feature-check">✓</span> Soporte Prioritario 24/7</li>
               <li className="plan-feature-item"><span className="feature-check">✓</span> Todas las funciones de la IA</li>
             </ul>
-            <button className="plan-btn" onClick={scrollToLogin}>Contactar Elite</button>
+            <button className="plan-btn" onClick={openRegisterModal}>Contactar Elite</button>
           </div>
         </div>
       </section>
@@ -3062,155 +3071,110 @@ export default function Login({ onLogin }) {
         </div>
       </section>
 
-      {/* Login Portal Section */}
-      <section className="login-section" id="login-section">
-        <div className="login-card">
-          <div className="login-tabs">
-            <div 
-              className={`login-tab ${isLogin ? "active" : ""}`} 
-              onClick={() => { setIsLogin(true); setError(""); setSuccess(""); }}
+      {/* Auth Modal Overlay */}
+      {showAuthModal && (
+        <div 
+          className="auth-modal-overlay animate-fade-in"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 10000,
+            background: "rgba(0, 0, 0, 0.75)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            overflowY: "auto"
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowAuthModal(false);
+          }}
+        >
+          <div 
+            className="login-card"
+            style={{
+              position: "relative",
+              maxWidth: "460px",
+              width: "100%",
+              margin: "auto",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              border: "1px solid var(--sano-glass-border)",
+              background: "var(--sano-card-bg)"
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setShowAuthModal(false)}
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                background: "rgba(255, 255, 255, 0.1)",
+                border: "none",
+                color: "var(--sano-dark)",
+                width: "32px",
+                height: "32px",
+                borderRadius: "50%",
+                fontSize: "1.1rem",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10
+              }}
+              title="Cerrar"
             >
-              Ingresar
+              ✕
+            </button>
+
+            <div className="login-tabs">
+              <div 
+                className={`login-tab ${isLogin ? "active" : ""}`} 
+                onClick={() => { setIsLogin(true); setError(""); setSuccess(""); }}
+              >
+                Ingresar
+              </div>
+              <div 
+                className={`login-tab ${!isLogin ? "active" : ""}`} 
+                onClick={() => { setIsLogin(false); setError(""); setSuccess(""); }}
+              >
+                Registrarse (Gratis)
+              </div>
             </div>
-            <div 
-              className={`login-tab ${!isLogin ? "active" : ""}`} 
-              onClick={() => { setIsLogin(false); setError(""); setSuccess(""); }}
-            >
-              Registrarse (Gratis)
-            </div>
-          </div>
 
-          <h2 className="login-title">
-            {isLogin ? "Acceso al Portal ZEROFIT" : "Crea tu Cuenta de Entrenador"}
-          </h2>
-          <p className="login-desc">
-            {isLogin 
-              ? "Ingresa tus credenciales de entrenador." 
-              : "Accede a tu propio portal de entrenamiento independiente."}
-          </p>
-          
-          {isLogin ? (
-            <form className="login-form" onSubmit={handleLoginSubmit}>
-              <div className="input-group">
-                <label className="input-label">Correo Electrónico / Usuario</label>
-                <div className="input-field-wrapper">
-                  <input
-                    type="text"
-                    className="input-field"
-                    placeholder="Ej. entrenador@correo.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              <div className="input-group">
-                <label className="input-label">Contraseña</label>
-                <div className="input-field-wrapper">
-                  <input
-                    type="password"
-                    className="input-field"
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              <div className="options-row">
-                <label className="checkbox-container">
-                  <input
-                    type="checkbox"
-                    className="checkbox-input"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    disabled={loading}
-                  />
-                  Mantener mi sesión iniciada
-                </label>
-              </div>
-
-              {error && <div className="error-message">{error}</div>}
-
-              <button type="submit" className="submit-btn" disabled={loading}>
-                {loading ? (
-                  <>
-                    <div className="spinner"></div>
-                    Iniciando Sesión...
-                  </>
-                ) : (
-                  "Ingresar a la Plataforma"
-                )}
-              </button>
-            </form>
-          ) : (
-            <form className="login-form" onSubmit={handleRegisterSubmit}>
-              <div className="input-group">
-                <label className="input-label">Nombre Completo</label>
-                <div className="input-field-wrapper">
-                  <input
-                    type="text"
-                    className="input-field"
-                    placeholder="Ej. Juan Pérez"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              <div className="input-group">
-                <label className="input-label">Correo Electrónico</label>
-                <div className="input-field-wrapper">
-                  <input
-                    type="email"
-                    className="input-field"
-                    placeholder="Ej. juan@correo.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+            <h2 className="login-title">
+              {isLogin ? "Acceso al Portal ZEROFIT" : "Crea tu Cuenta de Entrenador"}
+            </h2>
+            <p className="login-desc">
+              {isLogin 
+                ? "Ingresa tus credenciales de entrenador." 
+                : "Accede a tu propio portal de entrenamiento independiente."}
+            </p>
+            
+            {isLogin ? (
+              <form className="login-form" onSubmit={handleLoginSubmit}>
                 <div className="input-group">
-                  <label className="input-label">País</label>
+                  <label className="input-label">Correo Electrónico / Usuario</label>
                   <div className="input-field-wrapper">
                     <input
                       type="text"
                       className="input-field"
-                      placeholder="Ej. México"
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
+                      placeholder="Ej. entrenador@correo.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       disabled={loading}
                     />
                   </div>
                 </div>
-                <div className="input-group">
-                  <label className="input-label">Celular</label>
-                  <div className="input-field-wrapper">
-                    <input
-                      type="tel"
-                      className="input-field"
-                      placeholder="Ej. +5212345678"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 <div className="input-group">
                   <label className="input-label">Contraseña</label>
                   <div className="input-field-wrapper">
@@ -3225,45 +3189,151 @@ export default function Login({ onLogin }) {
                     />
                   </div>
                 </div>
+
+                <div className="options-row">
+                  <label className="checkbox-container">
+                    <input
+                      type="checkbox"
+                      className="checkbox-input"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      disabled={loading}
+                    />
+                    Mantener mi sesión iniciada
+                  </label>
+                </div>
+
+                {error && <div className="error-message">{error}</div>}
+
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <div className="spinner"></div>
+                      Iniciando Sesión...
+                    </>
+                  ) : (
+                    "Ingresar a la Plataforma"
+                  )}
+                </button>
+              </form>
+            ) : (
+              <form className="login-form" onSubmit={handleRegisterSubmit}>
                 <div className="input-group">
-                  <label className="input-label">Confirmar</label>
+                  <label className="input-label">Nombre Completo</label>
                   <div className="input-field-wrapper">
                     <input
-                      type="password"
+                      type="text"
                       className="input-field"
-                      placeholder="••••••••"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Ej. Juan Pérez"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       required
                       disabled={loading}
                     />
                   </div>
                 </div>
-              </div>
 
-              {error && <div className="error-message">{error}</div>}
-              {success && <div className="success-message" style={{ background: "rgba(50, 205, 50, 0.08)", border: "1px solid rgba(50, 205, 50, 0.2)", color: "var(--sano-teal)", padding: "12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>{success}</div>}
+                <div className="input-group">
+                  <label className="input-label">Correo Electrónico</label>
+                  <div className="input-field-wrapper">
+                    <input
+                      type="email"
+                      className="input-field"
+                      placeholder="Ej. juan@correo.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
 
-              <button type="submit" className="submit-btn" disabled={loading}>
-                {loading ? (
-                  <>
-                    <div className="spinner"></div>
-                    Creando Cuenta...
-                  </>
-                ) : (
-                  "Registrarme como Entrenador"
-                )}
-              </button>
-            </form>
-          )}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                  <div className="input-group">
+                    <label className="input-label">País</label>
+                    <div className="input-field-wrapper">
+                      <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Ej. México"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
+                  <div className="input-group">
+                    <label className="input-label">Celular</label>
+                    <div className="input-field-wrapper">
+                      <input
+                        type="tel"
+                        className="input-field"
+                        placeholder="Ej. +5212345678"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          <div className="divider">o bien</div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                  <div className="input-group">
+                    <label className="input-label">Contraseña</label>
+                    <div className="input-field-wrapper">
+                      <input
+                        type="password"
+                        className="input-field"
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
+                  <div className="input-group">
+                    <label className="input-label">Confirmar</label>
+                    <div className="input-field-wrapper">
+                      <input
+                        type="password"
+                        className="input-field"
+                        placeholder="••••••••"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "12px", minHeight: "44px" }}>
-            <div id="google-signin-btn-container" style={{ width: "320px" }}></div>
+                {error && <div className="error-message">{error}</div>}
+                {success && <div className="success-message" style={{ background: "rgba(50, 205, 50, 0.08)", border: "1px solid rgba(50, 205, 50, 0.2)", color: "var(--sano-teal)", padding: "12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>{success}</div>}
+
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <div className="spinner"></div>
+                      Creando Cuenta...
+                    </>
+                  ) : (
+                    "Registrarme como Entrenador"
+                  )}
+                </button>
+              </form>
+            )}
+
+            <div className="divider">o bien</div>
+
+            <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "12px", minHeight: "44px" }}>
+              <div id="google-signin-btn-container" style={{ width: "320px" }}></div>
+            </div>
           </div>
         </div>
-      </section>
+      )}
 
       {/* Footer */}
       <footer className="landing-footer">
