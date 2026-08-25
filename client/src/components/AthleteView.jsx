@@ -705,6 +705,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
           <SomatotypeBodyVisualizer
             evaluations={patientDetail.evaluations || []}
             activeTab={athleteTab === "somatotype" ? "anthropometry" : athleteTab}
+            theme={theme}
           />
 
           {/* Body Trend Chart */}

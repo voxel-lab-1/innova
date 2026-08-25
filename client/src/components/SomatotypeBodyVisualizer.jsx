@@ -1,7 +1,90 @@
 import React from "react";
 
-const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry", setActiveTab }) => {
+const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry", setActiveTab, theme }) => {
   const [selectedMetric, setSelectedMetric] = React.useState("fat"); // "fat" or "lean"
+
+  // Detect theme dynamically (from theme prop or data-theme attribute)
+  const [isDark, setIsDark] = React.useState(() => {
+    if (theme) return theme === "dark";
+    if (typeof document !== "undefined") {
+      return document.documentElement.getAttribute("data-theme") !== "light";
+    }
+    return true;
+  });
+
+  React.useEffect(() => {
+    if (theme) {
+      setIsDark(theme === "dark");
+      return;
+    }
+    const checkTheme = () => {
+      const themeAttr = document.documentElement.getAttribute("data-theme");
+      setIsDark(themeAttr !== "light");
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, [theme]);
+
+  const themeColors = {
+    cardBg: isDark
+      ? "linear-gradient(180deg, #121721 0%, #0a0d14 100%)"
+      : "linear-gradient(180deg, #e7f1f3 0%, #edf4f5 100%)",
+    cardBorder: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid #b8cdd2",
+    cardShadow: isDark
+      ? "0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)"
+      : "0 10px 30px rgba(35, 127, 148, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
+    textColor: isDark ? "#f1f5f9" : "#1e3b43",
+    titleColor: isDark ? "#f8fafc" : "#0f2d37",
+    accentColor: isDark ? "#1fd390" : "#237f94",
+    
+    // Selector buttons
+    btnActiveBg: isDark
+      ? "linear-gradient(135deg, #1fd390 0%, #18b67b 100%)"
+      : "linear-gradient(135deg, #237f94 0%, #1a5f6f 100%)",
+    btnActiveColor: isDark ? "#0a0d14" : "#ffffff",
+    btnActiveBorder: isDark ? "#1fd390" : "#237f94",
+    btnInactiveBg: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.6)",
+    btnInactiveColor: isDark ? "#94a3b8" : "#237f94",
+    btnInactiveBorder: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(35, 127, 148, 0.2)",
+    
+    // SVG & Grid
+    gridBgRect: isDark ? "rgba(31, 211, 144, 0.02)" : "rgba(35, 127, 148, 0.02)",
+    gridBorderRect: isDark ? "rgba(31, 211, 144, 0.15)" : "rgba(35, 127, 148, 0.1)",
+    gridDottedLines: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(35, 127, 148, 0.08)",
+    axisLine: isDark ? "#1fd390" : "#237f94",
+    axisText: isDark ? "#94a3b8" : "#0f2d37",
+    axisTitle: isDark ? "#1fd390" : "#237f94",
+    timelineText: isDark ? "#94a3b8" : "#4e6a73",
+
+    // Trend Areas
+    weightTrendLine: isDark ? "#1fd390" : "#237f94",
+    rightTrendFat: isDark ? "#f59e0b" : "#e07a5f",
+    rightTrendLean: isDark ? "#1fd390" : "#10b981",
+
+    // Node tooltips
+    nodeTooltipBg: isDark ? "#1e293b" : "#0f2d37",
+
+    // Floating Badge
+    badgeBg: isDark ? "rgba(31, 211, 144, 0.12)" : "rgba(35, 127, 148, 0.1)",
+    badgeBorder: isDark ? "1px solid rgba(31, 211, 144, 0.3)" : "1px solid rgba(35, 127, 148, 0.3)",
+    badgeColor: isDark ? "#1fd390" : "#237f94",
+
+    // Metric Summary Columns
+    metricHeader: isDark ? "#94a3b8" : "#4e6a73",
+    metricValue: isDark ? "#f8fafc" : "#0f2d37",
+    metricSubtext: isDark ? "#64748b" : "#688089",
+    metricDivider: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(35, 127, 148, 0.15)",
+
+    // Category section & Bottom Nav
+    subSectionBg: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.4)",
+    subSectionBorder: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(35, 127, 148, 0.08)",
+    bottomNavBg: isDark ? "rgba(18, 23, 33, 0.8)" : "rgba(200, 220, 222, 0.4)",
+    bottomNavBorder: isDark ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid rgba(35, 127, 148, 0.12)",
+    bottomNavActive: isDark ? "#1fd390" : "#0f2d37",
+    bottomNavInactive: isDark ? "#64748b" : "#526c75",
+  };
 
   // Sort evaluations chronologically to get the latest
   const sortedEvals = [...evaluations].sort(
@@ -229,12 +312,12 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
   return (
     <div
       style={{
-        background: "linear-gradient(180deg, #e7f1f3 0%, #edf4f5 100%)",
-        border: "1px solid #b8cdd2",
+        background: themeColors.cardBg,
+        border: themeColors.cardBorder,
         borderRadius: "24px",
         padding: "24px 16px",
-        boxShadow: "0 10px 30px rgba(35, 127, 148, 0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
-        color: "#1e3b43",
+        boxShadow: themeColors.cardShadow,
+        color: themeColors.textColor,
         fontFamily: "'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
         display: "flex",
         flexDirection: "column",
@@ -244,10 +327,10 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
     >
       {/* Title block with dumbbell ornaments */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "16px" }}>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#237f94" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={themeColors.accentColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
           <rect x="2" y="9" width="3" height="6" rx="1" />
           <rect x="19" y="9" width="3" height="6" rx="1" />
-          <line x1="5" y1="12" x2="19" y2="12" strokeWidth="3" stroke="#237f94" />
+          <line x1="5" y1="12" x2="19" y2="12" strokeWidth="3" stroke={themeColors.accentColor} />
           <rect x="5" y="7" width="2" height="10" rx="0.5" />
           <rect x="17" y="7" width="2" height="10" rx="0.5" />
         </svg>
@@ -257,7 +340,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             fontWeight: "800",
             textAlign: "center",
             margin: 0,
-            color: "#0f2d37",
+            color: themeColors.titleColor,
             letterSpacing: "0.03em",
             lineHeight: "1.2",
             textTransform: "uppercase",
@@ -265,10 +348,10 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
         >
           Tablero de Datos Antropométricos y Corporales Detallados
         </h2>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#237f94" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={themeColors.accentColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
           <rect x="2" y="9" width="3" height="6" rx="1" />
           <rect x="19" y="9" width="3" height="6" rx="1" />
-          <line x1="5" y1="12" x2="19" y2="12" strokeWidth="3" stroke="#237f94" />
+          <line x1="5" y1="12" x2="19" y2="12" strokeWidth="3" stroke={themeColors.accentColor} />
           <rect x="5" y="7" width="2" height="10" rx="0.5" />
           <rect x="17" y="7" width="2" height="10" rx="0.5" />
         </svg>
@@ -292,9 +375,9 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             padding: "8px 16px",
             borderRadius: "20px",
             border: "1px solid",
-            borderColor: selectedMetric === "fat" ? "#237f94" : "rgba(35, 127, 148, 0.2)",
-            background: selectedMetric === "fat" ? "linear-gradient(135deg, #237f94 0%, #1a5f6f 100%)" : "rgba(255, 255, 255, 0.6)",
-            color: selectedMetric === "fat" ? "#ffffff" : "#237f94",
+            borderColor: selectedMetric === "fat" ? themeColors.btnActiveBorder : themeColors.btnInactiveBorder,
+            background: selectedMetric === "fat" ? themeColors.btnActiveBg : themeColors.btnInactiveBg,
+            color: selectedMetric === "fat" ? themeColors.btnActiveColor : themeColors.btnInactiveColor,
             fontWeight: "700",
             fontSize: "0.85rem",
             cursor: "pointer",
@@ -314,9 +397,9 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             padding: "8px 16px",
             borderRadius: "20px",
             border: "1px solid",
-            borderColor: selectedMetric === "lean" ? "#237f94" : "rgba(35, 127, 148, 0.2)",
-            background: selectedMetric === "lean" ? "linear-gradient(135deg, #237f94 0%, #1a5f6f 100%)" : "rgba(255, 255, 255, 0.6)",
-            color: selectedMetric === "lean" ? "#ffffff" : "#237f94",
+            borderColor: selectedMetric === "lean" ? themeColors.btnActiveBorder : themeColors.btnInactiveBorder,
+            background: selectedMetric === "lean" ? themeColors.btnActiveBg : themeColors.btnInactiveBg,
+            color: selectedMetric === "lean" ? themeColors.btnActiveColor : themeColors.btnInactiveColor,
             fontWeight: "700",
             fontSize: "0.85rem",
             cursor: "pointer",
@@ -599,7 +682,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           </defs>
 
           {/* Grid Background */}
-          <rect x={chartXStart} y={chartYStart} width={chartWidth} height={chartHeight} fill="rgba(35, 127, 148, 0.02)" rx="8" stroke="rgba(35, 127, 148, 0.1)" strokeWidth="1" />
+          <rect x={chartXStart} y={chartYStart} width={chartWidth} height={chartHeight} fill={themeColors.gridBgRect} rx="8" stroke={themeColors.gridBorderRect} strokeWidth="1" />
 
           {/* Vertical dotted gridlines */}
           {chartData.map((d, i) => {
@@ -611,7 +694,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
                 y1={chartYStart}
                 x2={x}
                 y2={chartYEnd}
-                stroke="rgba(35, 127, 148, 0.08)"
+                stroke={themeColors.gridDottedLines}
                 strokeDasharray="3,3"
                 strokeWidth="1"
               />
@@ -626,7 +709,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               y1={yVal}
               x2={chartXEnd}
               y2={yVal}
-              stroke="rgba(35, 127, 148, 0.08)"
+              stroke={themeColors.gridDottedLines}
               strokeDasharray="3,3"
               strokeWidth="1"
             />
@@ -638,7 +721,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             y1={chartYStart}
             x2={chartXStart}
             y2={chartYEnd}
-            stroke="#237f94"
+            stroke={themeColors.accentColor}
             strokeWidth="1.5"
             opacity="0.6"
           />
@@ -650,7 +733,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               y1={yVal}
               x2={chartXStart}
               y2={yVal}
-              stroke="#237f94"
+              stroke={themeColors.accentColor}
               strokeWidth="1.5"
               opacity="0.6"
             />
@@ -670,7 +753,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               textAnchor="end"
               fontSize="11"
               fontWeight="700"
-              fill="#0f2d37"
+              fill={themeColors.axisText}
               opacity="0.8"
             >
               {item.val}
@@ -685,7 +768,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             fontSize="12"
             fontWeight="800"
             letterSpacing="0.05em"
-            fill="#237f94"
+            fill={themeColors.axisTitle}
             opacity="0.9"
           >
             Weight (kg)
@@ -697,7 +780,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             y1={chartYStart}
             x2={chartXEnd}
             y2={chartYEnd}
-            stroke="#237f94"
+            stroke={themeColors.accentColor}
             strokeWidth="1.5"
             opacity="0.6"
           />
@@ -709,7 +792,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               y1={yVal}
               x2={chartXEnd + 5}
               y2={yVal}
-              stroke="#237f94"
+              stroke={themeColors.accentColor}
               strokeWidth="1.5"
               opacity="0.6"
             />
@@ -729,7 +812,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               textAnchor="start"
               fontSize="11"
               fontWeight="700"
-              fill="#0f2d37"
+              fill={themeColors.axisText}
               opacity="0.8"
             >
               {item.val}%
@@ -744,7 +827,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             fontSize="12"
             fontWeight="800"
             letterSpacing="0.05em"
-            fill="#237f94"
+            fill={themeColors.axisTitle}
             opacity="0.9"
           >
             {selectedMetric === "fat" ? "Grasa Corporal (%)" : "Masa Magra (%)"}
@@ -761,7 +844,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
                 textAnchor="middle"
                 fontSize="11"
                 fontWeight="700"
-                fill="#4e6a73"
+                fill={themeColors.timelineText}
               >
                 {d.date}
               </text>
@@ -774,7 +857,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           <path
             d={weightLinePath}
             fill="none"
-            stroke="#237f94"
+            stroke={themeColors.accentColor}
             strokeWidth="1.5"
             strokeDasharray="4,4"
             opacity="0.4"
@@ -789,7 +872,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           <path
             d={rightLinePath}
             fill="none"
-            stroke={selectedMetric === "fat" ? "#e07a5f" : "#10b981"}
+            stroke={selectedMetric === "fat" ? themeColors.rightTrendFat : themeColors.rightTrendLean}
             strokeWidth="3.5"
             opacity="0.95"
             style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.05))" }}
@@ -798,16 +881,16 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           {/* Interactive Chart Nodes & Tooltips (masked in center) */}
           {rightCoords.map((c, idx) => (
             <g key={`r-node-${idx}`}>
-              <circle cx={c.x} cy={c.y} r="5" fill={selectedMetric === "fat" ? "#e07a5f" : "#10b981"} stroke="#ffffff" strokeWidth="2.5" />
-              <circle cx={c.x} cy={c.y} r="10" fill={selectedMetric === "fat" ? "#e07a5f" : "#10b981"} fillOpacity="0.15" />
+              <circle cx={c.x} cy={c.y} r="5" fill={selectedMetric === "fat" ? themeColors.rightTrendFat : themeColors.rightTrendLean} stroke="#ffffff" strokeWidth="2.5" />
+              <circle cx={c.x} cy={c.y} r="10" fill={selectedMetric === "fat" ? themeColors.rightTrendFat : themeColors.rightTrendLean} fillOpacity="0.15" />
               <rect
                 x={c.x - 22}
                 y={c.y - 30}
                 width="44"
                 height="18"
                 rx="5"
-                fill="#0f2d37"
-                stroke={selectedMetric === "fat" ? "#e07a5f" : "#10b981"}
+                fill={themeColors.nodeTooltipBg}
+                stroke={selectedMetric === "fat" ? themeColors.rightTrendFat : themeColors.rightTrendLean}
                 strokeWidth="1"
               />
               <text
@@ -881,7 +964,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             style={{
               fontSize: "0.95rem",
               fontWeight: "800",
-              color: "#4e6a73",
+              color: themeColors.metricHeader,
               margin: 0,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
@@ -893,7 +976,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             style={{
               fontSize: "2.35rem",
               fontWeight: "900",
-              color: "#0f2d37",
+              color: themeColors.metricValue,
               margin: "6px 0",
               lineHeight: "1",
             }}
@@ -903,7 +986,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           <p
             style={{
               fontSize: "0.75rem",
-              color: "#688089",
+              color: themeColors.metricSubtext,
               margin: 0,
               fontStyle: "italic",
             }}
@@ -920,7 +1003,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             top: "20px",
             bottom: "0",
             width: "1.5px",
-            background: "rgba(35, 127, 148, 0.15)",
+            background: themeColors.metricDivider,
             transform: "translateX(-50%)",
           }}
         />
@@ -931,7 +1014,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             style={{
               fontSize: "0.95rem",
               fontWeight: "800",
-              color: "#4e6a73",
+              color: themeColors.metricHeader,
               margin: 0,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
@@ -943,7 +1026,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
             style={{
               fontSize: "2.35rem",
               fontWeight: "900",
-              color: "#0f2d37",
+              color: themeColors.metricValue,
               margin: "6px 0",
               lineHeight: "1",
             }}
@@ -953,7 +1036,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           <p
             style={{
               fontSize: "0.75rem",
-              color: "#688089",
+              color: themeColors.metricSubtext,
               margin: 0,
               fontStyle: "italic",
             }}
@@ -970,15 +1053,15 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           justifyContent: "space-between",
           alignItems: "center",
           gap: "12px",
-          background: "rgba(255, 255, 255, 0.4)",
+          background: themeColors.subSectionBg,
           borderRadius: "16px",
           padding: "10px 16px",
-          border: "1px solid rgba(35, 127, 148, 0.08)",
+          border: themeColors.subSectionBorder,
           margin: "0 8px",
         }}
       >
-        <span style={{ fontSize: "0.85rem", fontWeight: "700", color: "#4e6a73" }}>
-          Categoría: <span style={{ color: "#0f2d37" }}>{category}</span>
+        <span style={{ fontSize: "0.85rem", fontWeight: "700", color: themeColors.metricHeader }}>
+          Categoría: <span style={{ color: themeColors.metricValue }}>{category}</span>
         </span>
         <div style={{ display: "flex", gap: "8px", fontSize: "0.78rem" }}>
           <span style={{ padding: "4px 8px", background: "rgba(255, 69, 0, 0.08)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "8px", color: "#cf3c00", fontWeight: "700" }}>
@@ -1017,7 +1100,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               flexDirection: "column",
               alignItems: "center",
               gap: "4px",
-              color: activeTab === "nutrition" ? "#0f2d37" : "#526c75",
+              color: activeTab === "nutrition" ? themeColors.bottomNavActive : themeColors.bottomNavInactive,
               opacity: activeTab === "nutrition" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
@@ -1044,7 +1127,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               flexDirection: "column",
               alignItems: "center",
               gap: "4px",
-              color: activeTab === "anthropometry" ? "#0f2d37" : "#526c75",
+              color: activeTab === "anthropometry" ? themeColors.bottomNavActive : themeColors.bottomNavInactive,
               opacity: activeTab === "anthropometry" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
@@ -1074,7 +1157,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               flexDirection: "column",
               alignItems: "center",
               gap: "4px",
-              color: activeTab === "training" ? "#0f2d37" : "#526c75",
+              color: activeTab === "training" ? themeColors.bottomNavActive : themeColors.bottomNavInactive,
               opacity: activeTab === "training" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
@@ -1108,7 +1191,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               flexDirection: "column",
               alignItems: "center",
               gap: "4px",
-              color: "#526c75",
+              color: themeColors.bottomNavInactive,
               opacity: "0.7",
               outline: "none",
               transition: "all 0.3s ease",

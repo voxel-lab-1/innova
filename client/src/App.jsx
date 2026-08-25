@@ -701,25 +701,24 @@ function App() {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <button
-            type="button"
             onClick={toggleTheme}
             style={{
-              background: "var(--bg-main)",
+              background: "rgba(255, 255, 255, 0.05)",
               border: "1px solid var(--border-color)",
               color: "var(--text-main)",
-              padding: "6px 14px",
-              borderRadius: "20px",
-              fontSize: "0.85rem",
-              fontWeight: "600",
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              fontSize: "1.1rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
-              gap: "6px",
+              justifyContent: "center",
               transition: "all var(--transition-fast)",
             }}
-            title={theme === "dark" ? "Cambiar a Tema Claro" : "Cambiar a Tema Oscuro"}
+            title={theme === "dark" ? "Cambiar a Modo Claro" : "Cambiar a Modo Oscuro"}
           >
-            {theme === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+            {theme === "dark" ? "☀️" : "🌙"}
           </button>
 
           <div style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
@@ -1096,11 +1095,11 @@ function App() {
                     </div>
                   </div>
                   <div className="profile-actions">
-                    <button className="btn btn-secondary" onClick={() => setIsEditingPatient(true)}>
-                      Editar Perfil
+                    <button className="btn btn-secondary btn-sm" onClick={() => setIsEditingPatient(true)}>
+                      ✏️ Editar Perfil
                     </button>
-                    <button className="btn btn-danger" onClick={() => handleDeletePatient(selectedPatient.id)}>
-                      Eliminar Cuenta
+                    <button className="btn btn-danger btn-sm" onClick={() => handleDeletePatient(selectedPatient.id)}>
+                      🗑️ Eliminar Cuenta
                     </button>
                   </div>
                 </div>
@@ -1236,21 +1235,28 @@ function App() {
                   </div>
 
                   <div className="profile-actions">
-                    <button className="btn btn-secondary" style={{ border: "1px solid var(--accent)", color: "var(--accent)" }} onClick={handlePrintReport}>
-                      🖨️ Imprimir Reporte PDF
-                    </button>
-                    <button className="btn btn-secondary" style={{ border: "1px solid var(--primary)", color: "var(--primary)" }} onClick={() => setShowQrModal(true)}>
-                      🔗 Generar QR de Acceso
-                    </button>
-                    <button className="btn btn-secondary" style={{ border: "1px solid var(--primary)", color: "var(--primary)" }} onClick={() => setIsAthleteView(true)}>
-                      📱 Vista Móvil (Atleta PWA)
-                    </button>
-                    <button className="btn btn-secondary" onClick={() => setIsEditingPatient(true)}>
-                      Editar Perfil
-                    </button>
-                    <button className="btn btn-danger" onClick={() => handleDeletePatient(selectedPatient.id, selectedPatient.creatorId !== null, selectedPatient.creatorId)}>
-                      Eliminar Atleta
-                    </button>
+                    <div className="action-group">
+                      <button className="btn btn-secondary btn-sm" style={{ border: "1px solid var(--accent)", color: "var(--accent)" }} onClick={handlePrintReport}>
+                        🖨️ Imprimir Reporte PDF
+                      </button>
+                      <button className="btn btn-secondary btn-sm" style={{ border: "1px solid var(--primary)", color: "var(--primary)" }} onClick={() => setShowQrModal(true)}>
+                        🔗 Generar QR de Acceso
+                      </button>
+                      <button className="btn btn-secondary btn-sm" style={{ border: "1px solid var(--primary)", color: "var(--primary)" }} onClick={() => setIsAthleteView(true)}>
+                        📱 Vista Móvil (Atleta PWA)
+                      </button>
+                    </div>
+
+                    <div className="action-divider"></div>
+
+                    <div className="action-group">
+                      <button className="btn btn-secondary btn-sm" onClick={() => setIsEditingPatient(true)}>
+                        ✏️ Editar Perfil
+                      </button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDeletePatient(selectedPatient.id, selectedPatient.creatorId !== null, selectedPatient.creatorId)}>
+                        🗑️ Eliminar Atleta
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -1297,6 +1303,7 @@ function App() {
                       evaluations={selectedPatient.evaluations}
                       activeTab={activeTab}
                       setActiveTab={setActiveTab}
+                      theme={theme}
                     />
 
                     {/* Body Trend Chart */}
