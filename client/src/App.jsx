@@ -686,7 +686,7 @@ function App() {
 
           <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => setSelectedPatient(null)}>
             <img 
-              src="/logo-full.png" 
+              src={theme === "light" ? "/logo-light.png" : "/logo-full.png"} 
               alt="ZEROFIT" 
               style={{ 
                 height: "56px", 

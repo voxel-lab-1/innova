@@ -1,4 +1,4 @@
-const CACHE_NAME = "zerofit-cache-v6";
+const CACHE_NAME = "zerofit-cache-v7";
 const ASSETS = [
   "/",
   "/index.html",
