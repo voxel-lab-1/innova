@@ -2074,8 +2074,8 @@ export default function Login({ onLogin }) {
           >
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
-          <button type="button" className="header-btn" onClick={() => openRegisterModal("free")}>
-            Regístrate
+          <button type="button" className="header-btn" onClick={openLoginModal}>
+            Ingresa
           </button>
         </div>
       </header>
@@ -2417,7 +2417,7 @@ export default function Login({ onLogin }) {
           </div>
 
           <button type="button" className="hero-cta-btn" onClick={() => openRegisterModal("free")}>
-            Regístrate Gratis
+            Regístrate
             <span className="arrow-icon">→</span>
           </button>
         </div>
@@ -3174,22 +3174,7 @@ export default function Login({ onLogin }) {
               ✕
             </button>
 
-            <div className="login-tabs">
-              <div 
-                className={`login-tab ${isLogin ? "active" : ""}`} 
-                onClick={() => { setIsLogin(true); setError(""); setSuccess(""); }}
-              >
-                Ingresar
-              </div>
-              <div 
-                className={`login-tab ${!isLogin ? "active" : ""}`} 
-                onClick={() => { setIsLogin(false); setError(""); setSuccess(""); }}
-              >
-                Registrarse (Gratis)
-              </div>
-            </div>
-
-            <h2 className="login-title">
+            <h2 className="login-title" style={{ marginTop: "10px" }}>
               {isLogin ? "Acceso al Portal ZEROFIT" : "Crea tu Cuenta de Entrenador"}
             </h2>
             <p className="login-desc">
