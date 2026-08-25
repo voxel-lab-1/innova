@@ -3,15 +3,21 @@
   "name": "ZEROFIT CRM Deportivo",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/pwa-icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-icon-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
   "start_url": "/",
-  "background_color": "#060913",
-  "theme_color": "#00f2fe",
+  "background_color": "#0d121c",
+  "theme_color": "#0d121c",
   "display": "standalone",
   "orientation": "portrait"
 }
