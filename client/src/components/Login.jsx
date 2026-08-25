@@ -168,7 +168,7 @@ export default function Login({ onLogin }) {
     const initGoogle = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "1044439097893-5qpbl4uokclghs84o6j816b801n7p0pe.apps.googleusercontent.com",
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "1085823985818-6m0krg209lkisffu6vol2ioft8vp0vre.apps.googleusercontent.com",
           callback: handleGoogleCredentialResponse,
         });
         const container = document.getElementById("google-signin-btn-container");
