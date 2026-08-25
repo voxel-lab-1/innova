@@ -1268,147 +1268,7 @@ export default function Login({ onLogin }) {
           to { transform: rotate(360deg); }
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 992px) {
-          .hero-section {
-            display: flex;
-            flex-direction: column;
-            padding-top: 50px;
-            gap: 50px;
-            text-align: center;
-          }
-          .hero-content {
-            align-items: center;
-            text-align: center;
-            order: 1;
-          }
-          .mockup-container {
-            order: 2;
-          }
-          .hero-title {
-            font-size: 2.8rem;
-          }
-          .hero-subtitle {
-            margin-left: auto;
-            margin-right: auto;
-          }
-          .stats-row {
-            margin-left: auto;
-            margin-right: auto;
-          }
-          .hero-cta-btn {
-            margin-left: auto;
-            margin-right: auto;
-          }
-          .features-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-        
-        @media (max-width: 640px) {
-          /* Global overflow guard */
-          * {
-            box-sizing: border-box;
-          }
-          body, html {
-            overflow-x: hidden;
-          }
 
-          /* Hero */
-          .hero-section {
-            display: flex;
-            flex-direction: column;
-            padding: 40px 16px 30px 16px;
-            gap: 36px;
-          }
-          .hero-content {
-            align-items: center;
-            text-align: center;
-            order: 1;
-          }
-          .mockup-container {
-            order: 2;
-          }
-          .hero-title {
-            font-size: 2rem;
-            letter-spacing: -1px;
-          }
-          .hero-subtitle {
-            font-size: 1rem;
-            max-width: 100%;
-          }
-          .stats-row {
-            justify-content: center;
-            max-width: 100%;
-          }
-
-          /* Challenge (Problema / Solución) */
-          .challenge-section {
-            padding: 0 16px;
-          }
-          .challenge-grid {
-            grid-template-columns: 1fr;
-            gap: 24px;
-          }
-          .challenge-card {
-            padding: 24px 20px;
-          }
-
-          /* Science */
-          .science-section {
-            padding: 60px 16px;
-          }
-          .science-grid {
-            grid-template-columns: 1fr;
-            gap: 32px;
-          }
-          .science-badge-card {
-            padding: 24px 20px;
-          }
-
-          /* Testimonials */
-          .testimonials-section {
-            padding: 0 16px;
-          }
-          .testimonials-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-          .testimonial-card {
-            padding: 24px 20px;
-          }
-
-          /* Pricing */
-          .pricing-section {
-            padding: 0 16px;
-          }
-          .pricing-grid {
-            grid-template-columns: 1fr;
-            max-width: 100%;
-          }
-          .pricing-card {
-            padding: 28px 20px;
-          }
-          .pricing-title {
-            font-size: 2rem;
-          }
-
-          /* Features */
-          .features-grid {
-            grid-template-columns: 1fr;
-          }
-          .features-section {
-            padding: 40px 16px;
-          }
-
-          /* Header / Login card */
-          .landing-header {
-            padding: 16px 20px;
-          }
-          .login-card {
-            padding: 30px 20px;
-          }
-        }
 
         /* Pricing Section */
         .pricing-section {
@@ -1932,102 +1792,105 @@ export default function Login({ onLogin }) {
         }
 
         /* ============================================
-           MOBILE RESPONSIVE — DEFINITIVE BLOCK
-           (Must be LAST to override base styles)
+           MOBILE RESPONSIVE — DEFINITIVE SINGLE BLOCK
         ============================================ */
         @media (max-width: 768px) {
-          .challenge-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
+          * {
+            box-sizing: border-box;
           }
-          .science-grid {
-            grid-template-columns: 1fr !important;
-            gap: 28px !important;
+          body, html {
+            overflow-x: hidden;
           }
-          .testimonials-grid {
-            grid-template-columns: 1fr !important;
-            gap: 20px !important;
-          }
-          .pricing-grid {
-            grid-template-columns: 1fr !important;
-            max-width: 100% !important;
-          }
-          .challenge-section, .testimonials-section, .pricing-section {
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-          }
-          .science-section {
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-          }
-          .challenge-card {
-            padding: 24px 20px !important;
-          }
-          .pricing-card {
-            padding: 28px 20px !important;
-          }
-          .science-badge-card {
-            padding: 24px 20px !important;
-          }
-          .testimonial-card {
-            padding: 24px 20px !important;
-          }
-          .pricing-title {
-            font-size: 2rem !important;
-          }
-        }
-
-        @media (max-width: 640px) {
           .login-landing-container {
             overflow-x: hidden !important;
             width: 100% !important;
           }
+
+          /* Header logo on mobile */
+          .landing-header {
+            padding: 10px 16px !important;
+          }
+          .logo-container img {
+            height: 44px !important;
+            max-height: 44px !important;
+          }
+
+          /* Hero Section */
           .hero-section {
             display: flex !important;
             flex-direction: column !important;
-            padding: 40px 16px 30px 16px !important;
-            gap: 36px !important;
+            padding: 30px 16px 20px 16px !important;
+            gap: 24px !important;
           }
           .hero-content {
             align-items: center !important;
             text-align: center !important;
             order: 1 !important;
           }
-          .mockup-container {
-            order: 2 !important;
-            width: 100% !important;
-          }
           .hero-title {
-            font-size: 2rem !important;
-            letter-spacing: -1px !important;
+            font-size: 1.85rem !important;
+            letter-spacing: -0.5px !important;
+            line-height: 1.25 !important;
           }
           .hero-subtitle {
-            font-size: 1rem !important;
+            font-size: 0.95rem !important;
             max-width: 100% !important;
           }
           .stats-row {
             justify-content: center !important;
             max-width: 100% !important;
+            gap: 10px !important;
           }
-          .features-grid {
+          .mockup-container {
+            order: 2 !important;
+            width: 100% !important;
+          }
+
+          /* Grid Layouts: Single Column on Mobile */
+          .challenge-grid,
+          .science-grid,
+          .testimonials-grid,
+          .pricing-grid,
+          .features-grid,
+          .showcase-content {
             grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
-          .features-section {
-            padding: 40px 16px !important;
-          }
-          .landing-header {
-            padding: 16px 20px !important;
-          }
-          .login-card {
-            padding: 30px 20px !important;
-          }
-          .challenge-section,
-          .testimonials-section,
-          .pricing-section {
+
+          /* Cards Styling Retained 100% on Mobile */
+          .challenge-card,
+          .science-item,
+          .science-badge-card,
+          .testimonial-card,
+          .pricing-card,
+          .feature-card,
+          .playground-card,
+          .glass-card {
+            background: var(--sano-card-bg) !important;
+            border: 1px solid var(--sano-glass-border) !important;
+            border-radius: 20px !important;
+            padding: 24px 18px !important;
+            box-shadow: var(--sano-card-shadow) !important;
             margin-left: 0 !important;
             margin-right: 0 !important;
+          }
+
+          .challenge-section,
+          .science-section,
+          .testimonials-section,
+          .pricing-section,
+          .features-section,
+          .showcase-section {
             padding-left: 16px !important;
             padding-right: 16px !important;
+            margin-top: 40px !important;
+            margin-bottom: 40px !important;
+          }
+
+          .pricing-title,
+          .features-title,
+          .challenge-card-title {
+            font-size: 1.6rem !important;
           }
         }
       `}</style>
