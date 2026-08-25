@@ -1978,7 +1978,7 @@ export default function Login({ onLogin }) {
         <div className="hero-content">
           <div className="hero-tag">Consola de Logística Deportiva</div>
           <h1 className="hero-title">
-            La Consola Todo en Uno para Entrenadores de Élite: <br />
+            CRM Deportivo para Entrenadores: <br />
             <span className="hero-gradient-text">Gestión, Ciencia y Tecnología</span>
           </h1>
           <p className="hero-subtitle">

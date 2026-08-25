@@ -1,0 +1,741 @@
+Workbook Sheets: ['MICRO 1 INTRODUCCIÓN', 'MICRO 2', 'MICRO 3', 'MICRO 4', 'MICRO 5', 'MICRO 6', 'MICRO 7', 'MICRO 8', 'ALTERNATIVAS', 'ALIMENTACIÓN']
+
+==================================================
+SHEET: MICRO 1 INTRODUCCIÓN
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[1-0-1] | C4[] | C5[Smith] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[1-0-1] | C4[] | C5[Mancuernas] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[1-0-1] | C4[Con o sin lastre según necesidad] | C5[] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[1-0-1] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[Respetando pausa y RIR] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[1-0-1] | C4[] | C5[Mancuernas SENTADO] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[1-0-1] | C4[KATANA] | C5[Katana previa activación con teraband] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1-0-1] | C4[Torso ligeramente inclinado] | C5[Bimanual con barra V polea] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[Unilateral] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[Remo individual polea (tercer ejercicio)] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[Segundo ejercicio] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[1"1"3" (Concéntrica, isometrica, excéntrica)] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[] | C4[] | C5[1"1"3" (Concéntrica, isometrica, excéntrica)] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[] | C4[Con rotación externa final] | C5[Sentado] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R25: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[Barra 16 kg] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R26: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[Bimanual] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R27: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[Respetando pausa y RIR] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R28: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R30: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R31: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R32: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[Barra olimpica] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R33: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[Mancuernas] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R34: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[Bimanual mancuernas sentado] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R35: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[Cabina (sin pausa)] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R36: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[Push down unimanal lateral] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R37: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[] | C4[Posiblemente con muñequeras (cuffed)] | C5[Con mancuernas sentado] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Bimanual] | C5[Remo con mancuernas] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[Remo gironda] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[3] | C7[6-10]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[] | C4[] | C5[Barra EZ] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[Finalizó con antebrazo] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[Sentado] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[Con barra olímpica 20kg] | C5[] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[3] | C7[6-10] | C8[2-3'] | C9[2-3]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[Barra libre] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2"1"2"] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[De pie unipodal] | C6[3] | C7[10-15] | C8[1-2'] | C9[2-3]
+
+==================================================
+SHEET: MICRO 2
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[Barra 20kg sin pausa la segunda serie] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[Mancuernas ] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[10+3+1+1 segunda serie ] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[] | C4[] | C5[Mancuernas pausa 1" Max contraccion SENTADO] | C6[4] | C7[10-15] | C8[1-2'] | C9[0-1]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[Katana] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[] | C4[Torso ligeramente inclinado] | C5[Bimanual V] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[Serie dos últimas dos con ayuda ] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[Remo gironda] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[2 con libras, 1 con kg] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[] | C4[] | C5[Con lazo] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[] | C4[Con rotación externa final] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[] | C4[Posiblemente con muñequeras (cuffed)] | C5[Mancuernas de pie ] | C6[4] | C7[10-15] | C8[1-2'] | C9[0-1]
+R25: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R26: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[Sentadilla libre día 2 micro] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R27: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[Mancuernas bimanual] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[Última dropset sin pausa en máxima contracción ] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R29: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[Sentado ] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R31: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R32: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R33: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R34: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[Smith ] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R35: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[Sentado mancuernas ] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R36: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R37: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[Push down unimanual lateral] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[Remo con mancuernas] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[Remo gironda] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[3] | C7[6-8]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[] | C4[] | C5[Desde la segunda serie unimanual] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[Primero este de biceps] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[Extensión unilateral] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[+2] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[Barra libre] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+
+==================================================
+SHEET: MICRO 3
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[Mancuernas] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[Barra libre (primer ejercicio) se cumple RIR (1) ] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[] | C4[] | C5[Mancuernas] | C6[4] | C7[10-15] | C8[1-2'] | C9[0-1]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[Press France's con banda negra (15 a 20)] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[] | C4[Torso ligeramente inclinado] | C5[Bimanual V] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[Unilateral] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[Remo gironda] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[Remo agarre ancho] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[] | C4[] | C5[Con barra] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[] | C4[Con rotación externa final] | C5[Reverse peck deck] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[0-1]
+R25: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R26: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[Libre] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R27: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[Smith] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R29: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[Sentado] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R31: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R32: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R33: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[Barra olimpica] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R34: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R35: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[Mancuernas (ahora si bimanual)] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R36: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R37: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[Extensión de codo bimanual V] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[Polea dual] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[3] | C7[6-8]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[Primero de biceps] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[Mejorar estabilidad y TUT] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[Respeto pausa] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+
+==================================================
+SHEET: MICRO 4
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[2 Rest Pause] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[3 - 6 parciales en todas las series] | C4[] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Torso ligeramente inclinado] | C5[] | C6[3] | C7[2x10-12
+1x Max] | C8[1-2'
+10"] | C9[FALLO]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[2 Rest Pause] | C4[] | C5[] | C6[1] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[1 Drop Set
+(entre 20-30%)] | C4[] | C5[] | C6[3] | C7[2x10-15
+1xMax] | C8[1-2'
+10"] | C9[FALLO]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[2 Rest Pause] | C4[Con rotación externa final] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[3x10-15
+1xMax] | C8[1-2'] | C9[FALLO]
+R25: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R26: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R27: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R29: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R31: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R32: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R33: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R34: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R35: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R36: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R37: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[2 Rest Pause] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[4] | C7[6-8]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[2 Rest Pause] | C4[] | C5[] | C6[3] | C7[1x10-12
+2xMax] | C8[15"] | C9[FALLO]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2 Rest Pause] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+
+==================================================
+SHEET: MICRO 5
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[2 Rest Pause] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[3 - 6 parciales en todas las series] | C4[] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Torso ligeramente inclinado] | C5[] | C6[3] | C7[2x10-12
+1x Max] | C8[1-2'
+10"] | C9[FALLO]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[2 Rest Pause] | C4[] | C5[] | C6[1] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[1 Drop Set
+(entre 20-30%)] | C4[] | C5[] | C6[3] | C7[2x10-15
+1xMax] | C8[1-2'
+10"] | C9[FALLO]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[2 Rest Pause] | C4[Con rotación externa final] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[3x10-15
+1xMax] | C8[1-2'] | C9[FALLO]
+R25: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R26: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R27: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R29: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R31: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R32: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R33: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R34: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R35: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R36: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R37: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[2 Rest Pause] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[4] | C7[6-8]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[2 Rest Pause] | C4[] | C5[] | C6[3] | C7[1x10-12
+2xMax] | C8[15"] | C9[FALLO]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2 Rest Pause] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+
+==================================================
+SHEET: MICRO 6
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[2 Rest Pause] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[3 - 6 parciales en todas las series] | C4[] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Torso ligeramente inclinado] | C5[] | C6[3] | C7[2x10-12
+1x Max] | C8[1-2'
+10"] | C9[FALLO]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[2 Rest Pause] | C4[] | C5[] | C6[1] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R18: C1[] | C2[CURL BANCO INCLINADO (https://youtu.be/QpsMaK8Rvvs)] | C3[] | C4[Codos siempre detrás del torso] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R19: C1[] | C2[CURL DE BÍCEPS POLEA BAJA (https://www.youtube.com/watch?v=UsaY33N4KEw)] | C3[1 Drop Set
+(entre 20-30%)] | C4[] | C5[] | C6[3] | C7[2x10-15
+1xMax] | C8[1-2'
+10"] | C9[FALLO]
+R20: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[2 Rest Pause] | C4[Con rotación externa final] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R22: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R23: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R24: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[3x10-15
+1xMax] | C8[1-2'] | C9[FALLO]
+R25: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R26: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R27: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R29: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R31: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R32: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R33: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R34: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R35: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R36: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R37: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R38: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[2 Rest Pause] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R40: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R41: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R42: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R43: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R44: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R45: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R46: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[4] | C7[6-8]
+R47: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[2 Rest Pause] | C4[] | C5[] | C6[3] | C7[1x10-12
+2xMax] | C8[15"] | C9[FALLO]
+R48: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R50: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R51: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R52: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R53: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R54: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R55: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R56: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2 Rest Pause] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+
+==================================================
+SHEET: MICRO 7
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[2 Rest Pause] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[3 - 6 parciales en todas las series] | C4[] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Torso ligeramente inclinado] | C5[] | C6[3] | C7[2x10-15
+1x Max] | C8[1-2'
+10"] | C9[FALLO]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[2 Rest Pause] | C4[] | C5[] | C6[1] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R18: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[2 Rest Pause] | C4[Con rotación externa final] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R19: C1[] | C2[CURL ARAÑA (https://www.youtube.com/watch?v=IdHTLEUqon8&list=PL1tTvBTFdf8mkn5CrhE3Ifp6zNDoIre1b&index=12)] | C3[CIRCUITO
+METABÓLICO
+BÍCEPS] | C4[2 mancuernas] | C5[] | C6[3 vueltas] | C7[8-12] | C8[1-2'
+solo al final de cada ronda] | C9[FALLO]
+R20: C1[] | C2[CURL BANCO INCLINADO (https://www.youtube.com/watch?v=QpsMaK8Rvvs&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=62)] | C3[] | C4[Codo detrás del torso] | C5[] | C6[] | C7[8-12]
+R21: C1[] | C2[CURL DE BÍCEPS] | C3[] | C4[Sentado o de pie] | C5[] | C6[] | C7[8-12]
+R22: C1[] | C2[CURL MARTILLO (https://www.youtube.com/watch?v=sh21p-kpcOg&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=9)] | C3[] | C4[Sentado o de pie] | C5[] | C6[] | C7[8-12]
+R24: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R25: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R26: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[3x10-15
+1xMax] | C8[1-2'] | C9[FALLO]
+R27: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R29: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R30: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R31: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R33: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R34: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R35: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R36: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R37: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R38: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R39: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[2 Rest Pause] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R40: C1[] | C2[PUSHDOWN BILATERAL (https://www.youtube.com/watch?v=-eGct9T99bs)] | C3[CIRCUITO
+METABÓLICO
+TRÍCEPS] | C4[] | C5[] | C6[3 vueltas] | C7[10-15] | C8[1-2'
+solo al final de cada ronda] | C9[FALLO]
+R41: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[] | C6[] | C7[10-15]
+R42: C1[] | C2[EXTENSIONES TRAS NUCA POLEA BAJA (https://www.youtube.com/watch?v=Jh8nqVEjs2c)] | C3[] | C4[] | C5[] | C6[] | C7[10-15]
+R44: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R45: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R46: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R47: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R48: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R49: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R50: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[4] | C7[6-8]
+R51: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[2 Rest Pause] | C4[] | C5[] | C6[3] | C7[1x10-12
+2xMax] | C8[15"] | C9[FALLO]
+R52: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R54: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R55: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R56: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R58: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R59: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R60: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R61: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2 Rest Pause] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+
+==================================================
+SHEET: MICRO 8
+==================================================
+R2: C1[] | C2[PUSH 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R3: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[] | C4[2ªSerie x MAX con peso corporal si no llegamos al rango con lastre] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-2]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[2 Rest Pause] | C4[Parada de 1" en máximo acortamiento y estiramiento] | C5[] | C6[3] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[3 - 6 parciales en todas las series] | C4[] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Torso ligeramente inclinado] | C5[] | C6[3] | C7[2x10-15
+1x Max] | C8[1-2'
+10"] | C9[FALLO]
+R12: C1[] | C2[PULL 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R13: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[] | C4[Torso un poco detrás de la polea] | C5[] | C6[3] | C7[2x8-10
+1x12-15] | C8[2-3'] | C9[1-2]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[] | C4[] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[] | C4[Agarre "ancho", codos elevados] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[2 Rest Pause] | C4[] | C5[] | C6[1] | C7[1x10-15
+2xMax] | C8[15"] | C9[FALLO]
+R18: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[2 Rest Pause] | C4[Con rotación externa final] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R19: C1[] | C2[CURL ARAÑA (https://www.youtube.com/watch?v=IdHTLEUqon8&list=PL1tTvBTFdf8mkn5CrhE3Ifp6zNDoIre1b&index=12)] | C3[CIRCUITO
+METABÓLICO
+BÍCEPS] | C4[2 mancuernas] | C5[] | C6[3 vueltas] | C7[8-12] | C8[1-2'
+solo al final de cada ronda] | C9[FALLO]
+R20: C1[] | C2[CURL BANCO INCLINADO (https://www.youtube.com/watch?v=QpsMaK8Rvvs&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=62)] | C3[] | C4[Codo detrás del torso] | C5[] | C6[] | C7[8-12]
+R21: C1[] | C2[CURL DE BÍCEPS] | C3[] | C4[Sentado o de pie] | C5[] | C6[] | C7[8-12]
+R22: C1[] | C2[CURL MARTILLO (https://www.youtube.com/watch?v=sh21p-kpcOg&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=9)] | C3[] | C4[Sentado o de pie] | C5[] | C6[] | C7[8-12]
+R24: C1[] | C2[LEGS 1] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R25: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R26: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[1 Drop Set
+(entre 20-30%)] | C4[Posiblemente con muñequeras (cuffed)] | C5[] | C6[4] | C7[3x10-15
+1xMax] | C8[1-2'] | C9[FALLO]
+R27: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R28: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R29: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[] | C4[Torso ligeramente inclinada, tibia vertical] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R30: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[] | C4[Parada de 1" en máximo acortamiento] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R31: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R33: C1[] | C2[PUSH 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R34: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R35: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-10
+1x8-12] | C8[2-3'] | C9[1-2]
+R36: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[] | C4[Parada de 1" al pecho] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R37: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[0-1]
+R38: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[] | C4[Torso ligeramente inclinado hacia adelante] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R39: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[2 Rest Pause] | C4[Codos por debajo de los hombros] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+R40: C1[] | C2[PUSHDOWN BILATERAL (https://www.youtube.com/watch?v=-eGct9T99bs)] | C3[CIRCUITO
+METABÓLICO
+TRÍCEPS] | C4[] | C5[] | C6[3 vueltas] | C7[10-15] | C8[1-2'
+solo al final de cada ronda] | C9[FALLO]
+R41: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[] | C4[] | C5[] | C6[] | C7[10-15]
+R42: C1[] | C2[EXTENSIONES TRAS NUCA POLEA BAJA (https://www.youtube.com/watch?v=Jh8nqVEjs2c)] | C3[] | C4[] | C5[] | C6[] | C7[10-15]
+R44: C1[] | C2[PULL 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R45: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R46: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[] | C4[Unilateral] | C5[] | C6[2] | C7[8-10] | C8[2-3'] | C9[1-2]
+R47: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[] | C4[Unilateral] | C5[] | C6[3] | C7[2x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R48: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[] | C4[Pecho para afuera, codos que van hacia las escápulas] | C5[] | C6[2] | C7[10-12] | C8[2-3'] | C9[0-1]
+R49: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[SÚPER SERIE] | C4[UNILATERAL
+POLEA ALTURA DE LA MUÑECA] | C5[] | C6[4] | C7[10-15] | C8[1-2'] | C9[FALLO]
+R50: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[] | C4[UNILATERAL
+MOVIMIENTO DE 70 A 110º] | C5[] | C6[4] | C7[6-8]
+R51: C1[] | C2[CURL PREDICADOR EN MÁQUINA (https://youtu.be/I4YHvaqVAt8)] | C3[2 Rest Pause] | C4[] | C5[] | C6[3] | C7[1x10-12
+2xMax] | C8[15"] | C9[FALLO]
+R52: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R54: C1[] | C2[LEGS 2] | C3[] | C4[] | C5[] | C6[] | C7[] | C8[] | C9[] | C10[SERIE 1] | C11[] | C12[SERIE 2] | C13[] | C14[SERIE 3] | C15[] | C16[SERIE 4]
+R55: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS] | C5[TUS NOTAS] | C6[SERIES] | C7[REPS] | C8[REST] | C9[RIR] | C10[CARGA] | C11[REPS] | C12[CARGA] | C13[REPS] | C14[CARGA] | C15[REPS] | C16[CARGA] | C17[REPS]
+R56: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[] | C4[] | C5[] | C6[3] | C7[8-12] | C8[1-2'] | C9[0-1]
+R57: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[] | C4[] | C5[] | C6[2] | C7[1x6-9
+1x10-15] | C8[2-3'] | C9[1-2]
+R58: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[] | C4[] | C5[] | C6[2] | C7[1x8-10
+1x10-15] | C8[2-3'] | C9[1-2]
+R59: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[] | C4[] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[1-2]
+R60: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[] | C4[Parada de 1" en máximo acortamiento. ROM reducido] | C5[] | C6[3] | C7[10-15] | C8[1-2'] | C9[0-1]
+R61: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[2 Rest Pause] | C4[Abundante parada en máximo acortamiento y estirameinto] | C5[] | C6[3] | C7[1x15-20
+2xMax] | C8[15"] | C9[FALLO]
+
+==================================================
+SHEET: ALTERNATIVAS
+==================================================
+R2: C1[] | C2[PUSH 1]
+R3: C1[] | C2[EJERCICIO] | C3[ALTERNATIVA 1] | C4[ALTERNATIVA 2]
+R4: C1[] | C2[CHEST PRESS INCLINADO CONVERGENTE (https://youtu.be/tykBOLtM5bY)] | C3[PRESS CON MANCUERNAS 30º (https://www.youtube.com/watch?v=UY8v9V_gPZM&list=PL1tTvBTFdf8mfaSyaTA6ps9vWqtK_v17I&index=3)] | C4[-]
+R5: C1[] | C2[PRESS BANCA EN MULTIPOWER CON BANDA REVERSA (https://youtu.be/NeLFxQCLwzc)] | C3[PRESS BANCA MULTIPOWER (https://www.youtube.com/watch?v=2ep_lZYo6FA)] | C4[-]
+R6: C1[] | C2[FONDOS EN PARALELAS (https://youtu.be/VbSSZPJiAGc)] | C3[FONDOS EN MÁQUINA (https://www.youtube.com/watch?v=QSJ6sEdayR8)] | C4[-]
+R7: C1[] | C2[PEC DECK (https://youtu.be/UurqwWsRwmk)] | C3[APERTURAS EN POLEAS (https://youtu.be/ewL2sb63JSI)] | C4[-]
+R8: C1[] | C2[ELAVACIONES LATERALES EN MÁQUINA (https://youtu.be/ULPDj4xRBtw)] | C3[ELEVACIONES LATERALES CON MANCUERNAS (https://youtu.be/swE-3NHBi3w)] | C4[-]
+R9: C1[] | C2[EXTENSIOENS DE TRÍCEPS EN MÁQUINA (https://youtu.be/iH7vzivHBIw)] | C3[PRESS FRANCÉS CON MANCUERNAS (https://www.youtube.com/watch?v=32pO8q816Xc)] | C4[-]
+R10: C1[] | C2[PUSHDOWN UNILATERAL (https://youtu.be/lTUVtgms5p4)] | C3[PUSHDOWN BILATERAL (https://www.youtube.com/watch?v=-eGct9T99bs)] | C4[-]
+R12: C1[] | C2[PULL 1]
+R13: C1[] | C2[EJERCICIO] | C3[ALTERNATIVA 1] | C4[ALTERNATIVA 2]
+R14: C1[] | C2[JALÓN AGARRE NEUTRO UNILATERAL (https://youtu.be/1rSvOjnWAOw)] | C3[JALÓN AGARRE NEUTRO (https://youtu.be/pA-iNaU832I)] | C4[-]
+R15: C1[] | C2[STEP BACK MID ROW (https://youtu.be/eGMA4o5RKdc)] | C3[REMO GIRONDA (https://www.youtube.com/watch?v=JBmgp6WROZo&list=PL1tTvBTFdf8nm1Pp6aAns9HTuXCKh5P2Y&index=4)] | C4[REMO CON MANCUERNA]
+R16: C1[] | C2[REMO EN T UPPER BACK (https://youtu.be/5djy2ooxDF0)] | C3[REMO EN POLEA AGARRE ANCHO (https://youtu.be/PRRYByxtfpo)] | C4[-]
+R17: C1[] | C2[PULLOVER POLEA ALTA (https://youtu.be/XfWOsTWaRxI)] | C3[-] | C4[-]
+R18: C1[] | C2[FACEPULL CON CUERDA (https://www.youtube.com/watch?v=QbpmaP-Oxz8)] | C3[FACEPULL AL CUELLO (https://www.youtube.com/watch?v=d98uqJU_QJc)] | C4[-]
+R19: C1[] | C2[CURL ARAÑA (https://www.youtube.com/watch?v=IdHTLEUqon8&list=PL1tTvBTFdf8mkn5CrhE3Ifp6zNDoIre1b&index=12)] | C3[CURL PREDICADOR (https://youtu.be/m2GjC3xSxd8)] | C4[-]
+R20: C1[] | C2[CURL BANCO INCLINADO (https://www.youtube.com/watch?v=QpsMaK8Rvvs&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=62)] | C3[-] | C4[-]
+R21: C1[] | C2[CURL DE BÍCEPS] | C3[-] | C4[-]
+R22: C1[] | C2[CURL MARTILLO (https://www.youtube.com/watch?v=sh21p-kpcOg&list=PLhrmTW6ealjmM9YNeAYEbzGb9sSM9EGEZ&index=9)] | C3[-] | C4[-]
+R24: C1[] | C2[LEGS 1]
+R25: C1[] | C2[EJERCICIO] | C3[ALTERNATIVA 1] | C4[ALTERNATIVA 2]
+R26: C1[] | C2[ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS (https://youtu.be/JnwHh8rikHQ)] | C3[ELEVACIÓN LATERAL EN POLEA (https://youtu.be/RqyZd9k9FXA)] | C4[-]
+R27: C1[] | C2[LEG CURL SENTADO CON PAUSA (https://youtu.be/qA7WVqAiciM)] | C3[LEG CURL DE PIE UNILATERAL (https://youtu.be/-BZJHkDs_Ko)] | C4[-]
+R28: C1[] | C2[HACK SQUAT (https://youtu.be/97--rV79-K0)] | C3[SENTADILLA EN MULTIPOWER (https://youtu.be/XRr1YGIMXK4)] | C4[SENTADILLA SAFETY BAR (https://youtu.be/gednBkWmqBQ)]
+R29: C1[] | C2[SENTADILLA BÚLGARA EN MULTIPOWER (https://youtu.be/wdeG3naB0FU)] | C3[SENTADILLA BÚLGARA CON MANCUERNA (https://youtu.be/NSDCqmxhUT0)] | C4[-]
+R30: C1[] | C2[LEG EXTENSION (https://youtu.be/2Z5-jFfEZQs)] | C3[-] | C4[-]
+R31: C1[] | C2[EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS (https://www.youtube.com/watch?v=VIUg0nNw5BE)] | C3[-] | C4[-]
+R33: C1[] | C2[PUSH 2]
+R34: C1[] | C2[EJERCICIO] | C3[TÉCNICA] | C4[NOTAS]
+R35: C1[] | C2[PRESS BANCA PLANO CON MANCUERNAS (https://youtu.be/cPNva_yJKbE)] | C3[PRESS BANCA LIG. INCLINADO CON MANCUERNAS (https://www.youtube.com/watch?v=2TT0shSUYPU)] | C4[-]
+R36: C1[] | C2[PRESS INCLINADO 30º MULTIPOWER (https://youtu.be/K7IFD2P2HDA)] | C3[PRESS INCLINADO MULTIPOWER (https://www.youtube.com/watch?v=pNIrsdPTFrA&list=PL1tTvBTFdf8mfaSyaTA6ps9vWqtK_v17I&index=6)] | C4[-]
+R37: C1[] | C2[SHOULDER PRESS CONVERGENTE (https://youtu.be/fXiqy32Kw4c)] | C3[PRESS DE HOMBRO CON MANCUERNAS (https://youtu.be/oGsa0hvSDFQ)] | C4[-]
+R38: C1[] | C2[APERTURAS EN POLEA ALTA (https://youtu.be/uWquMe_qCRU)] | C3[APERTURAS POLEAS BANCO INCLINADO (https://www.youtube.com/watch?v=LGDCjwO-hFg)] | C4[-]
+R39: C1[] | C2[REVERSE PEC DECK (https://youtu.be/IEmrS73OnUQ)] | C3[APERTURAS INVERSAS EN POLEA ALTA (https://youtu.be/b8gQoe0GGMU)] | C4[-]
+R40: C1[] | C2[PUSHDOWN BILATERAL (https://www.youtube.com/watch?v=-eGct9T99bs)] | C3[-] | C4[-]
+R41: C1[] | C2[PRESS FRANCÉS POLEA ALTA (https://youtu.be/zEYAgQtXIkY)] | C3[-] | C4[-]
+R42: C1[] | C2[EXTENSIONES TRAS NUCA POLEA BAJA (https://www.youtube.com/watch?v=Jh8nqVEjs2c)] | C3[-] | C4[-]
+R44: C1[] | C2[PULL 2]
+R45: C1[] | C2[EJERCICIO] | C3[ALTERNATIVA 1] | C4[ALTERNATIVA 2]
+R46: C1[] | C2[PULLDOWN PENDULAR (https://youtu.be/AKKVQ22B4dQ)] | C3[JALÓN AGARRE NEUTRO (https://youtu.be/pA-iNaU832I)]
+R47: C1[] | C2[DY ROW (https://youtu.be/LXfcD0w5g3c)] | C3[REMO POLEA BAJA UNILATERAL (https://youtu.be/o22mTlzIPNs)]
+R48: C1[] | C2[JALÓN AGARRE ANCHO (https://youtu.be/cmgfUDAZMLI)] | C3[DOMINADAS ASISTIDAS (https://www.youtube.com/watch?v=31H5Wf9Yw3I)] | C4[DOMINADAS (https://www.youtube.com/watch?v=i6xQwdjDkF8)]
+R49: C1[] | C2[ELEVACIONES LATERALES
+EN POLEA (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[ELEVACIONES LATERALES TUMBADO DE LADO (https://www.youtube.com/watch?v=v7WRsQDjsEc)] | C4[-]
+R50: C1[] | C2[ELEVACIONES LATERALES
+CON MANCUERNAS (https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link)] | C3[-] | C4[-]
+R51: C1[] | C2[CURL PREDICADOR CON MANCUERNA (https://youtu.be/I4YHvaqVAt8)] | C3[CURL PREDICADOR CON MÁQUINA (https://youtu.be/m2GjC3xSxd8)] | C4[CURL PREDICADOR CON BARRA Z (https://www.youtube.com/watch?v=ZSB9JdskZXc)]
+R52: C1[] | C2[BAYESIAN CURL (https://youtu.be/Yq4ee-Qyv8k)] | C3[-] | C4[-]
+R54: C1[] | C2[LEGS 2]
+R55: C1[] | C2[EJERCICIO] | C3[ALTERNATIVA 1] | C4[ALTERNATIVA 2]
+R56: C1[] | C2[LEG CURL TUMBADO UNILATERAL (https://youtu.be/fep90U7yFa8)] | C3[LEG CURL TUMBADO (https://youtu.be/so_WDtUezGs)] | C4[LEG CURL DE PIE UNILATERAL (https://youtu.be/-BZJHkDs_Ko)]
+R57: C1[] | C2[PESO MUERTO RUMANO (https://youtu.be/HYiVutNWzJM)] | C3[PESO MUERTO RUMANO SNATCH (https://www.youtube.com/watch?v=-kF8P8gHcp0)] | C4[GOOD MORNING EN MULTIPOWER (https://www.youtube.com/watch?v=MgZ5Nm2fKLA)]
+R58: C1[] | C2[LEG PRESS CON DOBLE BANDA (https://youtu.be/c39cBtwKnro)] | C3[LEG PRESS 45º (https://youtu.be/S7AzmCPGubM?t=6)]
+R59: C1[] | C2[HIP THRUST EN MÁQUINA (https://youtu.be/DDU2aO_Na-E)] | C3[HIP THRUST EN MULTIPOWER (https://www.youtube.com/watch?v=hMivsyUH6_M)] | C4[HITP THRUST
+CON BARRA (https://www.youtube.com/watch?v=Q-MukEuLbaw&t=5s)]
+R60: C1[] | C2[ADUCTORES EN MÁQUINA (https://youtu.be/fbu-IrZkyMc)] | C3[-] | C4[-]
+R61: C1[] | C2[EXTENSIONES DE TOBILLO RODILLA FLEXIONADA (https://youtu.be/c2l3WNPbO2E)] | C3[-]
+
+==================================================
+SHEET: ALIMENTACIÓN
+==================================================
+R2: C1[] | C2[ALIMENTACIÓN]
+R3: C1[] | C2[Nº DÍAS] | C3[ENTRENAMIENTO] | C4[DESCANSO]
+R4: C1[] | C2[] | C3[4] | C4[3]
+R5: C1[] | C2[CALORÍAS] | C3[2840] | C4[2540]
+R6: C1[] | C2[CARBOHIDRATOS] | C3[350] | C4[275]
+R7: C1[] | C2[GRASAS] | C3[80] | C4[80]
+R8: C1[] | C2[PROTEÍNAS] | C3[180] | C4[180]
+R10: C1[] | C2[LAS CALORÍAS Y LOS MACRONUTRIENTES INSERTADOS EN LAS CELDAS SON SOLO UN EJEMPLO DE CÓMO SE USAN LAS FÓRMULAS. NO TOCAR LAS CELDAS GRISES]
+R12: C1[] | C2[1) ESCRIBE LOS DÍAS QUE QUIERES ENTRENAR Y LOS QUE QUIERES DESCANSAR]
+R14: C1[] | C2[2) ESCRIBE LA CANTIDAD EN GRAMOS DE CARBOHIDRATOS, GRASAS Y PROTEÍNAS. EXCEL CALCULARÁ AUTOMÁTICAMENTE LAS CALORÍAS TOTALES.]
+R16: C1[] | C2[3) ASEGÚRATE ENTRE 2g Y 2,5g de PROTEÍNAS por cada kilo de peso corporal. Si pesas 60kg, tu ingesta de proteínas debería estar entre 120g y 150g]
+R18: C1[] | C2[4) ASEGÚRATE ENTRE 0,8g Y 1g DE GRASAS por cada kilo de peso corporal. Si pesas 80kg, tu ingesta de grasa debería ser de entre 64g y 80g aprox.]
+R20: C1[] | C2[5) Lo que queda de calorías serán repartidas en carbohidratos.]
+R22: C1[] | C2[6) Para saber cuántas calorías necesitas, puedes calcular tu ingesta durante 2 semanas y ver las variaciones de peso (FORMA MÁS PRECISA), también puedes usar esta fórmula:
+
+M: [655 + (9,6 × peso en kg) ] + [ (1,8 × altura en cm) – (4,7 × edad)] × Factor actividad.
+
+H: [66 + (13,7 × peso en kg) ] + [ (5 × altura en cm) – (6,8 × edad)] × Factor actividad.
+
+Factor actividad:
+1,2 sedentarios
+1,375 poca actividad física
+1,55 actividad física moderada
+1,725 elevada actividad física
+1,9 atletas profesionales
+
+Con actividad se entienden Entrenamiento + lo que haces durante el día. Si entrenas 3 veces por semana pero pasas todo el día sentado o moviéndote poco, estás más hacia el factor "sedentarios"]

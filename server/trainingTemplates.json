@@ -1,0 +1,649 @@
+{
+  "source": "Plan de entrenamiento  2.xlsx",
+  "days": {
+    "push 1": [
+      {
+        "name": "CHEST PRESS INCLINADO CONVERGENTE",
+        "videoUrl": "https://youtu.be/tykBOLtM5bY",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "PRESS CON MANCUERNAS 30º",
+            "videoUrl": "https://www.youtube.com/watch?v=UY8v9V_gPZM&list=PL1tTvBTFdf8mfaSyaTA6ps9vWqtK_v17I&index=3"
+          }
+        ]
+      },
+      {
+        "name": "PRESS BANCA EN MULTIPOWER CON BANDA REVERSA",
+        "videoUrl": "https://youtu.be/NeLFxQCLwzc",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "PRESS BANCA MULTIPOWER",
+            "videoUrl": "https://www.youtube.com/watch?v=2ep_lZYo6FA"
+          }
+        ]
+      },
+      {
+        "name": "FONDOS EN PARALELAS",
+        "videoUrl": "https://youtu.be/VbSSZPJiAGc",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "Con o sin lastre según necesidad",
+        "alternatives": [
+          {
+            "name": "FONDOS EN MÁQUINA",
+            "videoUrl": "https://www.youtube.com/watch?v=QSJ6sEdayR8"
+          }
+        ]
+      },
+      {
+        "name": "PEC DECK",
+        "videoUrl": "https://youtu.be/UurqwWsRwmk",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "Parada de 1\" en máximo acortamiento y estiramiento",
+        "alternatives": [
+          {
+            "name": "APERTURAS EN POLEAS",
+            "videoUrl": "https://youtu.be/ewL2sb63JSI"
+          }
+        ]
+      },
+      {
+        "name": "ELAVACIONES LATERALES EN MÁQUINA",
+        "videoUrl": "https://youtu.be/ULPDj4xRBtw",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "ELEVACIONES LATERALES CON MANCUERNAS",
+            "videoUrl": "https://youtu.be/swE-3NHBi3w"
+          }
+        ]
+      },
+      {
+        "name": "EXTENSIOENS DE TRÍCEPS EN MÁQUINA",
+        "videoUrl": "https://youtu.be/iH7vzivHBIw",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "KATANA",
+        "alternatives": [
+          {
+            "name": "PRESS FRANCÉS CON MANCUERNAS",
+            "videoUrl": "https://www.youtube.com/watch?v=32pO8q816Xc"
+          }
+        ]
+      },
+      {
+        "name": "PUSHDOWN UNILATERAL",
+        "videoUrl": "https://youtu.be/lTUVtgms5p4",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "1-0-1",
+        "notes": "Torso ligeramente inclinado",
+        "alternatives": [
+          {
+            "name": "PUSHDOWN BILATERAL",
+            "videoUrl": "https://www.youtube.com/watch?v=-eGct9T99bs"
+          }
+        ]
+      }
+    ],
+    "pull 1": [
+      {
+        "name": "JALÓN AGARRE NEUTRO UNILATERAL",
+        "videoUrl": "https://youtu.be/1rSvOjnWAOw",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Torso un poco detrás de la polea",
+        "alternatives": [
+          {
+            "name": "JALÓN AGARRE NEUTRO",
+            "videoUrl": "https://youtu.be/pA-iNaU832I"
+          }
+        ]
+      },
+      {
+        "name": "STEP BACK MID ROW",
+        "videoUrl": "https://youtu.be/eGMA4o5RKdc",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "REMO GIRONDA",
+            "videoUrl": "https://www.youtube.com/watch?v=JBmgp6WROZo&list=PL1tTvBTFdf8nm1Pp6aAns9HTuXCKh5P2Y&index=4"
+          },
+          {
+            "name": "REMO CON MANCUERNA",
+            "videoUrl": ""
+          }
+        ]
+      },
+      {
+        "name": "REMO EN T UPPER BACK",
+        "videoUrl": "https://youtu.be/5djy2ooxDF0",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Agarre \"ancho\", codos elevados",
+        "alternatives": [
+          {
+            "name": "REMO EN POLEA AGARRE ANCHO",
+            "videoUrl": "https://youtu.be/PRRYByxtfpo"
+          }
+        ]
+      },
+      {
+        "name": "PULLOVER POLEA ALTA",
+        "videoUrl": "https://youtu.be/XfWOsTWaRxI",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": []
+      },
+      {
+        "name": "CURL BANCO INCLINADO",
+        "videoUrl": "https://youtu.be/QpsMaK8Rvvs",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Codos siempre detrás del torso",
+        "alternatives": []
+      },
+      {
+        "name": "CURL DE BÍCEPS POLEA BAJA",
+        "videoUrl": "https://www.youtube.com/watch?v=UsaY33N4KEw",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": []
+      },
+      {
+        "name": "FACEPULL CON CUERDA",
+        "videoUrl": "https://www.youtube.com/watch?v=QbpmaP-Oxz8",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Con rotación externa final",
+        "alternatives": [
+          {
+            "name": "FACEPULL AL CUELLO",
+            "videoUrl": "https://www.youtube.com/watch?v=d98uqJU_QJc"
+          }
+        ]
+      }
+    ],
+    "legs 1": [
+      {
+        "name": "LEG CURL SENTADO CON PAUSA",
+        "videoUrl": "https://youtu.be/qA7WVqAiciM",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Parada de 1\" en máximo acortamiento",
+        "alternatives": [
+          {
+            "name": "LEG CURL DE PIE UNILATERAL",
+            "videoUrl": "https://youtu.be/-BZJHkDs_Ko"
+          }
+        ]
+      },
+      {
+        "name": "HACK SQUAT",
+        "videoUrl": "https://youtu.be/97--rV79-K0",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "SENTADILLA EN MULTIPOWER",
+            "videoUrl": "https://youtu.be/XRr1YGIMXK4"
+          },
+          {
+            "name": "SENTADILLA SAFETY BAR",
+            "videoUrl": "https://youtu.be/gednBkWmqBQ"
+          }
+        ]
+      },
+      {
+        "name": "SENTADILLA BÚLGARA EN MULTIPOWER",
+        "videoUrl": "https://youtu.be/wdeG3naB0FU",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Torso ligeramente inclinada, tibia vertical",
+        "alternatives": [
+          {
+            "name": "SENTADILLA BÚLGARA CON MANCUERNA",
+            "videoUrl": "https://youtu.be/NSDCqmxhUT0"
+          }
+        ]
+      },
+      {
+        "name": "LEG EXTENSION",
+        "videoUrl": "https://youtu.be/2Z5-jFfEZQs",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Parada de 1\" en máximo acortamiento",
+        "alternatives": []
+      },
+      {
+        "name": "EXTENSIONES DE TOBILLO RODILLAS EXTENDIDAS",
+        "videoUrl": "https://www.youtube.com/watch?v=VIUg0nNw5BE",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Abundante parada en máximo acortamiento y estirameinto",
+        "alternatives": []
+      }
+    ],
+    "push 2": [
+      {
+        "name": "PRESS BANCA PLANO CON MANCUERNAS",
+        "videoUrl": "https://youtu.be/cPNva_yJKbE",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "PRESS BANCA LIG. INCLINADO CON MANCUERNAS",
+            "videoUrl": "https://www.youtube.com/watch?v=2TT0shSUYPU"
+          }
+        ]
+      },
+      {
+        "name": "PRESS INCLINADO 30º MULTIPOWER",
+        "videoUrl": "https://youtu.be/K7IFD2P2HDA",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Parada de 1\" al pecho",
+        "alternatives": [
+          {
+            "name": "PRESS INCLINADO MULTIPOWER",
+            "videoUrl": "https://www.youtube.com/watch?v=pNIrsdPTFrA&list=PL1tTvBTFdf8mfaSyaTA6ps9vWqtK_v17I&index=6"
+          }
+        ]
+      },
+      {
+        "name": "SHOULDER PRESS CONVERGENTE",
+        "videoUrl": "https://youtu.be/fXiqy32Kw4c",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "PRESS DE HOMBRO CON MANCUERNAS",
+            "videoUrl": "https://youtu.be/oGsa0hvSDFQ"
+          }
+        ]
+      },
+      {
+        "name": "APERTURAS EN POLEA ALTA",
+        "videoUrl": "https://youtu.be/uWquMe_qCRU",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Torso ligeramente inclinado hacia adelante",
+        "alternatives": [
+          {
+            "name": "APERTURAS POLEAS BANCO INCLINADO",
+            "videoUrl": "https://www.youtube.com/watch?v=LGDCjwO-hFg"
+          }
+        ]
+      },
+      {
+        "name": "PRESS FRANCÉS POLEA ALTA",
+        "videoUrl": "https://youtu.be/zEYAgQtXIkY",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": []
+      },
+      {
+        "name": "ELEVACIONES LATERALES TUMBADO CON POLEAS CRUZADAS",
+        "videoUrl": "https://youtu.be/JnwHh8rikHQ",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Posiblemente con muñequeras (cuffed)",
+        "alternatives": [
+          {
+            "name": "ELEVACIÓN LATERAL EN POLEA",
+            "videoUrl": "https://youtu.be/RqyZd9k9FXA"
+          }
+        ]
+      },
+      {
+        "name": "REVERSE PEC DECK",
+        "videoUrl": "https://youtu.be/IEmrS73OnUQ",
+        "muscleGroup": "chest",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Codos por debajo de los hombros",
+        "alternatives": [
+          {
+            "name": "APERTURAS INVERSAS EN POLEA ALTA",
+            "videoUrl": "https://youtu.be/b8gQoe0GGMU"
+          }
+        ]
+      }
+    ],
+    "pull 2": [
+      {
+        "name": "PULLDOWN PENDULAR",
+        "videoUrl": "https://youtu.be/AKKVQ22B4dQ",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Bimanual",
+        "alternatives": [
+          {
+            "name": "JALÓN AGARRE NEUTRO",
+            "videoUrl": "https://youtu.be/pA-iNaU832I"
+          }
+        ]
+      },
+      {
+        "name": "DY ROW",
+        "videoUrl": "https://youtu.be/LXfcD0w5g3c",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Unilateral",
+        "alternatives": [
+          {
+            "name": "REMO POLEA BAJA UNILATERAL",
+            "videoUrl": "https://youtu.be/o22mTlzIPNs"
+          }
+        ]
+      },
+      {
+        "name": "JALÓN AGARRE ANCHO",
+        "videoUrl": "https://youtu.be/cmgfUDAZMLI",
+        "muscleGroup": "back",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Pecho para afuera, codos que van hacia las escápulas",
+        "alternatives": [
+          {
+            "name": "DOMINADAS ASISTIDAS",
+            "videoUrl": "https://www.youtube.com/watch?v=31H5Wf9Yw3I"
+          },
+          {
+            "name": "DOMINADAS",
+            "videoUrl": "https://www.youtube.com/watch?v=i6xQwdjDkF8"
+          }
+        ]
+      },
+      {
+        "name": "ELEVACIONES LATERALES\nEN POLEA",
+        "videoUrl": "https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "SÚPER SERIE",
+        "notes": "UNILATERAL\nPOLEA ALTURA DE LA MUÑECA",
+        "alternatives": [
+          {
+            "name": "ELEVACIONES LATERALES TUMBADO DE LADO",
+            "videoUrl": "https://www.youtube.com/watch?v=v7WRsQDjsEc"
+          }
+        ]
+      },
+      {
+        "name": "ELEVACIONES LATERALES\nCON MANCUERNAS",
+        "videoUrl": "https://www.instagram.com/reel/CVDTdMgjf3f/?utm_source=ig_web_copy_link",
+        "muscleGroup": "shoulders",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "UNILATERAL\nMOVIMIENTO DE 70 A 110º",
+        "alternatives": []
+      },
+      {
+        "name": "CURL PREDICADOR EN MÁQUINA",
+        "videoUrl": "https://youtu.be/I4YHvaqVAt8",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": []
+      },
+      {
+        "name": "BAYESIAN CURL",
+        "videoUrl": "https://youtu.be/Yq4ee-Qyv8k",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": []
+      }
+    ],
+    "legs 2": [
+      {
+        "name": "LEG CURL TUMBADO UNILATERAL",
+        "videoUrl": "https://youtu.be/fep90U7yFa8",
+        "muscleGroup": "arms",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "LEG CURL TUMBADO",
+            "videoUrl": "https://youtu.be/so_WDtUezGs"
+          },
+          {
+            "name": "LEG CURL DE PIE UNILATERAL",
+            "videoUrl": "https://youtu.be/-BZJHkDs_Ko"
+          }
+        ]
+      },
+      {
+        "name": "PESO MUERTO RUMANO",
+        "videoUrl": "https://youtu.be/HYiVutNWzJM",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Con barra olímpica 20kg",
+        "alternatives": [
+          {
+            "name": "PESO MUERTO RUMANO SNATCH",
+            "videoUrl": "https://www.youtube.com/watch?v=-kF8P8gHcp0"
+          },
+          {
+            "name": "GOOD MORNING EN MULTIPOWER",
+            "videoUrl": "https://www.youtube.com/watch?v=MgZ5Nm2fKLA"
+          }
+        ]
+      },
+      {
+        "name": "LEG PRESS CON DOBLE BANDA",
+        "videoUrl": "https://youtu.be/c39cBtwKnro",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "6-10",
+        "rest": "2-3'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "",
+        "alternatives": [
+          {
+            "name": "LEG PRESS 45º",
+            "videoUrl": "https://youtu.be/S7AzmCPGubM?t=6"
+          }
+        ]
+      },
+      {
+        "name": "HIP THRUST EN MÁQUINA",
+        "videoUrl": "https://youtu.be/DDU2aO_Na-E",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Parada de 1\" en máximo acortamiento. ROM reducido",
+        "alternatives": [
+          {
+            "name": "HIP THRUST EN MULTIPOWER",
+            "videoUrl": "https://www.youtube.com/watch?v=hMivsyUH6_M"
+          },
+          {
+            "name": "HITP THRUST\nCON BARRA",
+            "videoUrl": "https://www.youtube.com/watch?v=Q-MukEuLbaw&t=5s"
+          }
+        ]
+      },
+      {
+        "name": "ADUCTORES EN MÁQUINA",
+        "videoUrl": "https://youtu.be/fbu-IrZkyMc",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "",
+        "notes": "Abundante parada en máximo acortamiento y estirameinto",
+        "alternatives": []
+      },
+      {
+        "name": "EXTENSIONES DE TOBILLO RODILLA FLEXIONADA",
+        "videoUrl": "https://youtu.be/c2l3WNPbO2E",
+        "muscleGroup": "legs",
+        "sets": 3,
+        "reps": "10-15",
+        "rest": "1-2'",
+        "rir": "2-3",
+        "technique": "2\"1\"2\"",
+        "notes": "Abundante parada en máximo acortamiento y estirameinto",
+        "alternatives": []
+      }
+    ]
+  }
+}
