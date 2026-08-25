@@ -28,6 +28,17 @@ export default function Login({ onLogin }) {
   // FAQ State
   const [activeFaq, setActiveFaq] = useState(null);
 
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("zerofit_theme") || "dark";
+  });
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("zerofit_theme", next);
+  };
+
   // Interactive Showcase states
   const [showcaseTab, setShowcaseTab] = useState("somatochart");
   const [mesoVal, setMesoVal] = useState(4);
@@ -208,14 +219,16 @@ export default function Login({ onLogin }) {
       {/* Styles Autocontenidos - Premium Aesthetics */}
       <style>{`
         .login-landing-container {
-          --sano-cream: #FAF9F6;
-          --sano-dark: #121A1A;
-          --sano-teal: #008080;
-          --sano-teal-hover: #006666;
-          --sano-lime: #32CD32;
-          --sano-lime-glow: rgba(50, 205, 50, 0.15);
-          --sano-glass-border: rgba(18, 26, 26, 0.06);
-          --sano-card-shadow: 0 10px 40px rgba(47, 79, 79, 0.04);
+          --sano-cream: #0d1117;
+          --sano-dark: #e2e8f0;
+          --sano-card-bg: #161b22;
+          --sano-input-bg: #0d1117;
+          --sano-teal: #22c55e;
+          --sano-teal-hover: #16a34a;
+          --sano-lime: #22c55e;
+          --sano-lime-glow: rgba(34, 197, 94, 0.15);
+          --sano-glass-border: rgba(255, 255, 255, 0.08);
+          --sano-card-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
           
           font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
           background-color: var(--sano-cream);
@@ -223,6 +236,19 @@ export default function Login({ onLogin }) {
           min-height: 100vh;
           overflow-x: hidden;
           position: relative;
+        }
+
+        [data-theme="light"] .login-landing-container {
+          --sano-cream: #FAF9F6;
+          --sano-dark: #121A1A;
+          --sano-card-bg: #ffffff;
+          --sano-input-bg: #f8faf9;
+          --sano-teal: #008080;
+          --sano-teal-hover: #006666;
+          --sano-lime: #32CD32;
+          --sano-lime-glow: rgba(50, 205, 50, 0.15);
+          --sano-glass-border: rgba(18, 26, 26, 0.06);
+          --sano-card-shadow: 0 10px 40px rgba(47, 79, 79, 0.04);
         }
 
         /* Ambient Background Glows */
@@ -240,7 +266,7 @@ export default function Login({ onLogin }) {
           width: 50vw;
           height: 60vh;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(0, 128, 128, 0.08) 0%, rgba(250, 249, 246, 0) 70%);
+          background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, rgba(13, 17, 23, 0) 70%);
           filter: blur(80px);
         }
         .glow-2 {
@@ -250,7 +276,7 @@ export default function Login({ onLogin }) {
           width: 60vw;
           height: 70vh;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(50, 205, 50, 0.06) 0%, rgba(250, 249, 246, 0) 70%);
+          background: radial-gradient(circle, rgba(34, 197, 94, 0.06) 0%, rgba(13, 17, 23, 0) 70%);
           filter: blur(100px);
         }
 
@@ -260,7 +286,7 @@ export default function Login({ onLogin }) {
           top: 0;
           left: 0;
           width: 100%;
-          background: rgba(250, 249, 246, 0.85);
+          background: var(--sano-card-bg);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--sano-glass-border);
@@ -379,7 +405,7 @@ export default function Login({ onLogin }) {
         }
         .stat-card {
           flex: 1;
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 20px;
           padding: 16px 20px;
@@ -677,7 +703,7 @@ export default function Login({ onLogin }) {
 
         /* Features Section */
         .features-section {
-          background: white;
+          background: var(--sano-cream);
           padding: 80px 24px 60px 24px;
           border-top: 1px solid var(--sano-glass-border);
           border-bottom: 1px solid var(--sano-glass-border);
@@ -788,11 +814,11 @@ export default function Login({ onLogin }) {
         .login-card {
           width: 100%;
           max-width: 460px;
-          background: white;
+          background: var(--sano-card-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 32px;
           padding: 40px;
-          box-shadow: 0 20px 50px rgba(47, 79, 79, 0.08);
+          box-shadow: var(--sano-card-shadow);
           position: relative;
           overflow: hidden;
           text-align: center;
@@ -836,7 +862,7 @@ export default function Login({ onLogin }) {
         .input-field {
           width: 100%;
           padding: 14px 16px;
-          background: #f8faf9;
+          background: var(--sano-input-bg);
           border: 1px solid var(--sano-glass-border);
           border-radius: 14px;
           font-family: inherit;
@@ -846,9 +872,9 @@ export default function Login({ onLogin }) {
           transition: all 0.2s ease;
         }
         .input-field:focus {
-          background: white;
+          background: var(--sano-card-bg);
           border-color: var(--sano-teal);
-          box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.12);
+          box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
         }
         
         /* Checkbox option */
@@ -953,7 +979,7 @@ export default function Login({ onLogin }) {
           justify-content: center;
           gap: 10px;
           width: 100%;
-          background: white;
+          background: var(--sano-card-bg);
           color: var(--sano-dark);
           border: 1px solid var(--sano-glass-border);
           padding: 12px;
@@ -966,8 +992,8 @@ export default function Login({ onLogin }) {
           font-family: inherit;
         }
         .google-btn:hover {
-          background: #f8faf9;
-          border-color: rgba(0,0,0,0.12);
+          background: var(--sano-input-bg);
+          border-color: var(--sano-glass-border);
         }
         /* Google Account Selector Mock Modal */
         .google-modal-overlay {
@@ -1904,9 +1930,32 @@ export default function Login({ onLogin }) {
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <img src="/logo-full.png" alt="ZEROFIT" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
         </div>
-        <button type="button" className="header-btn" onClick={scrollToLogin}>
-          Acceder
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            style={{
+              background: "rgba(255, 255, 255, 0.08)",
+              border: "1px solid var(--sano-glass-border)",
+              color: "var(--sano-dark)",
+              padding: "8px 16px",
+              borderRadius: "20px",
+              fontSize: "0.85rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              transition: "all 0.2s ease",
+            }}
+            title={theme === "dark" ? "Cambiar a Modo Claro" : "Cambiar a Modo Oscuro"}
+          >
+            {theme === "dark" ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+          </button>
+          <button type="button" className="header-btn" onClick={scrollToLogin}>
+            Acceder
+          </button>
+        </div>
       </header>
 
       {/* Hero Section */}
