@@ -684,22 +684,17 @@ function App() {
             </button>
           )}
 
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <div
-              style={{
-                width: "12px",
-                height: "12px",
-                background: "var(--primary)",
-                borderRadius: "50%",
-                boxShadow: "0 0 10px var(--primary)",
-              }}
+          <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => setSelectedPatient(null)}>
+            <img 
+              src="/logo-full.png" 
+              alt="ZEROFIT" 
+              style={{ 
+                height: "56px", 
+                width: "auto", 
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 10px rgba(0, 230, 118, 0.2))"
+              }} 
             />
-            <h1 className="glow-text" style={{ fontSize: "1.5rem", fontWeight: 800 }}>
-              ZEROFIT
-            </h1>
-            <span style={{ fontSize: "0.8rem", color: "var(--text-dark)", textTransform: "uppercase", letterSpacing: "2px", marginLeft: "10px" }}>
-              CRM & Suplementación
-            </span>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>

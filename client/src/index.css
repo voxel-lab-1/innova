@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* DARK THEME (default) */
-  --bg-main: #0d1117;
-  --bg-card: #161b22;
-  --bg-card-hover: #1c2128;
+  /* DARK THEME (default) - ZEROFIT Emerald/Mint palette */
+  --bg-main: #0a0d14;
+  --bg-card: #121721;
+  --bg-card-hover: #18202d;
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-focus: #22c55e;
+  --border-focus: #00e676;
 
-  --primary: #22c55e;
-  --primary-glow: rgba(34, 197, 94, 0.15);
-  --secondary: #16a34a;
-  --secondary-glow: rgba(22, 163, 74, 0.15);
-  --accent: #22c55e;
+  --primary: #00e676;
+  --primary-glow: rgba(0, 230, 118, 0.18);
+  --secondary: #10b981;
+  --secondary-glow: rgba(16, 185, 129, 0.18);
+  --accent: #00e676;
 
-  --text-main: #e2e8f0;
-  --text-muted: #8b949e;
-  --text-dark: #e2e8f0;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dark: #f8fafc;
 
-  --success: #22c55e;
+  --success: #00e676;
   --warning: #f59e0b;
   --error: #ef4444;
 
   /* Gradients */
-  --grad-primary: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-  --grad-dark: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-  --grad-glow: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(22, 163, 74, 0.05) 100%);
+  --grad-primary: linear-gradient(135deg, #00e676 0%, #10b981 100%);
+  --grad-dark: linear-gradient(180deg, #121721 0%, #0a0d14 100%);
+  --grad-glow: linear-gradient(135deg, rgba(0, 230, 118, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
 
   /* Fonts */
   --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -35,18 +35,18 @@
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Shadows */
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 4px 15px rgba(34, 197, 94, 0.2);
-  --shadow-glow-hover: 0 8px 25px rgba(34, 197, 94, 0.3);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 4px 20px rgba(0, 230, 118, 0.25);
+  --shadow-glow-hover: 0 8px 30px rgba(0, 230, 118, 0.35);
   --blur-amount: none;
 
   /* Input bg */
-  --input-bg: #0d1117;
-  --sidebar-bg: #161b22;
-  --modal-bg: #161b22;
-  --modal-shadow: rgba(0, 0, 0, 0.5);
-  --backdrop: rgba(0, 0, 0, 0.6);
+  --input-bg: #0a0d14;
+  --sidebar-bg: #121721;
+  --modal-bg: #121721;
+  --modal-shadow: rgba(0, 0, 0, 0.6);
+  --backdrop: rgba(0, 0, 0, 0.7);
 }
 
 /* LIGHT THEME override */

@@ -1931,7 +1931,16 @@ export default function Login({ onLogin }) {
       {/* Navigation Header */}
       <header className="landing-header">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <img src="/logo-full.png" alt="ZEROFIT" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
+          <img 
+            src="/logo-full.png" 
+            alt="ZEROFIT" 
+            style={{ 
+              height: "72px", 
+              width: "auto", 
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 12px rgba(0, 230, 118, 0.25))"
+            }} 
+          />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <button
