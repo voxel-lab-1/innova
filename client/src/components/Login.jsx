@@ -1976,24 +1976,26 @@ export default function Login({ onLogin }) {
             src={theme === "light" ? "/logo-light.png" : "/logo-full.png"} 
             alt="ZEROFIT" 
             style={{ 
-              height: "50px", 
+              height: "75px", 
               width: "auto", 
-              objectFit: "contain"
+              objectFit: "contain",
+              maxHeight: "80px"
             }} 
           />
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginLeft: "auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginLeft: "auto" }}>
           <button
             type="button"
             onClick={toggleTheme}
             style={{
-              background: "rgba(255, 255, 255, 0.08)",
+              background: "transparent",
               border: "1px solid var(--sano-glass-border)",
               color: "var(--sano-dark)",
-              width: "42px",
-              height: "42px",
+              width: "34px",
+              height: "34px",
               borderRadius: "50%",
-              fontSize: "1.25rem",
+              fontSize: "0.95rem",
+              opacity: 0.75,
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
@@ -2005,8 +2007,8 @@ export default function Login({ onLogin }) {
           >
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
-          <button type="button" className="header-btn" onClick={openRegisterModal}>
-            Regístrate
+          <button type="button" className="header-btn" onClick={openLoginModal}>
+            Ingresar
           </button>
         </div>
       </header>
@@ -2347,7 +2349,7 @@ export default function Login({ onLogin }) {
             </div>
           </div>
 
-          <button type="button" className="hero-cta-btn" onClick={openRegisterModal}>
+          <button type="button" className="hero-cta-btn" onClick={openLoginModal}>
             Ingresar al Portal
             <span className="arrow-icon">→</span>
           </button>
