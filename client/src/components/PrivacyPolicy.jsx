@@ -71,7 +71,7 @@ export default function PrivacyPolicy() {
           },
           {
             title: "10. Contacto",
-            content: `Si tienes preguntas sobre esta Política de Privacidad, contáctanos en: contacto@zerofit.app o a través de la plataforma en zerofit.vercel.app`,
+            content: `Si tienes preguntas sobre esta Política de Privacidad, contáctanos en: contacto@zerofit.app o a través de la plataforma en www.zerofit.app`,
           },
         ].map((section, i) => (
           <div key={i} style={{

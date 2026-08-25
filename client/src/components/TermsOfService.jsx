@@ -55,7 +55,7 @@ export default function TermsOfService() {
           },
           {
             title: "6. Datos y privacidad",
-            content: `El uso de ZEROFIT está sujeto a nuestra Política de Privacidad, disponible en zerofit.vercel.app/privacy. Al usar el servicio, aceptas que recopilemos y usemos tu información según lo descrito en dicha política.`,
+            content: `El uso de ZEROFIT está sujeto a nuestra Política de Privacidad, disponible en www.zerofit.app/privacy. Al usar el servicio, aceptas que recopilemos y usemos tu información según lo descrito en dicha política.`,
           },
           {
             title: "7. Membresías y pagos",
@@ -79,7 +79,7 @@ export default function TermsOfService() {
           },
           {
             title: "12. Contacto",
-            content: `Para preguntas sobre estos Términos de Servicio, contáctanos en: contacto@zerofit.app o a través de zerofit.vercel.app`,
+            content: `Para preguntas sobre estos Términos de Servicio, contáctanos en: contacto@zerofit.app o a través de www.zerofit.app`,
           },
         ].map((section, i) => (
           <div key={i} style={{
