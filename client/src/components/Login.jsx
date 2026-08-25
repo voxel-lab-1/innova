@@ -756,9 +756,11 @@ export default function Login({ onLogin }) {
           gap: 20px;
         }
         .feature-card {
-          border-radius: 28px;
-          padding: 24px;
-          border: 1px solid rgba(0, 0, 0, 0.04);
+          border-radius: 24px;
+          padding: 26px 24px;
+          background: var(--sano-card-bg);
+          border: 1px solid var(--sano-glass-border);
+          box-shadow: var(--sano-card-shadow);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           display: flex;
           flex-direction: column;
@@ -769,23 +771,7 @@ export default function Login({ onLogin }) {
         }
         .feature-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-          border-color: rgba(0,0,0,0.08);
-        }
-        .card-blue {
-          background: rgba(79, 70, 229, 0.05);
-        }
-        .card-green {
-          background: rgba(16, 185, 129, 0.05);
-        }
-        .card-amber {
-          background: rgba(245, 158, 11, 0.05);
-        }
-        .card-rose {
-          background: rgba(244, 63, 94, 0.05);
-        }
-        .card-violet {
-          background: rgba(139, 92, 246, 0.05);
+          border-color: var(--sano-teal);
         }
         
         .feature-icon-wrapper {
@@ -801,27 +787,23 @@ export default function Login({ onLogin }) {
           transform: scale(1.1);
         }
         
-        .icon-blue { background: rgba(79, 70, 229, 0.1); color: rgb(79, 70, 229); }
-        .icon-green { background: rgba(16, 185, 129, 0.1); color: rgb(16, 185, 129); }
-        .icon-amber { background: rgba(245, 158, 11, 0.1); color: rgb(245, 158, 11); }
-        .icon-rose { background: rgba(244, 63, 94, 0.1); color: rgb(244, 63, 94); }
-        .icon-violet { background: rgba(139, 92, 246, 0.1); color: rgb(139, 92, 246); }
+        .icon-blue { background: rgba(31, 211, 144, 0.12); color: var(--sano-teal); }
+        .icon-green { background: rgba(31, 211, 144, 0.12); color: var(--sano-teal); }
+        .icon-amber { background: rgba(31, 211, 144, 0.12); color: var(--sano-teal); }
+        .icon-rose { background: rgba(31, 211, 144, 0.12); color: var(--sano-teal); }
+        .icon-violet { background: rgba(31, 211, 144, 0.12); color: var(--sano-teal); }
 
         .feature-card-title {
           font-size: 1.3rem;
           font-weight: 800;
           letter-spacing: -0.5px;
+          color: var(--sano-dark);
         }
-        .title-blue { color: rgb(67, 56, 202); }
-        .title-green { color: rgb(15, 118, 110); }
-        .title-amber { color: rgb(180, 83, 9); }
-        .title-rose { color: rgb(190, 24, 74); }
-        .title-violet { color: rgb(109, 40, 217); }
 
         .feature-card-desc {
           font-size: 0.95rem;
           line-height: 1.5;
-          color: #708090;
+          color: var(--text-muted);
           font-weight: 500;
         }
 
@@ -2427,6 +2409,17 @@ export default function Login({ onLogin }) {
               <h3 className="feature-card-title title-violet">Balance Nutricional</h3>
               <p className="feature-card-desc">
                 Contador logístico de calorías diarias ingeridas y quemadas. Reportes de macronutrientes personalizados según la disciplina.
+              </p>
+            </div>
+
+            {/* Card 6 */}
+            <div className="feature-card card-blue">
+              <div className="feature-icon-wrapper icon-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </div>
+              <h3 className="feature-card-title title-blue">Portales Atletas QR</h3>
+              <p className="feature-card-desc">
+                Acceso independiente y rápido mediante código QR para que cada atleta consulte sus planes sin recordar contraseñas.
               </p>
             </div>
           </div>
