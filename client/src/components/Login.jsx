@@ -39,6 +39,16 @@ export default function Login({ onLogin }) {
     localStorage.setItem("zerofit_theme", next);
   };
 
+  // Interactive Phone Tour state
+  const [tourIndex, setTourIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTourIndex((prev) => (prev + 1) % 5);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   // Interactive Showcase states
   const [showcaseTab, setShowcaseTab] = useState("somatochart");
   const [mesoVal, setMesoVal] = useState(4);
@@ -1974,59 +1984,203 @@ export default function Login({ onLogin }) {
         {/* Mockup iPhone Container on Left */}
         <div className="mockup-container">
           <div className="iphone-frame">
-            <div className="iphone-screen">
+            <div className="iphone-screen" style={{ background: "var(--sano-cream)", color: "var(--sano-dark)" }}>
               <div className="iphone-notch"></div>
               
+              {/* Tour Progress Indicators at top (Story-style bars) */}
+              <div style={{ padding: "30px 14px 8px 14px", display: "flex", gap: "4px", zIndex: 10 }}>
+                {["ISAK II", "Rutinas", "Nutrición", "Postura IA", "Stock"].map((label, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => setTourIndex(idx)}
+                    style={{ 
+                      flex: 1, 
+                      height: "3px", 
+                      background: "rgba(255, 255, 255, 0.15)", 
+                      borderRadius: "2px", 
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      position: "relative"
+                    }}
+                  >
+                    <div 
+                      style={{ 
+                        height: "100%", 
+                        background: "var(--sano-teal)", 
+                        width: idx < tourIndex ? "100%" : idx === tourIndex ? "100%" : "0%",
+                        transition: idx === tourIndex ? "width 4.5s linear" : "none"
+                      }} 
+                    />
+                  </div>
+                ))}
+              </div>
+
               {/* Simulated App Header */}
-              <div className="app-header">
-                <span className="app-user-name">Atleta: Carlos Mendoza</span>
-                <div className="app-status-indicator"></div>
+              <div style={{ padding: "0 14px 10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid var(--sano-glass-border)" }}>
+                <div>
+                  <div style={{ fontSize: "0.75rem", color: "var(--sano-teal)", fontWeight: "800", textTransform: "uppercase", letterSpacing: "1px" }}>
+                    {tourIndex === 0 && "📊 Módulo ISAK II"}
+                    {tourIndex === 1 && "🏋️ Planificador de Rutinas"}
+                    {tourIndex === 2 && "🥗 Contador Calórico"}
+                    {tourIndex === 3 && "📐 Analizador Postural IA"}
+                    {tourIndex === 4 && "💊 Control de Suplementos"}
+                  </div>
+                  <div style={{ fontSize: "0.85rem", fontWeight: "700" }}>Atleta: Carlos Mendoza</div>
+                </div>
+                <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "var(--sano-lime)", boxShadow: "0 0 8px var(--sano-lime)" }} />
               </div>
               
-              {/* Simulated App Body */}
-              <div className="app-body">
-                {/* 1. Nutrition Summary */}
-                <div className="app-card">
-                  <div className="app-card-title">Balance Calórico</div>
-                  <div className="mini-calorie-summary">
-                    <div className="mini-circle-container">
-                      <svg className="circle-svg" width="54" height="54">
-                        <circle cx="27" cy="27" r="23" stroke="#e6e6e6" strokeWidth="3" fill="transparent" />
-                        <circle cx="27" cy="27" r="23" stroke="var(--sano-teal)" strokeWidth="4" fill="transparent" 
-                                strokeDasharray="144" strokeDashoffset="40" strokeLinecap="round"/>
-                      </svg>
+              {/* Dynamic Tour Content Area */}
+              <div className="app-body" style={{ padding: "12px", flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
+                
+                {/* 1. SOMATOCARTA ISAK II */}
+                {tourIndex === 0 && (
+                  <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <div className="app-card" style={{ padding: "12px" }}>
+                      <div className="app-card-title">Somatocarta Antropométrica</div>
+                      <div style={{ position: "relative", width: "100%", height: "120px", background: "var(--sano-input-bg)", borderRadius: "10px", border: "1px solid var(--sano-glass-border)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                        <div style={{ position: "absolute", width: "100%", height: "1px", background: "var(--sano-glass-border)", top: "50%" }} />
+                        <div style={{ position: "absolute", height: "100%", width: "1px", background: "var(--sano-glass-border)", left: "50%" }} />
+                        <div style={{ position: "absolute", top: "28%", left: "58%", display: "flex", alignItems: "center", gap: "6px" }}>
+                          <div style={{ width: "12px", height: "12px", background: "var(--sano-teal)", borderRadius: "50%", boxShadow: "0 0 10px var(--sano-teal)", animation: "pulse 1.5s infinite" }} />
+                          <span style={{ fontSize: "0.68rem", fontWeight: "800", background: "var(--sano-teal)", color: "#000", padding: "1px 6px", borderRadius: "4px" }}>MESOMORFO</span>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="mini-val">1,840 Kcal</div>
-                      <div className="mini-label">Consumidas de 2,500</div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                      <div className="app-card" style={{ textAlign: "center", padding: "8px" }}>
+                        <div style={{ fontSize: "0.65rem", color: "var(--text-muted)", textTransform: "uppercase" }}>% Grasa Corporal</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "800", color: "var(--sano-teal)" }}>11.2%</div>
+                      </div>
+                      <div className="app-card" style={{ textAlign: "center", padding: "8px" }}>
+                        <div style={{ fontSize: "0.65rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Masa Muscular</div>
+                        <div style={{ fontSize: "1.1rem", fontWeight: "800", color: "var(--sano-teal)" }}>42.5 kg</div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
-                {/* 2. Somatochart */}
-                <div className="app-card">
-                  <div className="app-card-title">Somatocarta</div>
-                  <div className="mini-somatochart">
-                    <div className="somatochart-grid-line-x"></div>
-                    <div className="somatochart-grid-line-y"></div>
-                    <div className="somatochart-point"></div>
-                    <span className="somatochart-label-meso">Mesomorfo</span>
-                  </div>
-                </div>
+                {/* 2. PLANIFICADOR DE RUTINAS */}
+                {tourIndex === 1 && (
+                  <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <div style={{ fontSize: "0.72rem", fontWeight: "700", color: "var(--text-muted)", textTransform: "uppercase" }}>Día 1: Hipertrofia Pecho & Tríceps</div>
+                    
+                    <div className="app-card" style={{ padding: "10px", borderLeft: "3px solid var(--sano-teal)" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", fontWeight: "800" }}>
+                        <span>Press Banca Plano</span>
+                        <span style={{ color: "var(--sano-teal)", fontSize: "0.72rem" }}>✓ 4 Series</span>
+                      </div>
+                      <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "4px" }}>Series: 10, 10, 8, 8 reps @ 85 kg</div>
+                    </div>
 
-                {/* 3. Supplement Inventory */}
-                <div className="app-card">
-                  <div className="app-card-title">Stock de Suplemento</div>
-                  <div className="mini-stock-item">
-                    <div className="mini-stock-header">
-                      <span>Creatina Creapure</span>
-                      <span style={{ color: "var(--sano-teal)", fontWeight: 700 }}>82%</span>
+                    <div className="app-card" style={{ padding: "10px", borderLeft: "3px solid var(--sano-lime)" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", fontWeight: "800" }}>
+                        <span>Press Inclinado Mancuernas</span>
+                        <span style={{ color: "var(--sano-lime)", fontSize: "0.72rem" }}>⚡ En Progreso</span>
+                      </div>
+                      <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "4px" }}>Series: 12, 12, 10 reps @ 32 kg</div>
                     </div>
-                    <div className="mini-progress-bar-bg">
-                      <div className="mini-progress-bar-fill"></div>
+
+                    <div className="app-card" style={{ padding: "8px 12px", background: "var(--sano-input-bg)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "0.75rem", fontWeight: "700" }}>⏱ Descanso Inter-Series</span>
+                      <span style={{ fontSize: "0.85rem", fontWeight: "900", color: "var(--sano-teal)" }}>00:45</span>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {/* 3. CONTADOR CALÓRICO & MACROS */}
+                {tourIndex === 2 && (
+                  <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <div className="app-card" style={{ padding: "12px", display: "flex", alignItems: "center", gap: "14px" }}>
+                      <div style={{ position: "relative", width: "56px", height: "56px" }}>
+                        <svg width="56" height="56" style={{ transform: "rotate(-90deg)" }}>
+                          <circle cx="28" cy="28" r="23" stroke="var(--sano-glass-border)" strokeWidth="4" fill="transparent" />
+                          <circle cx="28" cy="28" r="23" stroke="var(--sano-teal)" strokeWidth="4" fill="transparent" strokeDasharray="144" strokeDashoffset="20" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: "1.15rem", fontWeight: "900", color: "var(--sano-dark)" }}>2,150 Kcal</div>
+                        <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>Meta diaria: 2,400 Kcal (Definición)</div>
+                      </div>
+                    </div>
+
+                    <div className="app-card" style={{ padding: "10px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <div>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", fontWeight: "700" }}>
+                          <span>Proteína</span>
+                          <span style={{ color: "var(--sano-teal)" }}>185g / 190g</span>
+                        </div>
+                        <div style={{ height: "5px", width: "100%", background: "var(--sano-input-bg)", borderRadius: "3px", overflow: "hidden", marginTop: "3px" }}>
+                          <div style={{ height: "100%", width: "97%", background: "var(--sano-teal)" }} />
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", fontWeight: "700" }}>
+                          <span>Carbohidratos</span>
+                          <span style={{ color: "var(--sano-teal)" }}>220g / 250g</span>
+                        </div>
+                        <div style={{ height: "5px", width: "100%", background: "var(--sano-input-bg)", borderRadius: "3px", overflow: "hidden", marginTop: "3px" }}>
+                          <div style={{ height: "100%", width: "88%", background: "var(--sano-teal)" }} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. ANALIZADOR POSTURAL IA */}
+                {tourIndex === 3 && (
+                  <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <div className="app-card" style={{ padding: "12px", textAlign: "center" }}>
+                      <div className="app-card-title">Escaneo Biomecánico 3D</div>
+                      <div style={{ height: "100px", background: "var(--sano-input-bg)", borderRadius: "10px", border: "1px solid var(--sano-glass-border)", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <svg width="100" height="90" viewBox="0 0 100 90">
+                          <circle cx="50" cy="15" r="7" fill="none" stroke="var(--sano-teal)" strokeWidth="2" />
+                          <line x1="50" y1="22" x2="50" y2="55" stroke="var(--sano-teal)" strokeWidth="2" />
+                          <line x1="30" y1="30" x2="70" y2="30" stroke="var(--sano-teal)" strokeWidth="2" />
+                          <line x1="38" y1="78" x2="50" y2="55" stroke="var(--sano-teal)" strokeWidth="2" />
+                          <line x1="62" y1="78" x2="50" y2="55" stroke="var(--sano-teal)" strokeWidth="2" />
+                          <circle cx="30" cy="30" r="3" fill="var(--sano-teal)" />
+                          <circle cx="70" cy="30" r="3" fill="var(--sano-teal)" />
+                          <circle cx="50" cy="55" r="3" fill="var(--sano-teal)" />
+                        </svg>
+                        <span style={{ position: "absolute", bottom: "6px", fontSize: "0.65rem", fontWeight: "800", background: "var(--sano-teal)", color: "#000", padding: "2px 8px", borderRadius: "10px" }}>SIMETRÍA: 98.6%</span>
+                      </div>
+                    </div>
+                    <div className="app-card" style={{ padding: "8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "0.75rem", fontWeight: "700" }}>Alineación Cervical</span>
+                      <span style={{ fontSize: "0.75rem", fontWeight: "800", color: "var(--sano-teal)" }}>+0.4° (Óptimo)</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* 5. CONTROL DE SUPLEMENTOS */}
+                {tourIndex === 4 && (
+                  <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <div style={{ fontSize: "0.72rem", fontWeight: "700", color: "var(--text-muted)", textTransform: "uppercase" }}>Inventario de Atleta</div>
+                    
+                    <div className="app-card" style={{ padding: "10px" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", fontWeight: "700" }}>
+                        <span>Creatina Creapure 500g</span>
+                        <span style={{ color: "var(--sano-teal)", fontWeight: "900" }}>82%</span>
+                      </div>
+                      <div style={{ height: "5px", width: "100%", background: "var(--sano-input-bg)", borderRadius: "3px", overflow: "hidden", marginTop: "6px" }}>
+                        <div style={{ height: "100%", width: "82%", background: "var(--sano-teal)" }} />
+                      </div>
+                    </div>
+
+                    <div className="app-card" style={{ padding: "10px" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", fontWeight: "700" }}>
+                        <span>Whey Protein Isolate</span>
+                        <span style={{ color: "var(--sano-teal)", fontWeight: "900" }}>45%</span>
+                      </div>
+                      <div style={{ height: "5px", width: "100%", background: "var(--sano-input-bg)", borderRadius: "3px", overflow: "hidden", marginTop: "6px" }}>
+                        <div style={{ height: "100%", width: "45%", background: "var(--sano-teal)" }} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           </div>
