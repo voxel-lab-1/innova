@@ -233,15 +233,21 @@ export default function Login({ onLogin }) {
     return () => clearTimeout(timer);
   }, [isLogin, showAuthModal]);
 
-  // Lock body scroll while modal is open to prevent page jumps
+  // Lock body scroll while modal is open to prevent page jumps without scrollbar layout shift
   useEffect(() => {
     if (showAuthModal) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
     } else {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [showAuthModal]);
 
@@ -309,7 +315,7 @@ export default function Login({ onLogin }) {
           --phone-frame-border: #1f2937;
           --phone-screen-bg: #f8fafc;
           --phone-notch-bg: #000000;
-        /* Ultra-Smooth Hardware-Accelerated Auth Modal */
+        /* Ultra-Smooth Stable Auth Modal (Zero-Shift & Zero-Jump) */
         .auth-modal-overlay {
           position: fixed;
           top: 0;
@@ -317,39 +323,35 @@ export default function Login({ onLogin }) {
           right: 0;
           bottom: 0;
           z-index: 10000;
-          background: rgba(0, 0, 0, 0.72);
+          background: rgba(0, 0, 0, 0.75);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
-          padding: 20px;
+          padding: 60px 16px 30px 16px;
           overflow-y: auto;
-          animation: modalOverlayFade 0.2s ease-out forwards;
-          will-change: opacity;
+          animation: modalOverlayFade 0.15s ease-out forwards;
         }
         .auth-modal-card {
           position: relative;
           max-width: 460px;
           width: 100%;
-          margin: auto;
-          max-height: 90vh;
-          overflow-y: auto;
+          margin: 0 auto;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
           border: 1px solid var(--sano-glass-border);
           background: var(--sano-card-bg);
           border-radius: 28px;
-          animation: modalPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          will-change: transform, opacity;
-          transform: translateZ(0);
+          animation: modalPopIn 0.15s ease-out forwards;
+          transform-origin: top center;
         }
         @keyframes modalOverlayFade {
           from { opacity: 0; }
           to { opacity: 1; }
         }
         @keyframes modalPopIn {
-          from { opacity: 0; transform: scale(0.96) translateY(10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
         }
 
         /* Ambient Background Glows */
