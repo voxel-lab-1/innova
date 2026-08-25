@@ -43,22 +43,9 @@ import { generateMealPlan } from "./mealPlanEngine.js";
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "https://innova-eta.vercel.app"
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    const isAllowed = allowedOrigins.includes(origin) || origin.endsWith(".vercel.app");
-    if (isAllowed) {
-      callback(null, true);
-    } else {
-      callback(new Error("No permitido por CORS"));
-    }
-  }
+  origin: true,
+  credentials: true
 }));
 app.use(express.json());
 
