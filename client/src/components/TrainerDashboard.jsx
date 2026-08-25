@@ -39,7 +39,7 @@ const TrainerDashboard = ({ apiBase, onSelectAthlete, onCreateAthlete, planType 
     <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
       {/* 1. Header Area */}
       <div>
-        <h2 className="glow-text" style={{ fontSize: "2.2rem", marginBottom: "6px" }}>Consola de Comando Innova 🚀</h2>
+        <h2 className="glow-text" style={{ fontSize: "2.2rem", marginBottom: "6px" }}>Consola de Comando ZEROFIT 🚀</h2>
         <p style={{ color: "var(--text-muted)", fontSize: "1.05rem" }}>
           Monitorea el rendimiento, la suplementación y la postura de tus atletas desde un panel centralizado.
         </p>

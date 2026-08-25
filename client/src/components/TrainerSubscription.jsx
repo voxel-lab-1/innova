@@ -63,7 +63,7 @@ const TrainerSubscription = ({ apiBase }) => {
   return (
     <div className="glass-card animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "30px", padding: "45px 35px" }}>
       <div>
-        <h2 className="glow-text" style={{ fontSize: "2rem", marginBottom: "4px" }}>Mi Suscripción Innova</h2>
+        <h2 className="glow-text" style={{ fontSize: "2rem", marginBottom: "4px" }}>Mi Suscripción ZEROFIT</h2>
         <p style={{ color: "var(--text-muted)", fontSize: "0.95rem" }}>
           Administra la membresía de tu cuenta de entrenador y revisa tu límite de atletas activos.
         </p>

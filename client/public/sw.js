@@ -1,4 +1,4 @@
-const CACHE_NAME = "innova-cache-v3";
+const CACHE_NAME = "zerofit-cache-v1";
 const ASSETS = [
   "/",
   "/index.html",

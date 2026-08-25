@@ -1903,7 +1903,7 @@ export default function Login({ onLogin }) {
       <header className="landing-header">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <div className="logo-dot"></div>
-          <span className="logo-text">INNOVA</span>
+          <span className="logo-text">ZEROFIT</span>
           <span className="logo-badge">CRM</span>
         </div>
         <button type="button" className="header-btn" onClick={scrollToLogin}>
@@ -2134,10 +2134,10 @@ export default function Login({ onLogin }) {
             </ul>
           </div>
 
-          {/* La Solución Innova */}
+          {/* La Solución ZEROFIT */}
           <div className="challenge-card solution">
             <h3 className="challenge-card-title">
-              <span style={{ fontSize: "1.5rem" }}>✨</span> La Solución Innova
+              <span style={{ fontSize: "1.5rem" }}>✨</span> La Solución ZEROFIT
             </h3>
             <ul className="challenge-list">
               <li className="challenge-list-item">
@@ -2161,7 +2161,7 @@ export default function Login({ onLogin }) {
       <section className="showcase-section">
         <div className="pricing-header">
           <span className="hero-tag">Demostración Interactiva</span>
-          <h2 className="pricing-title">Experimenta la Tecnología de Innova</h2>
+          <h2 className="pricing-title">Experimenta la Tecnología de ZEROFIT</h2>
           <p className="pricing-subtitle">
             Prueba en tiempo real los motores de análisis y control que tus atletas verán en sus perfiles web.
           </p>
@@ -2458,7 +2458,7 @@ export default function Login({ onLogin }) {
                 Metodología y Respaldo Fisiológico
               </h2>
               <p className="science-subtitle" style={{ margin: "0 0 30px 0", textAlign: "left" }}>
-                Innova no es solo software; está construido bajo estándares y metodologías validadas internacionalmente para la preparación física.
+                ZEROFIT no es solo software; está construido bajo estándares y metodologías validadas internacionalmente para la preparación física.
               </p>
 
               <div className="science-item">
@@ -2493,7 +2493,7 @@ export default function Login({ onLogin }) {
           <span className="hero-tag">Historias de Éxito</span>
           <h2 className="pricing-title">Preparadores que confían en nosotros</h2>
           <p className="pricing-subtitle">
-            Descubre cómo otros entrenadores y deportistas profesionales están optimizando su metodología de trabajo con Innova.
+            Descubre cómo otros entrenadores y deportistas profesionales están optimizando su metodología de trabajo con ZEROFIT.
           </p>
         </div>
 
@@ -2515,7 +2515,7 @@ export default function Login({ onLogin }) {
           {/* Testimonial 2 */}
           <div className="testimonial-card">
             <p className="testimonial-text">
-              "Centralizar la suplementación y las alertas de stock con Innova me ahorró horas de responder mensajes sobre dosis. La retención de mis atletas subió drásticamente al ofrecerles un portal web con su QR."
+              "Centralizar la suplementación y las alertas de stock con ZEROFIT me ahorró horas de responder mensajes sobre dosis. La retención de mis atletas subió drásticamente al ofrecerles un portal web con su QR."
             </p>
             <div className="testimonial-author">
               <div className="author-avatar">LG</div>
@@ -2545,7 +2545,7 @@ export default function Login({ onLogin }) {
       {/* Pricing Plans Section */}
       <section className="pricing-section" id="plans-section">
         <div className="pricing-header">
-          <span className="hero-tag">Membresías Innova</span>
+          <span className="hero-tag">Membresías ZEROFIT</span>
           <h2 className="pricing-title">Planes para Entrenadores y Preparadores</h2>
           <p className="pricing-subtitle">
             Elige el plan ideal para llevar el control de tus atletas y brindarles una experiencia premium.
@@ -2603,7 +2603,7 @@ export default function Login({ onLogin }) {
           <span className="hero-tag">Preguntas Frecuentes</span>
           <h2 className="pricing-title">Respuestas a tus Dudas</h2>
           <p className="pricing-subtitle">
-            Todo lo que necesitas saber sobre cómo Innova ayuda a potenciar los resultados de tus atletas.
+            Todo lo que necesitas saber sobre cómo ZEROFIT ayuda a potenciar los resultados de tus atletas.
           </p>
         </div>
 
@@ -2682,7 +2682,7 @@ export default function Login({ onLogin }) {
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
               <h4 style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: "var(--sano-dark)" }}>
-                ¿Cómo ayuda Innova a evitar que mis atletas olviden sus suplementos?
+                ¿Cómo ayuda ZEROFIT a evitar que mis atletas olviden sus suplementos?
               </h4>
               <span style={{ fontSize: "1.4rem", color: "var(--sano-teal)", fontWeight: "bold" }}>
                 {activeFaq === 2 ? "−" : "+"}
@@ -2745,7 +2745,7 @@ export default function Login({ onLogin }) {
           </div>
 
           <h2 className="login-title">
-            {isLogin ? "Acceso al Portal Innova" : "Crea tu Cuenta de Entrenador"}
+            {isLogin ? "Acceso al Portal ZEROFIT" : "Crea tu Cuenta de Entrenador"}
           </h2>
           <p className="login-desc">
             {isLogin 
@@ -2931,7 +2931,7 @@ export default function Login({ onLogin }) {
 
       {/* Footer */}
       <footer className="landing-footer">
-        <p>© 2026 INNOVA Logistics & Performance. Todos los derechos reservados.</p>
+        <p>© 2026 ZEROFIT Logistics & Performance. Todos los derechos reservados.</p>
       </footer>
 
       {/* Google modal removed */}

@@ -7,7 +7,7 @@ import App from './App.jsx'
 const originalFetch = window.fetch;
 window.fetch = async function (input, init) {
   if (typeof input === 'string' && (input.startsWith('/api') || input.includes('/api/'))) {
-    const token = localStorage.getItem("innova_token") || sessionStorage.getItem("innova_token");
+    const token = localStorage.getItem("zerofit_token") || sessionStorage.getItem("zerofit_token");
     if (token) {
       const newInit = init ? { ...init } : {};
       let headers = newInit.headers || {};

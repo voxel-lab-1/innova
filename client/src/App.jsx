@@ -33,7 +33,7 @@ const decodeJwt = (token) => {
 function App() {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
-      const saved = localStorage.getItem("innova_user") || sessionStorage.getItem("innova_user");
+      const saved = localStorage.getItem("ZEROFIT_user") || sessionStorage.getItem("ZEROFIT_user");
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -47,7 +47,7 @@ function App() {
       const params = new URLSearchParams(window.location.search);
       const shareToken = params.get("shareToken");
       if (shareToken) {
-        sessionStorage.setItem("innova_token", shareToken);
+        sessionStorage.setItem("ZEROFIT_token", shareToken);
         const decoded = decodeJwt(shareToken);
         return decoded ? decoded.athleteId : null;
       }
@@ -61,21 +61,21 @@ function App() {
   const handleLoginSuccess = (user, rememberMe, token) => {
     setCurrentUser(user);
     const storage = rememberMe ? localStorage : sessionStorage;
-    storage.setItem("innova_auth", "true");
-    storage.setItem("innova_user", JSON.stringify(user));
+    storage.setItem("ZEROFIT_auth", "true");
+    storage.setItem("ZEROFIT_user", JSON.stringify(user));
     if (token) {
-      storage.setItem("innova_token", token);
+      storage.setItem("ZEROFIT_token", token);
     }
   };
 
   const handleLogout = () => {
     setCurrentUser(null);
-    localStorage.removeItem("innova_auth");
-    localStorage.removeItem("innova_user");
-    localStorage.removeItem("innova_token");
-    sessionStorage.removeItem("innova_auth");
-    sessionStorage.removeItem("innova_user");
-    sessionStorage.removeItem("innova_token");
+    localStorage.removeItem("ZEROFIT_auth");
+    localStorage.removeItem("ZEROFIT_user");
+    localStorage.removeItem("ZEROFIT_token");
+    sessionStorage.removeItem("ZEROFIT_auth");
+    sessionStorage.removeItem("ZEROFIT_user");
+    sessionStorage.removeItem("ZEROFIT_token");
     setSelectedPatient(null);
     setIsAthleteView(false);
   };
@@ -407,7 +407,7 @@ function App() {
         </head>
         <body>
           <div class="header">
-            <div class="logo">INNOVA <span style="font-size: 0.9rem; font-weight: normal; color: #4a5568;">CRM</span></div>
+            <div class="logo">ZEROFIT <span style="font-size: 0.9rem; font-weight: normal; color: #4a5568;">CRM</span></div>
             <div class="title">REPORTE FÍSICO DE ATLETA</div>
           </div>
 
@@ -462,7 +462,7 @@ function App() {
           ${routineHtml}
 
           <div class="footer">
-            <p>Reporte generado automáticamente por la Consola de Comando de Innova. Todos los derechos reservados.</p>
+            <p>Reporte generado automáticamente por la Consola de Comando de ZEROFIT. Todos los derechos reservados.</p>
           </div>
 
           <script>
@@ -677,7 +677,7 @@ function App() {
               }}
             />
             <h1 className="glow-text" style={{ fontSize: "1.5rem", fontWeight: 800 }}>
-              INNOVA
+              ZEROFIT
             </h1>
             <span style={{ fontSize: "0.8rem", color: "var(--text-dark)", textTransform: "uppercase", letterSpacing: "2px", marginLeft: "10px" }}>
               CRM & Suplementación
