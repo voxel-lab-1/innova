@@ -1,4 +1,4 @@
-const CACHE_NAME = "innova-cache-v2";
+const CACHE_NAME = "innova-cache-v3";
 const ASSETS = [
   "/",
   "/index.html",
