@@ -25,8 +25,9 @@ export default function Login({ onLogin }) {
   const [googleGender, setGoogleGender] = useState("male");
   const [googleSport, setGoogleSport] = useState("General");
 
-  // FAQ State
+  // FAQ & Modal State
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("zerofit_theme") || "dark";
@@ -219,8 +220,6 @@ export default function Login({ onLogin }) {
       return () => clearInterval(interval);
     }
   }, [isLogin, showAuthModal]);
-
-  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const openRegisterModal = () => {
     setIsLogin(false);
