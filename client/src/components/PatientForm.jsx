@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from "react";
 
 const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 90 }, (_, i) => String(currentYear - i));
+  const months = [
+    { val: "01", label: "Ene (01)" },
+    { val: "02", label: "Feb (02)" },
+    { val: "03", label: "Mar (03)" },
+    { val: "04", label: "Abr (04)" },
+    { val: "05", label: "May (05)" },
+    { val: "06", label: "Jun (06)" },
+    { val: "07", label: "Jul (07)" },
+    { val: "08", label: "Ago (08)" },
+    { val: "09", label: "Sep (09)" },
+    { val: "10", label: "Oct (10)" },
+    { val: "11", label: "Nov (11)" },
+    { val: "12", label: "Dic (12)" },
+  ];
+  const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
+
   const [name, setName] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState("male");
   const [email, setEmail] = useState("");
@@ -13,12 +34,26 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
     if (patient) {
       setName(patient.name || "");
       setBirthdate(patient.birthdate || "");
+      if (patient.birthdate) {
+        const parts = patient.birthdate.split("-");
+        if (parts.length === 3) {
+          setYear(parts[0]);
+          setMonth(parts[1]);
+          setDay(parts[2]);
+        }
+      }
       setGender(patient.gender || "male");
       setEmail(patient.email || "");
       setPhone(patient.phone || "");
       setSport(patient.sport || "");
     }
   }, [patient]);
+
+  useEffect(() => {
+    if (year && month && day) {
+      setBirthdate(`${year}-${month}-${day}`);
+    }
+  }, [year, month, day]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,23 +97,48 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
       </div>
 
       <div className="grid-2-cols" style={{ width: "100%", maxWidth: "100%", minWidth: 0 }}>
-        <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%", overflow: "hidden" }}>
+        <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%" }}>
           <label className="form-label">Fecha de Nacimiento *</label>
-          <input
-            type="date"
-            className="form-input"
-            style={{
-              boxSizing: "border-box",
-              width: "100%",
-              maxWidth: "100%",
-              minWidth: 0,
-              minHeight: "48px",
-              fontSize: "1rem",
-            }}
-            value={birthdate}
-            onChange={(e) => setBirthdate(e.target.value)}
-            required
-          />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr 1fr", gap: "6px", width: "100%", minWidth: 0 }}>
+            <select
+              className="form-select"
+              value={day}
+              onChange={(e) => setDay(e.target.value)}
+              required
+              style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
+            >
+              <option value="">Día</option>
+              {days.map((d) => (
+                <option key={d} value={d}>{d}</option>
+              ))}
+            </select>
+
+            <select
+              className="form-select"
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+              required
+              style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
+            >
+              <option value="">Mes</option>
+              {months.map((m) => (
+                <option key={m.val} value={m.val}>{m.label}</option>
+              ))}
+            </select>
+
+            <select
+              className="form-select"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              required
+              style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
+            >
+              <option value="">Año</option>
+              {years.map((y) => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%", overflow: "hidden" }}>
