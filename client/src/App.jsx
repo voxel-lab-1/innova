@@ -190,7 +190,14 @@ function App() {
     }
   };
 
-  const fetchPatientDetail = async (id) => {
+  const fetchPatientDetail = async (id, fallbackObj = null) => {
+    if (fallbackObj) {
+      setSelectedPatient(fallbackObj);
+      setShowTrainerSupplements(false);
+      setShowTrainerExercises(false);
+      setShowTrainerSubscription(false);
+      setIsAddingPatient(false);
+    }
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/patients/${id}`);
@@ -200,6 +207,7 @@ function App() {
         setShowTrainerSupplements(false);
         setShowTrainerExercises(false);
         setShowTrainerSubscription(false);
+        setIsAddingPatient(false);
       }
     } catch (err) {
       console.error("Error fetching patient details:", err);
@@ -962,7 +970,7 @@ function App() {
                     <div
                       key={p.id}
                       onClick={() => {
-                        fetchPatientDetail(p.id);
+                        fetchPatientDetail(p.id, p);
                         setIsAddingPatient(false);
                         setIsEditingPatient(false);
                         setIsAddingEvaluation(false);
@@ -1619,7 +1627,7 @@ function App() {
                           transition: "transform 0.2s, border-color 0.2s",
                           cursor: "pointer",
                         }}
-                        onClick={() => fetchPatientDetail(ath.id)}
+                        onClick={() => fetchPatientDetail(ath.id, ath)}
                       >
                         <div>
                           <h3 className="glow-text" style={{ fontSize: "1.3rem", fontWeight: "700", marginBottom: "4px" }}>
@@ -1649,7 +1657,7 @@ function App() {
                             style={{ width: "100%", padding: "8px" }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              fetchPatientDetail(ath.id);
+                              fetchPatientDetail(ath.id, ath);
                             }}
                           >
                             Ingresar al Workspace →
