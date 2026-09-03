@@ -1052,10 +1052,11 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: "12px",
+          flexWrap: "wrap",
+          gap: "10px",
           background: themeColors.subSectionBg,
           borderRadius: "16px",
-          padding: "10px 16px",
+          padding: "10px 14px",
           border: themeColors.subSectionBorder,
           margin: "0 8px",
         }}
@@ -1063,14 +1064,14 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
         <span style={{ fontSize: "0.85rem", fontWeight: "700", color: themeColors.metricHeader }}>
           Categoría: <span style={{ color: themeColors.metricValue }}>{category}</span>
         </span>
-        <div style={{ display: "flex", gap: "8px", fontSize: "0.78rem" }}>
-          <span style={{ padding: "4px 8px", background: "rgba(255, 69, 0, 0.08)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "8px", color: "#cf3c00", fontWeight: "700" }}>
+        <div style={{ display: "flex", gap: "6px", fontSize: "0.75rem", flexWrap: "wrap" }}>
+          <span style={{ padding: "3px 7px", background: "rgba(255, 69, 0, 0.08)", border: "1px solid rgba(255, 69, 0, 0.15)", borderRadius: "8px", color: "#cf3c00", fontWeight: "700", whiteSpace: "nowrap" }}>
             Endo: {endo.toFixed(1)}
           </span>
-          <span style={{ padding: "4px 8px", background: "rgba(50, 205, 50, 0.08)", border: "1px solid rgba(50, 205, 50, 0.15)", borderRadius: "8px", color: "#249c24", fontWeight: "700" }}>
+          <span style={{ padding: "3px 7px", background: "rgba(50, 205, 50, 0.08)", border: "1px solid rgba(50, 205, 50, 0.15)", borderRadius: "8px", color: "#249c24", fontWeight: "700", whiteSpace: "nowrap" }}>
             Meso: {meso.toFixed(1)}
           </span>
-          <span style={{ padding: "4px 8px", background: "rgba(0, 191, 255, 0.08)", border: "1px solid rgba(0, 191, 255, 0.15)", borderRadius: "8px", color: "#008ac7", fontWeight: "700" }}>
+          <span style={{ padding: "3px 7px", background: "rgba(0, 191, 255, 0.08)", border: "1px solid rgba(0, 191, 255, 0.15)", borderRadius: "8px", color: "#008ac7", fontWeight: "700", whiteSpace: "nowrap" }}>
             Ecto: {ecto.toFixed(1)}
           </span>
         </div>
@@ -1082,14 +1083,15 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            background: "rgba(200, 220, 222, 0.4)",
-            border: "1px solid rgba(35, 127, 148, 0.12)",
+            background: themeColors.bottomNavBg,
+            border: themeColors.bottomNavBorder,
             borderRadius: "18px",
             padding: "8px 4px",
             margin: "10px 8px 0 8px",
+            gap: "2px",
           }}
         >
-          {/* 1. ALIMENTACIÓN (Tab: nutrition) */}
+          {/* 1. ALIMENTACIÓN / NUTRICIÓN (Tab: nutrition) */}
           <button
             onClick={() => setActiveTab("nutrition")}
             style={{
@@ -1104,6 +1106,8 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               opacity: activeTab === "nutrition" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -1113,7 +1117,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               <path d="M16 3c-1.5 0-3 1.5-3 4.5s1.5 4.5 3 4.5 3-1.5 3-4.5S17.5 3 16 3z" />
               <path d="M16 12v9" />
             </svg>
-            <span style={{ fontSize: "0.68rem", fontWeight: "800", textTransform: "uppercase" }}>Alimentación</span>
+            <span style={{ fontSize: "0.62rem", fontWeight: "800", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100%" }}>Nutrición</span>
           </button>
 
           {/* 2. ANTROPOMETRÍA (Tab: anthropometry) */}
@@ -1131,6 +1135,8 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               opacity: activeTab === "anthropometry" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -1143,7 +1149,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               <path d="M11 14v4" />
               <path d="M15 14v4" />
             </svg>
-            <span style={{ fontSize: "0.68rem", fontWeight: "800", textTransform: "uppercase" }}>Antropometría</span>
+            <span style={{ fontSize: "0.62rem", fontWeight: "800", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100%" }}>Antropometría</span>
           </button>
 
           {/* 3. ENTRENAMIENTO (Tab: training) */}
@@ -1161,6 +1167,8 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               opacity: activeTab === "training" ? "1" : "0.7",
               outline: "none",
               transition: "all 0.3s ease",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -1170,14 +1178,13 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               <rect x="5" y="6" width="2" height="12" rx="0.5" />
               <rect x="17" y="6" width="2" height="12" rx="0.5" />
             </svg>
-            <span style={{ fontSize: "0.68rem", fontWeight: "800", textTransform: "uppercase" }}>Entrenamiento</span>
+            <span style={{ fontSize: "0.62rem", fontWeight: "800", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100%" }}>Entreno</span>
           </button>
 
-          {/* 4. RESUMEN DE PROGRESO (also toggles to anthropometry or shows trends) */}
+          {/* 4. PROGRESO */}
           <button
             onClick={() => {
               setActiveTab("anthropometry");
-              // Smooth scroll to BodyTrendChart if it exists
               const trendEl = document.querySelector(".glass-card h3");
               if (trendEl) {
                 trendEl.scrollIntoView({ behavior: "smooth" });
@@ -1195,6 +1202,8 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               opacity: "0.7",
               outline: "none",
               transition: "all 0.3s ease",
+              width: "100%",
+              overflow: "hidden",
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -1202,7 +1211,7 @@ const SomatotypeBodyVisualizer = ({ evaluations = [], activeTab = "anthropometry
               <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
               <path d="M15 8h4v4" />
             </svg>
-            <span style={{ fontSize: "0.68rem", fontWeight: "800", textTransform: "uppercase" }}>Progreso</span>
+            <span style={{ fontSize: "0.62rem", fontWeight: "800", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100%" }}>Progreso</span>
           </button>
         </div>
       )}
