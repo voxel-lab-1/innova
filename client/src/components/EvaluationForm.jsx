@@ -197,9 +197,7 @@ const EvaluationForm = ({ onSubmit, onCancel, patient }) => {
             <div className="form-group">
               <label className="form-label">Fecha de Evaluación *</label>
               <input
-                type={date ? "date" : "text"}
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => { if (!e.target.value) e.target.type = "text"; }}
+                type="date"
                 className="form-input"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}

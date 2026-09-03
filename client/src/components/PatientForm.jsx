@@ -65,17 +65,16 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
         <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%", overflow: "hidden" }}>
           <label className="form-label">Fecha de Nacimiento *</label>
           <input
-            type={birthdate ? "date" : "text"}
-            onFocus={(e) => (e.target.type = "date")}
-            onBlur={(e) => { if (!e.target.value) e.target.type = "text"; }}
+            type="date"
             className="form-input"
             style={{
               boxSizing: "border-box",
               width: "100%",
               maxWidth: "100%",
               minWidth: 0,
+              minHeight: "48px",
+              fontSize: "1rem",
             }}
-            placeholder="AAAA-MM-DD (Ej. 1995-05-20)"
             value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
             required
