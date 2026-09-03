@@ -1694,6 +1694,110 @@ function App() {
                   </div>
                 </div>
               </div>
+
+              {/* Registered Trainers Grid Section for Admin */}
+              <div className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "30px", marginTop: "10px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+                  <div>
+                    <h3 className="glow-text" style={{ fontSize: "1.35rem", margin: 0 }}>Entrenadores Registrados</h3>
+                    <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "4px 0 0 0" }}>
+                      Cuentas principales de preparadores físicos y nutricionistas en la plataforma.
+                    </p>
+                  </div>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setSelectedPatient(null);
+                      setIsAddingPatient(true);
+                    }}
+                  >
+                    + Crear Nuevo Entrenador
+                  </button>
+                </div>
+
+                {loading ? (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15vh", color: "var(--text-muted)" }}>
+                    <div style={{ width: "20px", height: "20px", border: "3px solid rgba(0, 128, 128, 0.2)", borderTopColor: "var(--primary)", borderRadius: "50%", animation: "spin 0.8s linear infinite", marginRight: "10px" }}></div>
+                    Cargando entrenadores...
+                  </div>
+                ) : patients.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "30px 20px", border: "1px dashed var(--border-color)", borderRadius: "12px", background: "rgba(255,255,255,0.01)" }}>
+                    <p style={{ color: "var(--text-muted)", fontSize: "1rem", marginBottom: "16px" }}>
+                      Aún no hay entrenadores registrados en la plataforma.
+                    </p>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setSelectedPatient(null);
+                        setIsAddingPatient(true);
+                      }}
+                    >
+                      Crear Primer Entrenador
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid-3-cols" style={{ gap: "20px" }}>
+                    {patients.map((tr) => (
+                      <div
+                        key={tr.id}
+                        className="glass-card table-row-hover animate-fade-in"
+                        style={{
+                          padding: "24px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "16px",
+                          background: "rgba(255, 255, 255, 0.02)",
+                          border: "1px solid var(--border-color)",
+                          borderRadius: "16px",
+                          transition: "transform 0.2s, border-color 0.2s",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => fetchPatientDetail(tr.id)}
+                      >
+                        <div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+                            <h3 className="glow-text" style={{ fontSize: "1.25rem", fontWeight: "700", margin: 0 }}>
+                              {tr.name}
+                            </h3>
+                            <span
+                              style={{
+                                background: "rgba(0, 128, 128, 0.12)",
+                                color: "var(--primary)",
+                                padding: "2px 8px",
+                                borderRadius: "6px",
+                                fontSize: "0.75rem",
+                                fontWeight: "700",
+                              }}
+                            >
+                              ENTRENADOR
+                            </span>
+                          </div>
+                          {tr.email && <div style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>{tr.email}</div>}
+                        </div>
+
+                        <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: "6px", background: "rgba(0,0,0,0.15)", padding: "12px", borderRadius: "10px" }}>
+                          <div>País: <strong>{tr.country || "No especificado"}</strong></div>
+                          <div>Atletas Creados: <strong style={{ color: "var(--primary)" }}>{tr.athletes?.length || 0} atletas</strong></div>
+                          <div>Evaluaciones: <strong>{tr.evaluations?.length || tr._count?.evaluations || 0}</strong></div>
+                        </div>
+
+                        <div style={{ marginTop: "auto", paddingTop: "12px", borderTop: "1px solid rgba(255, 255, 255, 0.05)", display: "flex", justifyContent: "flex-end" }}>
+                          <button
+                            className="btn btn-secondary"
+                            style={{ width: "100%", padding: "8px" }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              fetchPatientDetail(tr.id);
+                            }}
+                          >
+                            Gestionar Entrenador →
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
