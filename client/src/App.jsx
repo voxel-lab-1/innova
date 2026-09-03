@@ -166,21 +166,16 @@ function App() {
 
   useEffect(() => {
     if (isAuthenticated && currentUser) {
-      if (currentUser.role === "admin") {
-        fetchPatients();
-      } else {
-        fetchPatients(currentUser.id);
+      fetchPatients();
+      if (currentUser.role !== "admin") {
         fetchTrainerSub();
       }
     }
   }, [isAuthenticated, currentUser]);
 
-  const fetchPatients = async (creatorId = null) => {
+  const fetchPatients = async () => {
     try {
-      const url = creatorId 
-        ? `${API_BASE}/patients?creatorId=${creatorId}` 
-        : `${API_BASE}/patients`;
-      const res = await fetch(url);
+      const res = await fetch(`${API_BASE}/patients`);
       if (res.ok) {
         const data = await res.json();
         setPatients(data);

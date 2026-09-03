@@ -361,23 +361,18 @@ app.get("/api/patients", async (req, res) => {
   try {
     let whereClause = {};
 
-    if (req.user.role === "admin") {
-      const creatorIdQuery = req.query.creatorId;
-      if (creatorIdQuery) {
-        whereClause = { creatorId: parseInt(creatorIdQuery) };
-      } else {
-        whereClause = {};
-      }
-    } else if (req.user.role === "athlete_share") {
+    if (req.user.role === "athlete_share") {
       whereClause = { id: req.user.athleteId };
-    } else {
+    } else if (req.user.role === "patient") {
       whereClause = {
         OR: [
-          { creatorId: req.user.id },
-          { creatorId: null },
-          { id: req.user.id }
+          { id: req.user.id },
+          { email: req.user.email }
         ]
       };
+    } else {
+      // Admin / Trainer / Coach roles: return all registered patients
+      whereClause = {};
     }
 
     let patients = [];
