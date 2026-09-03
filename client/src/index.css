@@ -171,6 +171,10 @@ p {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .form-label {
@@ -204,7 +208,20 @@ input[type="time"] {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
+  display: block !important;
+  -webkit-appearance: none;
+  appearance: none;
   color-scheme: dark;
+}
+
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  display: inline-flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 .form-input:focus {
