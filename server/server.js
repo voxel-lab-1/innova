@@ -194,7 +194,6 @@ app.post("/api/auth/login", async (req, res) => {
       });
     }
 
-    const cleanEmail = email.trim().toLowerCase();
     const allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
     const patient = allPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
