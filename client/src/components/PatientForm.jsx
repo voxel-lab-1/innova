@@ -62,21 +62,23 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
       </div>
 
       <div className="grid-2-cols">
-        <div className="form-group">
+        <div className="form-group" style={{ minWidth: 0, width: "100%" }}>
           <label className="form-label">Fecha de Nacimiento *</label>
           <input
             type="date"
             className="form-input"
+            style={{ boxSizing: "border-box", width: "100%", maxWidth: "100%", minWidth: 0 }}
             value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
             required
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group" style={{ minWidth: 0, width: "100%" }}>
           <label className="form-label">Género *</label>
           <select
             className="form-select"
+            style={{ boxSizing: "border-box", width: "100%", maxWidth: "100%", minWidth: 0 }}
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           >
