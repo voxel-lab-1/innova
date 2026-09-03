@@ -116,9 +116,9 @@ app.post("/api/auth/register", async (req, res) => {
       return res.status(400).json({ error: "Nombre, correo y contraseña son obligatorios" });
     }
 
-    const existing = await prisma.patient.findFirst({
-      where: { email: { equals: email, mode: "insensitive" } }
-    });
+    const cleanEmail = email.trim().toLowerCase();
+    const allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
+    const existing = allPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
     if (existing) {
       return res.status(400).json({ error: "El correo ya está registrado" });
@@ -194,11 +194,9 @@ app.post("/api/auth/login", async (req, res) => {
       });
     }
 
-    const patient = await prisma.patient.findFirst({
-      where: {
-        email: { equals: email, mode: "insensitive" }
-      }
-    });
+    const cleanEmail = email.trim().toLowerCase();
+    const allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
+    const patient = allPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
     if (!patient || !patient.password) {
       return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
@@ -270,17 +268,23 @@ app.post("/api/auth/google", async (req, res) => {
       return res.status(400).json({ error: "No se pudo obtener el correo de Google. Inténtalo nuevamente." });
     }
 
-    // Check if patient exists in database
-    let patient = await prisma.patient.findFirst({
-      where: { email: { equals: email, mode: "insensitive" } }
+    const cleanEmail = email.trim().toLowerCase();
+
+    // Check if patient exists in database (case-insensitive)
+    const existingPatients = await prisma.patient.findMany({
+      where: {
+        email: { not: null }
+      }
     });
+
+    let patient = existingPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
     if (!patient) {
       // Create new user (automatically a parent account with creatorId: null)
       patient = await prisma.patient.create({
         data: {
           name: name || "Atleta Google",
-          email: email,
+          email: cleanEmail,
           birthdate: (req.body && req.body.birthdate) ? req.body.birthdate : "",
           gender: "male",
           sport: "General",
