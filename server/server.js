@@ -366,7 +366,7 @@ app.get("/api/patients", async (req, res) => {
       if (creatorIdQuery) {
         whereClause = { creatorId: parseInt(creatorIdQuery) };
       } else {
-        whereClause = { creatorId: null };
+        whereClause = {};
       }
     } else if (req.user.role === "athlete_share") {
       whereClause = { id: req.user.athleteId };
@@ -374,6 +374,7 @@ app.get("/api/patients", async (req, res) => {
       whereClause = {
         OR: [
           { creatorId: req.user.id },
+          { creatorId: null },
           { id: req.user.id }
         ]
       };
@@ -400,12 +401,11 @@ app.get("/api/patients", async (req, res) => {
       });
     } catch (dbErr) {
       console.warn("DB connection error in GET /api/patients, returning fallback cache:", dbErr.message);
-      patients = fallbackPatientsCache.filter(p => p.creatorId === req.user.id || p.id === req.user.id || req.user.role === "admin");
+      patients = fallbackPatientsCache;
     }
 
-    // Merge in-memory created patients
-    const userFallback = fallbackPatientsCache.filter(p => p.creatorId === req.user.id);
-    const combined = [...patients, ...userFallback.filter(fb => !patients.some(p => p.id === fb.id))];
+    // Merge in-memory created patients cleanly so no athlete is ever lost
+    const combined = [...patients, ...fallbackPatientsCache.filter(fb => !patients.some(p => p.id === fb.id))];
 
     res.json(combined);
   } catch (error) {
