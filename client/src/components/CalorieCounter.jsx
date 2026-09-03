@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { getLocalDateString } from "../utils/dateUtils";
+import { getLocalDateString, calculateAgeFromBirthdate } from "../utils/dateUtils";
 
 
 const API_BASE = "/api";
@@ -289,25 +289,23 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
       if (resEval.ok) {
         const patientData = await resEval.json();
         setPatientProfile(patientData);
+
+        // Always compute age dynamically from birthdate if available
+        const computedAge = calculateAgeFromBirthdate(patientData.birthdate);
+
         if (patientData.evaluations && patientData.evaluations.length > 0) {
           // Get latest
           const latest = [...patientData.evaluations].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
           setLatestEval(latest);
           setCustomWeight(latest.weight || "");
           setCustomHeight(latest.height || "");
-          setCustomAge(latest.age || "");
+          setCustomAge(computedAge !== "" ? computedAge : (latest.age || ""));
           setCustomBodyFat(latest.bodyFat || "");
           if (latest.bodyFat > 0) {
             setPlanFormula("katch_mcardle");
           }
         } else {
-          // Try to calculate age from birthdate
-          if (patientData.birthdate) {
-            const birth = new Date(patientData.birthdate);
-            const ageDifMs = Date.now() - birth.getTime();
-            const ageDate = new Date(ageDifMs);
-            setCustomAge(Math.abs(ageDate.getUTCFullYear() - 1970));
-          }
+          setCustomAge(computedAge);
         }
       }
     } catch (err) {

@@ -133,7 +133,7 @@ app.post("/api/auth/register", async (req, res) => {
         phone,
         password: hashedPassword,
         country,
-        birthdate: birthdate || "1995-01-01",
+        birthdate: birthdate || "",
         gender: gender || "male",
         sport: sport || "General"
       }
@@ -263,7 +263,7 @@ app.post("/api/auth/google", async (req, res) => {
         data: {
           name: name || "Atleta Google",
           email: email,
-          birthdate: "1995-01-01",
+          birthdate: (req.body && req.body.birthdate) ? req.body.birthdate : "",
           gender: "male",
           sport: "General",
           creatorId: null

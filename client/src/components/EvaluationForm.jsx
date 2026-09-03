@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { calculateSomatotype, calculateBodyFat } from "../utils/calculator";
-import { getLocalDateString } from "../utils/dateUtils";
+import { getLocalDateString, calculateAgeFromBirthdate } from "../utils/dateUtils";
 
 const EvaluationForm = ({ onSubmit, onCancel, patient }) => {
   // Tabs: "basic", "skinfolds", "girths_diameters"
@@ -41,14 +41,8 @@ const EvaluationForm = ({ onSubmit, onCancel, patient }) => {
   // Auto-calculate age from patient birthdate
   useEffect(() => {
     if (patient && patient.birthdate) {
-      const birth = new Date(patient.birthdate);
-      const today = new Date();
-      let calculatedAge = today.getFullYear() - birth.getFullYear();
-      const m = today.getMonth() - birth.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
-        calculatedAge--;
-      }
-      setAge(calculatedAge > 0 ? calculatedAge : 20);
+      const calculatedAge = calculateAgeFromBirthdate(patient.birthdate);
+      setAge(calculatedAge !== "" ? calculatedAge : "");
     }
   }, [patient]);
 
