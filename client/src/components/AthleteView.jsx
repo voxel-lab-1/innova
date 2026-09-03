@@ -144,6 +144,18 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
     const today = getLocalDateString();
     const time = new Date().toTimeString().split(" ")[0].substring(0, 5);
 
+    // Optimistic update of local cycles state for instant UI color feedback
+    setCycles(prevCycles => {
+      return prevCycles.map(c => {
+        if (c.id === cycleId) {
+          const newLog = { id: Date.now(), cycleId, date: today, time, doseTaken: parseFloat(dose), status };
+          const existingLogs = (c.logs || []).filter(l => getLocalDateString(l.date) !== today);
+          return { ...c, logs: [...existingLogs, newLog] };
+        }
+        return c;
+      });
+    });
+
     try {
       const res = await fetch(`${API_BASE}/cycles/${cycleId}/logs`, {
         method: "POST",
@@ -155,6 +167,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
       }
     } catch (err) {
       console.error(err);
+      fetchData();
     }
   };
 
@@ -173,33 +186,31 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
     // Collect all unique logged dates that are "taken" across active cycles
     const takenDates = new Set();
     cycles.forEach(c => {
-      c.logs.forEach(l => {
+      (c.logs || []).forEach(l => {
         if (l.status === "taken") {
-          takenDates.add(l.date);
+          takenDates.add(getLocalDateString(l.date));
         }
       });
     });
 
     let streak = 0;
     const checkDate = new Date();
+    const todayStr = getLocalDateString(checkDate);
     
     // Scan backwards from today to find consecutive streak
+    if (takenDates.has(todayStr)) {
+      streak = 1;
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else {
+      checkDate.setDate(checkDate.getDate() - 1);
+    }
+
     while (true) {
       const dateStr = getLocalDateString(checkDate);
       if (takenDates.has(dateStr)) {
         streak++;
         checkDate.setDate(checkDate.getDate() - 1);
       } else {
-        // If today has no log yet, it might still continue the streak if yesterday is logged
-        if (streak === 0) {
-          checkDate.setDate(checkDate.getDate() - 1);
-          const yesterdayStr = getLocalDateString(checkDate);
-          if (takenDates.has(yesterdayStr)) {
-            checkDate.setDate(checkDate.getDate() - 1);
-            streak = 1;
-            continue;
-          }
-        }
         break;
       }
     }
@@ -209,24 +220,45 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
   // Build calendar matrix (past 30 days)
   const getPast30DaysGrid = () => {
     const grid = [];
-    const today = new Date();
+    const todayObj = new Date();
+    const todayStr = getLocalDateString(todayObj);
 
     // Map logs for color encoding
     const dateStatusMap = {};
+    let earliestCycleStart = null;
+
     cycles.forEach(c => {
-      c.logs.forEach(l => {
-        dateStatusMap[l.date] = l.status;
+      if (c.startDate) {
+        const cStart = getLocalDateString(c.startDate);
+        if (!earliestCycleStart || cStart < earliestCycleStart) {
+          earliestCycleStart = cStart;
+        }
+      }
+      (c.logs || []).forEach(l => {
+        const lDate = getLocalDateString(l.date);
+        if (l.status === "taken" || !dateStatusMap[lDate]) {
+          dateStatusMap[lDate] = l.status;
+        }
       });
     });
 
     for (let i = 29; i >= 0; i--) {
       const d = new Date();
-      d.setDate(today.getDate() - i);
+      d.setDate(todayObj.getDate() - i);
       const dateStr = getLocalDateString(d);
+      
+      let status = dateStatusMap[dateStr] || "none";
+
+      // If a past day had an active cycle but no intake was logged, mark as skipped/missed (RED)
+      if (status === "none" && dateStr < todayStr && earliestCycleStart && dateStr >= earliestCycleStart) {
+        status = "skipped";
+      }
+
       grid.push({
         dateStr,
         dayNum: d.getDate(),
-        status: dateStatusMap[dateStr] || "none" // "taken", "skipped", "none"
+        isToday: dateStr === todayStr,
+        status // "taken", "skipped", "none"
       });
     }
     return grid;
@@ -523,26 +555,55 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
 
             {/* 30 day mini calendar grid */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "8px" }}>
-              {past30Days.map((day, idx) => (
-                <div
-                  key={idx}
-                  title={day.dateStr}
-                  style={{
-                    aspectRatio: "1/1",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    background: day.status === "taken" ? "rgba(0, 191, 255, 0.25)" : day.status === "skipped" ? "rgba(255, 69, 0, 0.2)" : "var(--bg-main)",
-                    border: `1px solid ${day.status === "taken" ? "var(--success)" : day.status === "skipped" ? "var(--error)" : "var(--border-color)"}`,
-                    color: day.status !== "none" ? "var(--text-main)" : "var(--text-muted)"
-                  }}
-                >
-                  {day.dayNum}
-                </div>
-              ))}
+              {past30Days.map((day, idx) => {
+                const isTaken = day.status === "taken";
+                const isSkipped = day.status === "skipped";
+
+                return (
+                  <div
+                    key={idx}
+                    title={`${day.dateStr} - ${isTaken ? "Toma Registrada (Cumplido)" : isSkipped ? "No Tomado / Omitido" : "Pendiente"}`}
+                    style={{
+                      aspectRatio: "1/1",
+                      borderRadius: "8px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                      background: isTaken
+                        ? "rgba(31, 211, 144, 0.28)"
+                        : isSkipped
+                        ? "rgba(239, 68, 68, 0.28)"
+                        : "var(--bg-main)",
+                      border: `1px solid ${
+                        isTaken
+                          ? "#1fd390"
+                          : isSkipped
+                          ? "#ef4444"
+                          : day.isToday
+                          ? "var(--primary)"
+                          : "var(--border-color)"
+                      }`,
+                      color: isTaken
+                        ? "#1fd390"
+                        : isSkipped
+                        ? "#ef4444"
+                        : day.isToday
+                        ? "var(--primary)"
+                        : "var(--text-muted)",
+                      boxShadow: isTaken
+                        ? "0 0 10px rgba(31, 211, 144, 0.25)"
+                        : isSkipped
+                        ? "0 0 10px rgba(239, 68, 68, 0.25)"
+                        : "none",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {day.dayNum}
+                  </div>
+                );
+              })}
             </div>
           </section>
 
