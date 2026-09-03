@@ -827,16 +827,16 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
 
   const handleToggleMealEaten = async (meal) => {
     const logName = `[Plan] ${meal.name}`;
-    const existingLog = filteredLogs.find(log => log.foodName === logName);
+    const matchingLogs = logs.filter(log => log.date === selectedDate && log.foodName === logName);
 
-    if (existingLog) {
+    if (matchingLogs.length > 0) {
       try {
-        const res = await fetch(`${API_BASE}/calories/logs/${existingLog.id}`, {
-          method: "DELETE",
-        });
-        if (res.ok) {
-          fetchLogs();
-        }
+        await Promise.all(
+          matchingLogs.map(log =>
+            fetch(`${API_BASE}/calories/logs/${log.id}`, { method: "DELETE" })
+          )
+        );
+        fetchLogs();
       } catch (err) {
         console.error("Error deleting meal plan log:", err);
       }
@@ -869,8 +869,16 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
     }
   };
 
-  // Filter logs by selected date
-  const filteredLogs = logs.filter(log => log.date === selectedDate);
+  // Filter logs by selected date & deduplicate by foodName so items appear ONLY ONCE
+  const rawFilteredLogs = logs.filter(log => log.date === selectedDate);
+  const filteredLogs = [];
+  const seenFoodNames = new Set();
+  for (const log of rawFilteredLogs) {
+    if (!seenFoodNames.has(log.foodName)) {
+      seenFoodNames.add(log.foodName);
+      filteredLogs.push(log);
+    }
+  }
   const totalCaloriesToday = filteredLogs.reduce((sum, log) => sum + log.calories, 0);
   const totalProteinToday = filteredLogs.reduce((sum, log) => sum + (log.protein || 0), 0);
   const totalCarbsToday = filteredLogs.reduce((sum, log) => sum + (log.carbs || 0), 0);

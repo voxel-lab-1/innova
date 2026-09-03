@@ -1279,22 +1279,49 @@ app.post("/api/patients/:id/calories/logs", async (req, res) => {
       return res.status(400).json({ error: "Fecha, alimento y calorías son obligatorios" });
     }
 
-    const log = await prisma.calorieLog.create({
-      data: {
+    // Prevent duplicate entries for the same patient, date, and foodName
+    const existingPlanLog = await prisma.calorieLog.findFirst({
+      where: {
         patientId,
         date,
-        foodName,
-        calories: parseInt(calories),
-        protein: protein ? parseFloat(protein) : null,
-        carbs: carbs ? parseFloat(carbs) : null,
-        fat: fat ? parseFloat(fat) : null,
-        sugar: sugar ? parseFloat(sugar) : null,
-        sodium: sodium ? parseFloat(sodium) : null,
-        ingredients,
-        preparation,
-        imagePath
+        foodName
       }
     });
+
+    let log;
+    if (existingPlanLog) {
+      log = await prisma.calorieLog.update({
+        where: { id: existingPlanLog.id },
+        data: {
+          calories: parseInt(calories),
+          protein: protein ? parseFloat(protein) : null,
+          carbs: carbs ? parseFloat(carbs) : null,
+          fat: fat ? parseFloat(fat) : null,
+          sugar: sugar ? parseFloat(sugar) : null,
+          sodium: sodium ? parseFloat(sodium) : null,
+          ingredients,
+          preparation,
+          imagePath
+        }
+      });
+    } else {
+      log = await prisma.calorieLog.create({
+        data: {
+          patientId,
+          date,
+          foodName,
+          calories: parseInt(calories),
+          protein: protein ? parseFloat(protein) : null,
+          carbs: carbs ? parseFloat(carbs) : null,
+          fat: fat ? parseFloat(fat) : null,
+          sugar: sugar ? parseFloat(sugar) : null,
+          sodium: sodium ? parseFloat(sodium) : null,
+          ingredients,
+          preparation,
+          imagePath
+        }
+      });
+    }
 
     res.status(201).json(log);
   } catch (error) {
@@ -1311,10 +1338,31 @@ app.get("/api/patients/:id/calories/logs", async (req, res) => {
       return res.status(400).json({ error: "ID de paciente inválido" });
     }
 
-    const logs = await prisma.calorieLog.findMany({
+    const rawLogs = await prisma.calorieLog.findMany({
       where: { patientId },
       orderBy: { createdAt: "desc" }
     });
+
+    // Clean up and filter out duplicate entries
+    const seenKeys = new Set();
+    const logs = [];
+    const duplicateIdsToDelete = [];
+
+    for (const log of rawLogs) {
+      const key = `${log.date}_${log.foodName}`;
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        logs.push(log);
+      } else {
+        duplicateIdsToDelete.push(log.id);
+      }
+    }
+
+    if (duplicateIdsToDelete.length > 0) {
+      prisma.calorieLog.deleteMany({
+        where: { id: { in: duplicateIdsToDelete } }
+      }).catch(err => console.error("Error cleaning duplicate calorie logs:", err));
+    }
 
     res.json(logs);
   } catch (error) {
