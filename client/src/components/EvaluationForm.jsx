@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { calculateSomatotype, calculateBodyFat } from "../utils/calculator";
+import { getLocalDateString } from "../utils/dateUtils";
 
 const EvaluationForm = ({ onSubmit, onCancel, patient }) => {
   // Tabs: "basic", "skinfolds", "girths_diameters"
   const [activeTab, setActiveTab] = useState("basic");
 
   // Fields state
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [date, setDate] = useState(getLocalDateString());
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");

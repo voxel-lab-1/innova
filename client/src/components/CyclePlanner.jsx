@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { getLocalDateString } from "../utils/dateUtils";
 
 const CyclePlanner = ({ patientId, supplements = [], onSubmit, onCancel }) => {
   const [name, setName] = useState("");
   const [supplementId, setSupplementId] = useState("");
-  const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
+  const [startDate, setStartDate] = useState(getLocalDateString());
   const [presetName, setPresetName] = useState("creatine_loading");
   const [error, setError] = useState("");
 

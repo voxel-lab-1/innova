@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { getLocalDateString } from "../utils/dateUtils";
 
 
 const API_BASE = "/api";
@@ -200,7 +201,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
   
   // Selected Date
   const [selectedDate, setSelectedDate] = useState(() => {
-    return new Date().toISOString().split("T")[0];
+    return getLocalDateString();
   });
 
   // Form inputs
@@ -895,7 +896,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
-      dates.push(d.toISOString().split("T")[0]);
+      dates.push(getLocalDateString(d));
     }
     return dates.map(d => {
       const dayLogs = logs.filter(log => log.date === d);

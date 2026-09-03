@@ -4,6 +4,7 @@ import TrainingPlanner from "./TrainingPlanner";
 import Somatochart from "./Somatochart";
 import BodyTrendChart from "./BodyTrendChart";
 import SomatotypeBodyVisualizer from "./SomatotypeBodyVisualizer";
+import { getLocalDateString } from "../utils/dateUtils";
 
 const API_BASE = "/api";
 
@@ -140,7 +141,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
   };
 
   const handleLogIntake = async (cycleId, dose, status) => {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getLocalDateString();
     const time = new Date().toTimeString().split(" ")[0].substring(0, 5);
 
     try {
@@ -184,7 +185,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
     
     // Scan backwards from today to find consecutive streak
     while (true) {
-      const dateStr = checkDate.toISOString().split("T")[0];
+      const dateStr = getLocalDateString(checkDate);
       if (takenDates.has(dateStr)) {
         streak++;
         checkDate.setDate(checkDate.getDate() - 1);
@@ -192,7 +193,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
         // If today has no log yet, it might still continue the streak if yesterday is logged
         if (streak === 0) {
           checkDate.setDate(checkDate.getDate() - 1);
-          const yesterdayStr = checkDate.toISOString().split("T")[0];
+          const yesterdayStr = getLocalDateString(checkDate);
           if (takenDates.has(yesterdayStr)) {
             checkDate.setDate(checkDate.getDate() - 1);
             streak = 1;
@@ -221,7 +222,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
     for (let i = 29; i >= 0; i--) {
       const d = new Date();
       d.setDate(today.getDate() - i);
-      const dateStr = d.toISOString().split("T")[0];
+      const dateStr = getLocalDateString(d);
       grid.push({
         dateStr,
         dayNum: d.getDate(),

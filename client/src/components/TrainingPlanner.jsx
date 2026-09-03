@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getLocalDateString } from "../utils/dateUtils";
 
 const API_BASE = "/api";
 
@@ -368,7 +369,7 @@ const VolumeBarChart = ({ logs = [] }) => {
   const weekData = days.map((_, i) => {
     const d = new Date(weekStart);
     d.setDate(weekStart.getDate() + i);
-    const dateStr = d.toISOString().split("T")[0];
+    const dateStr = getLocalDateString(d);
     const count = logs.filter((l) => l.date === dateStr && l.completed).length;
     return { day: days[i], count, isToday: i === todayIdx, dateStr };
   });
@@ -1049,7 +1050,7 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
     }
   }, [isAdminMode]);
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = getLocalDateString();
   const DAY_NAMES = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
   const MUSCLE_GROUPS = [
     { value: "legs", label: "🦵 Piernas" },

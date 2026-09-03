@@ -13,6 +13,14 @@ const JWT_SECRET = process.env.JWT_SECRET || "innova_jwt_secret_token_secure_987
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "innova2026";
 
+const getLocalDateString = (d = new Date()) => {
+  const dateObj = typeof d === "string" ? new Date(d) : (d || new Date());
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 let prismaInstance = null;
 const prisma = new Proxy({}, {
   get(target, prop) {
@@ -930,7 +938,7 @@ app.post("/api/cycles/:id/logs", async (req, res) => {
 app.get("/api/patients/:id/reminders", async (req, res) => {
   try {
     const patientId = parseInt(req.params.id);
-    const queryDate = req.query.date || new Date().toISOString().split("T")[0];
+    const queryDate = req.query.date || getLocalDateString();
 
     const schedule = await prisma.workoutSchedule.findUnique({
       where: { patientId }
@@ -2507,7 +2515,7 @@ app.post("/api/exercise-logs", async (req, res) => {
     const log = await prisma.exerciseLog.create({
       data: {
         exerciseId,
-        date: date || new Date().toISOString().split("T")[0],
+        date: date || getLocalDateString(),
         completed: completed !== undefined ? completed : true,
         actualSets: actualSets || null,
         actualReps: actualReps || null,
