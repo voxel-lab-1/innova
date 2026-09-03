@@ -226,8 +226,11 @@ function App() {
         const newPatient = await res.json();
         setIsAddingPatient(false);
         setAddingAthleteForCreatorId(null);
+        setSelectedPatient(newPatient);
         fetchPatients(currentUser.role === "admin" ? null : currentUser.id);
-        fetchPatientDetail(newPatient.id);
+        if (newPatient && newPatient.id) {
+          fetchPatientDetail(newPatient.id);
+        }
       } else {
         const errorData = await res.json().catch(() => ({}));
         alert(`Error al crear atleta: ${errorData.error || res.statusText}`);

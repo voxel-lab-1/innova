@@ -414,6 +414,72 @@ app.get("/api/patients", async (req, res) => {
   }
 });
 
+// Get a patient by ID (including all evaluations)
+app.get("/api/patients/:id", async (req, res) => {
+  try {
+    const patientId = parseInt(req.params.id);
+    if (isNaN(patientId)) {
+      return res.status(400).json({ error: "ID de paciente inválido" });
+    }
+
+    let patient = null;
+
+    try {
+      patient = await prisma.patient.findUnique({
+        where: { id: patientId },
+        include: {
+          evaluations: {
+            orderBy: { date: "desc" }
+          },
+          supplements: true,
+          cycles: {
+            include: {
+              phases: true,
+              logs: true
+            }
+          },
+          workoutSchedule: true,
+          calorieLogs: {
+            orderBy: { createdAt: "desc" }
+          },
+          athletes: {
+            orderBy: { name: "asc" },
+            include: {
+              _count: {
+                select: { evaluations: true }
+              }
+            }
+          },
+          creator: true
+        }
+      });
+    } catch (dbErr) {
+      console.warn("DB error in GET /api/patients/:id, checking fallback cache:", dbErr.message);
+      patient = fallbackPatientsCache.find(p => p.id === patientId);
+    }
+
+    if (!patient) {
+      patient = fallbackPatientsCache.find(p => p.id === patientId);
+    }
+
+    if (!patient) {
+      return res.status(404).json({ error: "Paciente no encontrado" });
+    }
+
+    // Sanitize passwords
+    delete patient.password;
+    if (patient.creator) delete patient.creator.password;
+    if (patient.athletes) {
+      patient.athletes.forEach(a => delete a.password);
+    }
+
+    res.json(patient);
+  } catch (error) {
+    console.error("Error fetching patient detail:", error);
+    res.status(500).json({ error: "Error al obtener los detalles del paciente" });
+  }
+});
+
 // Create a new patient
 app.post("/api/patients", async (req, res) => {
   try {
