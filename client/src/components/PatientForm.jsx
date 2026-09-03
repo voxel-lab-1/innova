@@ -99,77 +99,22 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
 
       <div className="grid-2-cols" style={{ width: "100%", maxWidth: "100%", minWidth: 0 }}>
         <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
-            <label className="form-label" style={{ marginBottom: 0 }}>Fecha de Nacimiento *</label>
-            <button
-              type="button"
-              onClick={() => setManualMode(!manualMode)}
-              style={{
-                background: "none",
-                border: "none",
-                color: "var(--accent)",
-                fontSize: "0.75rem",
-                cursor: "pointer",
-                textDecoration: "underline",
-                padding: 0
-              }}
-            >
-              {manualMode ? "Usar selectores" : "Escribir texto"}
-            </button>
-          </div>
-
-          {!manualMode ? (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr 1fr", gap: "6px", width: "100%", minWidth: 0 }}>
-              <select
-                className="form-select"
-                value={day}
-                onChange={(e) => setDay(e.target.value)}
-                required={!manualMode && !birthdate}
-                style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
-              >
-                <option value="">Día</option>
-                {days.map((d) => (
-                  <option key={d} value={d}>{d}</option>
-                ))}
-              </select>
-
-              <select
-                className="form-select"
-                value={month}
-                onChange={(e) => setMonth(e.target.value)}
-                required={!manualMode && !birthdate}
-                style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
-              >
-                <option value="">Mes</option>
-                {months.map((m) => (
-                  <option key={m.val} value={m.val}>{m.label}</option>
-                ))}
-              </select>
-
-              <select
-                className="form-select"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                required={!manualMode && !birthdate}
-                style={{ padding: "12px 6px", fontSize: "0.88rem", minWidth: 0, width: "100%" }}
-              >
-                <option value="">Año</option>
-                {years.map((y) => (
-                  <option key={y} value={y}>{y}</option>
-                ))}
-              </select>
-            </div>
-          ) : (
-            <input
-              type="text"
-              className="form-input"
-              style={{ boxSizing: "border-box", width: "100%", maxWidth: "100%", minWidth: 0 }}
-              placeholder="AAAA-MM-DD (Ej. 2001-01-11)"
-              value={birthdate}
-              onChange={(e) => setBirthdate(e.target.value)}
-              required={manualMode}
-            />
-          )}
+          <label className="form-label">Fecha de Nacimiento *</label>
+          <input
+            type="date"
+            className="form-input"
+            style={{
+              boxSizing: "border-box",
+              width: "100%",
+              maxWidth: "100%",
+              minWidth: 0,
+              minHeight: "48px",
+              fontSize: "1rem",
+            }}
+            value={birthdate}
+            onChange={(e) => setBirthdate(e.target.value)}
+            required
+          />
         </div>
 
         <div className="form-group" style={{ minWidth: 0, maxWidth: "100%", width: "100%", overflow: "hidden" }}>
