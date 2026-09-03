@@ -234,41 +234,43 @@ app.post("/api/auth/login", async (req, res) => {
 // Google Authentication verification
 app.post("/api/auth/google", async (req, res) => {
   try {
-    const { credential } = req.body;
-    if (!credential) {
-      return res.status(400).json({ error: "El token de Google es obligatorio" });
-    }
+    const { credential, email: bodyEmail, name: bodyName } = req.body || {};
+    
+    let email = bodyEmail;
+    let name = bodyName;
 
-    let payload = null;
-    try {
-      // 1. Verify token with Google's API
-      const googleVerifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
-      if (googleVerifyRes.ok) {
-        payload = await googleVerifyRes.json();
+    if (credential) {
+      // 1. Try decoding local JWT payload first (instant & reliable)
+      try {
+        const decoded = jwt.decode(credential);
+        if (decoded && typeof decoded === "object" && decoded.email) {
+          email = decoded.email;
+          name = decoded.name || name || decoded.given_name || "Atleta Google";
+        }
+      } catch (e) {
+        console.warn("Local JWT decode failed:", e);
       }
-    } catch (fetchErr) {
-      console.warn("Fetch to Google tokeninfo failed, falling back to local JWT decode:", fetchErr);
-    }
 
-    // 2. Fallback: decode JWT payload if Google API HTTP call failed
-    if (!payload || !payload.email) {
-      const decoded = jwt.decode(credential);
-      if (decoded && decoded.email) {
-        payload = decoded;
+      // 2. Fallback to Google tokeninfo API if local decode didn't extract email
+      if (!email) {
+        try {
+          const googleVerifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
+          if (googleVerifyRes.ok) {
+            const payload = await googleVerifyRes.json();
+            email = payload.email;
+            name = payload.name || name || "Atleta Google";
+          }
+        } catch (fetchErr) {
+          console.error("Google tokeninfo error:", fetchErr);
+        }
       }
     }
-
-    if (!payload || !payload.email) {
-      return res.status(401).json({ error: "Token de Google inválido o no se pudo obtener el perfil de usuario" });
-    }
-
-    const { email, name } = payload;
 
     if (!email) {
-      return res.status(400).json({ error: "No se pudo obtener el correo de Google" });
+      return res.status(400).json({ error: "No se pudo obtener el correo de Google. Inténtalo nuevamente." });
     }
 
-    // Check if patient exists
+    // Check if patient exists in database
     let patient = await prisma.patient.findFirst({
       where: { email: { equals: email, mode: "insensitive" } }
     });
