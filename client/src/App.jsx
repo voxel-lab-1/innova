@@ -147,7 +147,7 @@ function App() {
   const [isAthleteView, setIsAthleteView] = useState(false);
   const [activeTab, setActiveTab] = useState("anthropometry"); // "anthropometry", "supplementation", "posture", "nutrition"
   const [loading, setLoading] = useState(false);
-  const [showHistory, setShowHistory] = useState(false);
+  const [showHistory, setShowHistory] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [addingAthleteForCreatorId, setAddingAthleteForCreatorId] = useState(null);
   const [trainerSub, setTrainerSub] = useState(null);

@@ -322,7 +322,7 @@ app.get("/api/patients", async (req, res) => {
       if (creatorIdQuery) {
         whereClause = { creatorId: parseInt(creatorIdQuery) };
       } else {
-        whereClause = {};
+        whereClause = { creatorId: null };
       }
     } else if (req.user.role === "athlete_share") {
       whereClause = { id: req.user.athleteId };
