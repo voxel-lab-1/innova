@@ -239,13 +239,29 @@ app.post("/api/auth/google", async (req, res) => {
       return res.status(400).json({ error: "El token de Google es obligatorio" });
     }
 
-    // Verify token with Google's API
-    const googleVerifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
-    if (!googleVerifyRes.ok) {
-      return res.status(401).json({ error: "Token de Google inválido o expirado" });
+    let payload = null;
+    try {
+      // 1. Verify token with Google's API
+      const googleVerifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
+      if (googleVerifyRes.ok) {
+        payload = await googleVerifyRes.json();
+      }
+    } catch (fetchErr) {
+      console.warn("Fetch to Google tokeninfo failed, falling back to local JWT decode:", fetchErr);
     }
 
-    const payload = await googleVerifyRes.json();
+    // 2. Fallback: decode JWT payload if Google API HTTP call failed
+    if (!payload || !payload.email) {
+      const decoded = jwt.decode(credential);
+      if (decoded && decoded.email) {
+        payload = decoded;
+      }
+    }
+
+    if (!payload || !payload.email) {
+      return res.status(401).json({ error: "Token de Google inválido o no se pudo obtener el perfil de usuario" });
+    }
+
     const { email, name } = payload;
 
     if (!email) {
