@@ -822,7 +822,7 @@ function App() {
           <div style={{ padding: "20px", borderBottom: "1px solid var(--border-color)", display: "flex", flexDirection: "column", gap: "12px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--primary)" }}>
-                {currentUser?.role === "admin" ? "Panel de Entrenadores" : "Mis Atletas"}
+                Mis Atletas
               </span>
               <button
                 type="button"
@@ -842,7 +842,7 @@ function App() {
             <input
               type="text"
               className="form-input"
-              placeholder={currentUser?.role === "admin" ? "Buscar entrenador..." : "Buscar atleta..."}
+              placeholder="Buscar atleta..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -857,7 +857,7 @@ function App() {
                 setIsSidebarOpen(false);
               }}
             >
-              {currentUser?.role === "admin" ? "+ Nuevo Entrenador" : "+ Nuevo Atleta"}
+              + Nuevo Atleta
             </button>
           </div>
 
@@ -1731,7 +1731,7 @@ function App() {
               {/* KPI cards */}
               <div className="grid-3-cols">
                 <div className="glass-card" style={{ background: "var(--bg-main)" }}>
-                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>{currentUser?.role === "admin" ? "Total Entrenadores" : "Total Atletas"}</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Total Atletas</span>
                   <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--primary)", marginTop: "8px" }}>
                     {patients.length}
                   </div>
@@ -1751,13 +1751,13 @@ function App() {
                 </div>
               </div>
 
-              {/* Registered Trainers Grid Section for Admin */}
+              {/* Registered Athletes Grid Section */}
               <div className="glass-card" style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "30px", marginTop: "10px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                   <div>
-                    <h3 className="glow-text" style={{ fontSize: "1.35rem", margin: 0 }}>Entrenadores Registrados</h3>
+                    <h3 className="glow-text" style={{ fontSize: "1.35rem", margin: 0 }}>Mis Atletas Registrados</h3>
                     <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "4px 0 0 0" }}>
-                      Cuentas principales de preparadores físicos y nutricionistas en la plataforma.
+                      Atletas activos y perfiles en seguimiento dentro de la plataforma.
                     </p>
                   </div>
                   <button
@@ -1767,19 +1767,19 @@ function App() {
                       setIsAddingPatient(true);
                     }}
                   >
-                    + Crear Nuevo Entrenador
+                    + Crear Nuevo Atleta
                   </button>
                 </div>
 
                 {loading ? (
                   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15vh", color: "var(--text-muted)" }}>
                     <div style={{ width: "20px", height: "20px", border: "3px solid rgba(0, 128, 128, 0.2)", borderTopColor: "var(--primary)", borderRadius: "50%", animation: "spin 0.8s linear infinite", marginRight: "10px" }}></div>
-                    Cargando entrenadores...
+                    Cargando atletas...
                   </div>
                 ) : patients.length === 0 ? (
                   <div style={{ textAlign: "center", padding: "30px 20px", border: "1px dashed var(--border-color)", borderRadius: "12px", background: "rgba(255,255,255,0.01)" }}>
                     <p style={{ color: "var(--text-muted)", fontSize: "1rem", marginBottom: "16px" }}>
-                      Aún no hay entrenadores registrados en la plataforma.
+                      Aún no hay atletas registrados en la plataforma.
                     </p>
                     <button
                       className="btn btn-primary"
@@ -1788,7 +1788,7 @@ function App() {
                         setIsAddingPatient(true);
                       }}
                     >
-                      Crear Primer Entrenador
+                      Crear Primer Atleta
                     </button>
                   </div>
                 ) : (

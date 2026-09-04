@@ -395,11 +395,13 @@ app.get("/api/patients", async (req, res) => {
 
     if (req.user.role === "athlete_share") {
       whereClause = { id: req.user.athleteId };
-    } else if (req.user.role === "patient") {
+    } else if (req.user.role === "patient" && typeof req.user.id === "number") {
       whereClause = {
         OR: [
           { id: req.user.id },
-          { email: req.user.email }
+          { email: req.user.email },
+          { creatorId: req.user.id },
+          { creatorId: null }
         ]
       };
     } else {

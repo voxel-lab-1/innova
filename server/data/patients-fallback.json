@@ -11,5 +11,19 @@
     "supplements": [],
     "cycles": [],
     "workoutSchedule": []
+  },
+  {
+    "id": 85123,
+    "name": "Atleta Visibilidad Permanente",
+    "gender": "male",
+    "email": null,
+    "phone": null,
+    "sport": null,
+    "creatorId": null,
+    "createdAt": "2026-09-04T23:55:57.291Z",
+    "evaluations": [],
+    "supplements": [],
+    "cycles": [],
+    "workoutSchedule": []
   }
 ]
