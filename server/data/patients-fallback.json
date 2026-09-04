@@ -1,0 +1,15 @@
+[
+  {
+    "id": 52074,
+    "name": "Atleta Persistente Test",
+    "email": null,
+    "phone": null,
+    "sport": null,
+    "creatorId": 1,
+    "createdAt": "2026-09-04T23:51:28.789Z",
+    "evaluations": [],
+    "supplements": [],
+    "cycles": [],
+    "workoutSchedule": []
+  }
+]

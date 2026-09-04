@@ -358,7 +358,35 @@ app.post("/api/auth/google", async (req, res) => {
 
 // --- PATIENTS ROUTE ---
 
-const fallbackPatientsCache = [];
+const FALLBACK_FILE_PATH = path.join(process.cwd(), "server", "data", "patients-fallback.json");
+
+try {
+  const dir = path.dirname(FALLBACK_FILE_PATH);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+} catch (e) {}
+
+let fallbackPatientsCache = [];
+try {
+  if (fs.existsSync(FALLBACK_FILE_PATH)) {
+    const raw = fs.readFileSync(FALLBACK_FILE_PATH, "utf8");
+    if (raw) {
+      fallbackPatientsCache = JSON.parse(raw);
+      console.log(`Loaded ${fallbackPatientsCache.length} fallback patients from persistent disk cache.`);
+    }
+  }
+} catch (e) {
+  console.warn("Could not read fallback patients file:", e.message);
+}
+
+const saveFallbackCache = () => {
+  try {
+    fs.writeFileSync(FALLBACK_FILE_PATH, JSON.stringify(fallbackPatientsCache, null, 2), "utf8");
+  } catch (e) {
+    console.warn("Could not write fallback patients file:", e.message);
+  }
+};
 
 // Get all patients (supports filtering by creatorId)
 app.get("/api/patients", async (req, res) => {
@@ -527,6 +555,14 @@ app.post("/api/patients", async (req, res) => {
         workoutSchedule: []
       };
       fallbackPatientsCache.push(newPatient);
+      saveFallbackCache();
+    }
+
+    if (newPatient) {
+      if (!fallbackPatientsCache.some(p => p.id === newPatient.id)) {
+        fallbackPatientsCache.push(newPatient);
+        saveFallbackCache();
+      }
     }
 
     if (newPatient.password) delete newPatient.password;
@@ -540,6 +576,8 @@ app.post("/api/patients", async (req, res) => {
       gender: req.body?.gender || "male",
       creatorId: req.user?.id || null
     };
+    fallbackPatientsCache.push(fallbackPatient);
+    saveFallbackCache();
     return res.status(201).json(fallbackPatient);
   }
 });

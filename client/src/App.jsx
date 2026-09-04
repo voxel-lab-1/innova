@@ -102,7 +102,14 @@ function App() {
     setIsAthleteView(false);
   };
 
-  const [patients, setPatients] = useState([]);
+  const [patients, setPatients] = useState(() => {
+    try {
+      const saved = localStorage.getItem("ZEROFIT_patients_backup");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -179,7 +186,22 @@ function App() {
       const res = await fetchWithAuth(`${API_BASE}/patients`);
       if (res.ok) {
         const data = await res.json();
-        setPatients(data);
+        setPatients(prev => {
+          let localBackup = [];
+          try {
+            localBackup = JSON.parse(localStorage.getItem("ZEROFIT_patients_backup") || "[]");
+          } catch (e) {}
+
+          const map = new Map();
+          [...localBackup, ...prev, ...data].forEach(p => {
+            if (p && p.id) map.set(p.id, p);
+          });
+          const combined = Array.from(map.values());
+          try {
+            localStorage.setItem("ZEROFIT_patients_backup", JSON.stringify(combined));
+          } catch (e) {}
+          return combined;
+        });
       }
     } catch (err) {
       console.error("Error fetching patients:", err);
@@ -261,7 +283,13 @@ function App() {
       setIsAddingPatient(false);
       setAddingAthleteForCreatorId(null);
       setSelectedPatient(newPatient);
-      setPatients((prev) => [...prev.filter(p => p.id !== newPatient.id), newPatient]);
+      setPatients((prev) => {
+        const updated = [...prev.filter(p => p.id !== newPatient.id), newPatient];
+        try {
+          localStorage.setItem("ZEROFIT_patients_backup", JSON.stringify(updated));
+        } catch (e) {}
+        return updated;
+      });
       fetchPatients();
     } catch (err) {
       console.error("Error in handleCreatePatient:", err);

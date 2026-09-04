@@ -1,12 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
-const directUrl = "postgresql://postgres:Apolo2905*1@db.wfllpyxluxzeprioavsm.supabase.co:5432/postgres";
-
-let activeUrl = process.env.DATABASE_URL || directUrl;
-if (!activeUrl || activeUrl.includes("pooler.supabase.com")) {
-  console.log("Database: Overriding deprecated pooler URL with direct Supabase connection URL.");
-  activeUrl = directUrl;
-}
+const defaultPoolerUrl = "postgresql://postgres.wfllpyxluxzeprioavsm:Apolo2905*1@aws-0-sa-east-1.pooler.supabase.com:6543/postgres?pgbouncer=true";
+let activeUrl = process.env.DATABASE_URL || defaultPoolerUrl;
 
 console.log("Prisma Client loading... DATABASE_URL active:", activeUrl.replace(/:[^:@]+@/, ":****@"));
 
