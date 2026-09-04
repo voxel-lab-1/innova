@@ -58,15 +58,15 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !birthdate || !gender) {
-      setError("El nombre, fecha de nacimiento y género son obligatorios.");
+    if (!name) {
+      setError("El nombre del atleta es obligatorio.");
       return;
     }
     setError("");
     onSubmit({
       name,
-      birthdate,
-      gender,
+      birthdate: birthdate || "2000-01-01",
+      gender: gender || "male",
       email,
       phone,
       sport,
@@ -113,7 +113,6 @@ const PatientForm = ({ onSubmit, onCancel, patient = null }) => {
             }}
             value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
-            required
           />
         </div>
 

@@ -480,9 +480,12 @@ app.post("/api/patients", async (req, res) => {
   try {
     const { name, birthdate, gender, email, phone, sport } = req.body;
     
-    if (!name || !birthdate || !gender) {
-      return res.status(400).json({ error: "El nombre, fecha de nacimiento y género son obligatorios" });
+    if (!name) {
+      return res.status(400).json({ error: "El nombre del atleta es obligatorio" });
     }
+
+    const finalBirthdate = birthdate || "2000-01-01";
+    const finalGender = gender || "male";
 
     let creatorId = req.user.role === "admin" 
       ? (req.body.creatorId ? parseInt(req.body.creatorId) : (typeof req.user.id === 'number' ? req.user.id : null)) 
@@ -494,8 +497,8 @@ app.post("/api/patients", async (req, res) => {
       newPatient = await prisma.patient.create({
         data: {
           name,
-          birthdate,
-          gender,
+          birthdate: finalBirthdate,
+          gender: finalGender,
           email: email || null,
           phone: phone || null,
           sport: sport || null,
