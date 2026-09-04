@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { getLocalDateString, calculateAgeFromBirthdate } from "../utils/dateUtils";
-
+import { fetchWithAuth } from "../api";
 
 const API_BASE = "/api";
 
@@ -285,7 +285,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
   const fetchPatientData = async () => {
     try {
       // First, get latest evaluation for weight, height, bodyfat
-      const resEval = await fetch(`${API_BASE}/patients/${patientId}`);
+      const resEval = await fetchWithAuth(`${API_BASE}/patients/${patientId}`);
       if (resEval.ok) {
         const patientData = await resEval.json();
         setPatientProfile(patientData);
@@ -353,7 +353,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
 
   const fetchLogs = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/calories/logs`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/calories/logs`);
       if (res.ok) {
         const data = await res.json();
         setLogs(data);
@@ -366,7 +366,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
   const fetchActivePlan = async () => {
     setLoadingPlan(true);
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/mealplans/active`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/mealplans/active`);
       if (res.ok) {
         const data = await res.json();
         setActivePlan(data);
@@ -387,7 +387,7 @@ const CalorieCounter = ({ patientId, isAdminMode = false, planType }) => {
 
   const fetchPlanHistory = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/mealplans`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/mealplans`);
       if (res.ok) {
         const data = await res.json();
         setPlanHistory(data);

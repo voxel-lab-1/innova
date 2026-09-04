@@ -16,6 +16,7 @@ import TrainerSubscription from "./components/TrainerSubscription";
 import TrainerDashboard from "./components/TrainerDashboard";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
+import { fetchWithAuth } from "./api";
 
 const API_BASE = "/api";
 
@@ -154,7 +155,7 @@ function App() {
 
   const fetchTrainerSub = async () => {
     try {
-      const res = await fetch(`${API_BASE}/trainer/subscription`);
+      const res = await fetchWithAuth(`${API_BASE}/trainer/subscription`);
       if (res.ok) {
         const data = await res.json();
         setTrainerSub(data);
@@ -175,7 +176,7 @@ function App() {
 
   const fetchPatients = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients`);
+      const res = await fetchWithAuth(`${API_BASE}/patients`);
       if (res.ok) {
         const data = await res.json();
         setPatients(data);
@@ -195,7 +196,7 @@ function App() {
     }
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/patients/${id}`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${id}`);
       if (res.ok) {
         const data = await res.json();
         setSelectedPatient(data);
@@ -220,9 +221,8 @@ function App() {
       let newPatient = null;
 
       try {
-        const res = await fetch(`${API_BASE}/patients`, {
+        const res = await fetchWithAuth(`${API_BASE}/patients`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...patientData,
             creatorId: creatorIdToUse
@@ -271,9 +271,8 @@ function App() {
 
   const handleUpdatePatient = async (patientData) => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${selectedPatient.id}`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${selectedPatient.id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patientData),
       });
       if (res.ok) {
@@ -536,7 +535,7 @@ function App() {
       return;
     }
     try {
-      const res = await fetch(`${API_BASE}/patients/${id}`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -558,9 +557,8 @@ function App() {
 
   const handleCreateEvaluation = async (evalData) => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${selectedPatient.id}/evaluations`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${selectedPatient.id}/evaluations`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(evalData),
       });
       if (res.ok) {
@@ -582,7 +580,7 @@ function App() {
       return;
     }
     try {
-      const res = await fetch(`${API_BASE}/evaluations/${evalId}`, {
+      const res = await fetchWithAuth(`${API_BASE}/evaluations/${evalId}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -600,9 +598,8 @@ function App() {
 
   const handleCreateCycle = async (cycleData) => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${selectedPatient.id}/cycles`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${selectedPatient.id}/cycles`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cycleData),
       });
       if (res.ok) {

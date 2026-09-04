@@ -5,6 +5,7 @@ import Somatochart from "./Somatochart";
 import BodyTrendChart from "./BodyTrendChart";
 import SomatotypeBodyVisualizer from "./SomatotypeBodyVisualizer";
 import { getLocalDateString } from "../utils/dateUtils";
+import { fetchWithAuth } from "../api";
 
 const API_BASE = "/api";
 
@@ -38,7 +39,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
   const fetchData = async () => {
     try {
       // Get reminders
-      const remRes = await fetch(`${API_BASE}/patients/${patientId}/reminders`);
+      const remRes = await fetchWithAuth(`${API_BASE}/patients/${patientId}/reminders`);
       if (remRes.ok) {
         const data = await remRes.json();
         setReminders(data.reminders || []);
@@ -50,7 +51,7 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
       }
 
       // Get patient details (including evaluations, supplements, cycles)
-      const patRes = await fetch(`${API_BASE}/patients/${patientId}`);
+      const patRes = await fetchWithAuth(`${API_BASE}/patients/${patientId}`);
       if (patRes.ok) {
         const detail = await patRes.json();
         setPatientDetail(detail);
@@ -96,9 +97,8 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
   const handleSaveSchedule = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/schedule`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/schedule`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ workoutTime, activeDays }),
       });
       if (res.ok) {
@@ -113,9 +113,8 @@ const AthleteView = ({ patientId, onBack, isPublicShare = false }) => {
   const handleAddSupplement = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/supplements`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/supplements`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: newSupName,
           brand: newSupBrand,

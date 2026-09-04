@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getLocalDateString } from "../utils/dateUtils";
+import { fetchWithAuth } from "../api";
 
 const API_BASE = "/api";
 
@@ -978,7 +979,7 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
 
   const fetchPatientSomatotype = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}`);
       if (res.ok) {
         const data = await res.json();
         if (data.evaluations && data.evaluations.length > 0) {
@@ -1034,7 +1035,7 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
 
   useEffect(() => {
     if (isAdminMode) {
-      fetch(`${API_BASE}/trainer/exercises`)
+      fetchWithAuth(`${API_BASE}/trainer/exercises`)
         .then(res => {
           if (res.ok) return res.json();
           return { globals: [], customs: [] };
@@ -1078,7 +1079,7 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
   const fetchPlans = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/patients/${patientId}/training-plans`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/training-plans`);
       if (res.ok) {
         const data = await res.json();
         setPlans(data);
@@ -1094,7 +1095,7 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
 
   const fetchLogs = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/exercise-logs`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/exercise-logs`);
       if (res.ok) {
         const data = await res.json();
         setExerciseLogs(data);
@@ -1112,9 +1113,8 @@ const TrainingPlanner = ({ patientId, isAdminMode = false, planType }) => {
     try {
       setCreatingPlan(true);
       setPlanError("");
-      const res = await fetch(`${API_BASE}/patients/${patientId}/training-plans`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/training-plans`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: newPlanName,
           goal: newPlanGoal,

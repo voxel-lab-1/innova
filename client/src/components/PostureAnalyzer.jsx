@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { fetchWithAuth } from "../api";
 
 const API_BASE = "/api";
 
@@ -43,7 +44,7 @@ const PostureAnalyzer = ({ patientId, planType }) => {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/posture/jobs`);
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/posture/jobs`);
       if (res.ok) {
         const data = await res.json();
         setJobs(data);
@@ -63,7 +64,7 @@ const PostureAnalyzer = ({ patientId, planType }) => {
 
     const interval = setInterval(async () => {
       try {
-        const res = await fetch(`${API_BASE}/posture/jobs/${jobId}`);
+        const res = await fetchWithAuth(`${API_BASE}/posture/jobs/${jobId}`);
         if (res.ok) {
           const job = await res.json();
           // Update active job if currently viewed
@@ -96,7 +97,7 @@ const PostureAnalyzer = ({ patientId, planType }) => {
     formData.append("video", file);
 
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/posture`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/posture`, {
         method: "POST",
         body: formData,
       });
@@ -123,7 +124,7 @@ const PostureAnalyzer = ({ patientId, planType }) => {
     formData.append("video", mockFile);
 
     try {
-      const res = await fetch(`${API_BASE}/patients/${patientId}/posture`, {
+      const res = await fetchWithAuth(`${API_BASE}/patients/${patientId}/posture`, {
         method: "POST",
         body: formData,
       });
