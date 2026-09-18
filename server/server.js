@@ -114,14 +114,21 @@ app.use((req, res, next) => {
 // Register route
 app.post("/api/auth/register", async (req, res) => {
   try {
-    const { name, email, password, country, phone, birthdate, gender, sport } = req.body;
+    const { name, email, password, country, phone, birthdate, gender, sport, planType } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: "Nombre, correo y contraseña son obligatorios" });
     }
 
     const cleanEmail = email.trim().toLowerCase();
-    const allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
+    let allPatients = [];
+    try {
+      allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
+    } catch (dbErr) {
+      console.warn("DB connection error in register, using fallback cache:", dbErr.message);
+      allPatients = fallbackPatientsCache;
+    }
+
     const existing = allPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
     if (existing) {
@@ -129,19 +136,35 @@ app.post("/api/auth/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const newPatientData = {
+      name,
+      email: cleanEmail,
+      phone: phone || "",
+      password: hashedPassword,
+      country: country || "",
+      birthdate: birthdate || "",
+      gender: gender || "male",
+      sport: sport || "General",
+      planType: planType || "free",
+      subActive: true
+    };
 
-    const newPatient = await prisma.patient.create({
-      data: {
-        name,
-        email,
-        phone,
-        password: hashedPassword,
-        country,
-        birthdate: birthdate || "",
-        gender: gender || "male",
-        sport: sport || "General"
-      }
-    });
+    let newPatient = null;
+    try {
+      newPatient = await prisma.patient.create({ data: newPatientData });
+    } catch (dbErr) {
+      console.warn("DB error creating patient in register, creating in fallback cache:", dbErr.message);
+      newPatient = {
+        id: Math.floor(Math.random() * 100000) + 100,
+        ...newPatientData
+      };
+    }
+
+    delete newPatient.password;
+    if (!fallbackPatientsCache.some(p => p.id === newPatient.id || (p.email && p.email.toLowerCase() === cleanEmail))) {
+      fallbackPatientsCache.push(newPatient);
+      saveFallbackCache();
+    }
 
     const token = jwt.sign(
       { id: newPatient.id, email: newPatient.email, role: "patient" },
@@ -161,7 +184,7 @@ app.post("/api/auth/register", async (req, res) => {
     });
   } catch (error) {
     console.error("Error in registration:", error);
-    res.status(500).json({ error: "Error en el registro del usuario" });
+    res.status(500).json({ error: "Error en el registro del usuario: " + (error.message || error) });
   }
 });
 
@@ -176,7 +199,6 @@ app.post("/api/auth/login", async (req, res) => {
 
     const cleanEmail = email.trim().toLowerCase();
     const cleanPass = password.trim();
-    const passLower = cleanPass.toLowerCase();
     const isAdminUser = cleanEmail === "admin" || cleanEmail === "admin@zerofit.app" || cleanEmail === "admin@innova.com" || cleanEmail === ADMIN_EMAIL.toLowerCase();
     const isAdminPass = cleanPass === "innova2026" || cleanPass === ADMIN_PASSWORD;
 
@@ -198,8 +220,16 @@ app.post("/api/auth/login", async (req, res) => {
       });
     }
 
-    const allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
-    const patient = allPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
+    let allPatients = [];
+    try {
+      allPatients = await prisma.patient.findMany({ where: { email: { not: null } } });
+    } catch (dbErr) {
+      console.warn("DB error in login, checking fallback cache:", dbErr.message);
+      allPatients = fallbackPatientsCache;
+    }
+
+    const combinedPatients = [...allPatients, ...fallbackPatientsCache.filter(fb => !allPatients.some(p => p.id === fb.id))];
+    const patient = combinedPatients.find(p => p.email && p.email.trim().toLowerCase() === cleanEmail);
 
     if (!patient || !patient.password) {
       return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
@@ -228,7 +258,7 @@ app.post("/api/auth/login", async (req, res) => {
     });
   } catch (error) {
     console.error("Error in login:", error);
-    res.status(500).json({ error: "Error en el inicio de sesión" });
+    res.status(500).json({ error: "Error en el inicio de sesión: " + (error.message || error) });
   }
 });
 
