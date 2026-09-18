@@ -160,11 +160,11 @@ app.post("/api/auth/register", async (req, res) => {
       };
     }
 
-    delete newPatient.password;
     if (!fallbackPatientsCache.some(p => p.id === newPatient.id || (p.email && p.email.toLowerCase() === cleanEmail))) {
-      fallbackPatientsCache.push(newPatient);
+      fallbackPatientsCache.push({ ...newPatient, password: hashedPassword });
       saveFallbackCache();
     }
+    delete newPatient.password;
 
     const token = jwt.sign(
       { id: newPatient.id, email: newPatient.email, role: "patient" },
