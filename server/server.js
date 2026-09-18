@@ -2693,7 +2693,13 @@ app.patch("/api/exercise-logs/:id", async (req, res) => {
 });
 
 
-if (!process.env.VERCEL) {
+const isDirectRun = process.argv[1] && (
+  process.argv[1].endsWith("server.js") || 
+  process.argv[1].endsWith("server\\server.js") ||
+  process.argv[1].endsWith("server/server.js")
+);
+
+if (isDirectRun && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Monorepo for CRM Antropométrico y Motor de Somatotipo",
   "private": true,
+  "type": "module",
   "workspaces": [
     "client",
     "server"
