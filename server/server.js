@@ -388,7 +388,9 @@ app.post("/api/auth/google", async (req, res) => {
 
 // --- PATIENTS ROUTE ---
 
-const FALLBACK_FILE_PATH = path.join(process.cwd(), "server", "data", "patients-fallback.json");
+const FALLBACK_FILE_PATH = process.env.VERCEL 
+  ? path.join("/tmp", "patients-fallback.json")
+  : path.join(process.cwd(), "server", "data", "patients-fallback.json");
 
 try {
   const dir = path.dirname(FALLBACK_FILE_PATH);
@@ -412,6 +414,10 @@ try {
 
 const saveFallbackCache = () => {
   try {
+    const dir = path.dirname(FALLBACK_FILE_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     fs.writeFileSync(FALLBACK_FILE_PATH, JSON.stringify(fallbackPatientsCache, null, 2), "utf8");
   } catch (e) {
     console.warn("Could not write fallback patients file:", e.message);
